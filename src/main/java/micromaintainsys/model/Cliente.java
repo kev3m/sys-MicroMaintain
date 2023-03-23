@@ -9,8 +9,7 @@ public class Cliente {
     private String telefone;
     private ArrayList<Ordem> ordens;
 
-    public Cliente(int clienteID, String endereco, String telefone, ArrayList<Ordem> ordens){
-        this.clienteID = clienteID;
+    public Cliente(String endereco, String telefone, ArrayList<Ordem> ordens){
         this.endereco = endereco;
         this.telefone = telefone;
         this.ordens = ordens;
