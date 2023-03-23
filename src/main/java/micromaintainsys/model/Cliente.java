@@ -22,6 +22,7 @@ public class Cliente {
     public void setTelefone(String telefone) {this.telefone = telefone;}
     public void setOrdem(Ordem ordem){this.ordens.add(ordem);}
 
+
     public int getId() { return clienteID; }
     public int getName() { return nome; }
     public String getEndereco() {return endereco;}
