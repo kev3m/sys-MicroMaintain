@@ -11,10 +11,10 @@ public class Ordem {
     private StatusOrdem status;
     private ArrayList<Servico> servicos;
 
-    public Ordem(String avaliacaoFinal, StatusOrdem status, Servico servicos){
+    public Ordem(String avaliacaoFinal, StatusOrdem status, ArrayList<Servico> servicos){
         this.avaliacaoFinal = avaliacaoFinal;
         this.status = status;
-        this.servico = servicos;
+        this.servicos = servicos;
 
     }
 

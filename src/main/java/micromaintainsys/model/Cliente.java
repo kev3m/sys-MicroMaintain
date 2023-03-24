@@ -9,7 +9,8 @@ public class Cliente {
     private String telefone;
     private ArrayList<Ordem> ordens;
 
-    public Cliente(String endereco, String telefone, ArrayList<Ordem> ordens){
+    public Cliente(String endereco, String nome, String telefone, ArrayList<Ordem> ordens){
+        this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
         this.ordens = ordens;
@@ -23,9 +24,9 @@ public class Cliente {
 
 
     public int getId() { return clienteID; }
-    public int getName() { return nome; }
+    public String getName() { return nome; }
     public String getEndereco() {return endereco;}
     public String getTelefone() {return telefone;}
-    public  getOrdens() {return ordens;}
+    public ArrayList<Ordem> getOrdens() {return ordens;}
 
 }
