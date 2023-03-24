@@ -29,4 +29,6 @@ public class Cliente {
     public String getTelefone() {return telefone;}
     public ArrayList<Ordem> getOrdens() {return ordens;}
 
+
+
 }

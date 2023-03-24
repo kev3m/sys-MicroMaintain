@@ -23,5 +23,6 @@ public class Ordem {
     public void setOrdemID(int id) {this.ordemID = id;}
     public void setAvaliacaoFinal(String avaliacao) {this.avaliacaoFinal = avaliacao;}
     public  void setStatus(StatusOrdem status) {this.status = status;}
+    public void setServicos(Servico servico) {this.servicos.add(servico);}
 
 }
