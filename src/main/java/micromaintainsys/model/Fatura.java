@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 public class Fatura {
     private double valorTotal;
-    ArrayList<Pagamento> pagamentos;
+    private ArrayList<Pagamento> pagamentos;
     private int ordemID;
     private double valorPago;
 
     public void addPagamento(String tipo, double valor){
         pagamentos.add(new Pagamento(tipo, valor));
+    }
+
+    public ArrayList<Pagamento> getPagamentos(){
+        return pagamentos;
     }
     public double getValorTotal() {
         return valorTotal;
