@@ -11,12 +11,11 @@ public class Tecnico {
     private ArrayList<OrdemCompra> historicoCompras;
     private Estoque estoque;
 
-    public Tecnico(String nome, String senha, ArrayList<Ordem> historicoOrdens, ArrayList<OrdemCompra> historicoCompras, Estoque estoque){
+    public Tecnico(String nome, String senha, ArrayList<Ordem> historicoOrdens, ArrayList<OrdemCompra> historicoCompras){
         this.nome = nome;
         this.senha = senha;
         this.historicoOrdens = historicoOrdens;
         this.historicoCompras = historicoCompras;
-        this.estoque = estoque;
     }
 
     public void setAdm(boolean adm) {
