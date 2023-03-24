@@ -26,7 +26,7 @@ public class MainController {
 
     public boolean loginTecnico(String id, String senha){
         Tecnico tecnico = tecnicosCadastrados.get(id);
-        if (tecnico != null){
+        if (tecnico != null && senha == tecnico.getSenha()){
             this.tecnicoSessaoID = tecnico.getTecnicoID();
             return true;
         }
