@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Queue;
 
+import micromaintainsys.dao.DAO;
 import micromaintainsys.model.Cliente;
 import micromaintainsys.model.Ordem;
 import micromaintainsys.model.OrdemCompra;
@@ -19,15 +20,13 @@ public class MainController {
     //Armazena o ID do tecnico logado no sistema
     private int tecnicoSessaoID;
 
-    public void criaTecnico(String nome, String senha){
-        Tecnico novoTecnico = new Tecnico(nome, senha, null, null);
-        this.tecnicosCadastrados.put(novoTecnico.getTecnicoID(), novoTecnico);
+    public int criaTecnico(String nome, String senha){
+        return DAO.getTecnicoDAO().cria(nome, senha);
     }
 
-    public boolean loginTecnico(String id, String senha){
-        Tecnico tecnico = tecnicosCadastrados.get(id);
-        if (tecnico != null && senha == tecnico.getSenha()){
-            this.tecnicoSessaoID = tecnico.getTecnicoID();
+    public boolean loginTecnico(int id, String senha){
+        if (DAO.getTecnicoDAO().autentica(id, senha)){
+            this.tecnicoSessaoID = id;
             return true;
         }
         return false;
