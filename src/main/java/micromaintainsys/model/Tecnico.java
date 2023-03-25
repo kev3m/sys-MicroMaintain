@@ -9,7 +9,6 @@ public class Tecnico {
     private int tecnicoID;
     private ArrayList<Ordem> historicoOrdens;
     private ArrayList<OrdemCompra> historicoCompras;
-    private Estoque estoque;
 
     public Tecnico(String nome, String senha, ArrayList<Ordem> historicoOrdens, ArrayList<OrdemCompra> historicoCompras){
         this.nome = nome;
@@ -42,10 +41,6 @@ public class Tecnico {
         this.historicoCompras = historicoCompras;
     }
 
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
-    }
-
     public boolean isAdm() {
         return adm;
     }
@@ -70,7 +65,4 @@ public class Tecnico {
         return historicoCompras;
     }
 
-    public Estoque getEstoque() {
-        return estoque;
-    }
 }

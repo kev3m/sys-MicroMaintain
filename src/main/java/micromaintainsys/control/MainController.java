@@ -23,16 +23,22 @@ public class MainController {
     public int criaTecnico(String nome, String senha){
         return DAO.getTecnicoDAO().cria(nome, senha);
     }
-
     public boolean loginTecnico(int id, String senha){
-        if (DAO.getTecnicoDAO().autentica(id, senha)){
+        /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
+        if (this.tecnicoSessaoID >=0 && DAO.getTecnicoDAO().autentica(id, senha)){
             this.tecnicoSessaoID = id;
             return true;
         }
         return false;
     }
-    /*TODO*/
-    public boolean logoutTecnico(){
-        return true;
+    public void logoutTecnico(){
+        this.tecnicoSessaoID = -1;
+    }
+
+    public boolean removeTecnico(int tecnicoID){
+        if (tecnicoID >= 0 && DAO.getTecnicoDAO().remove(tecnicoID)){
+            return true;
+        }
+        return false;
     }
 }
