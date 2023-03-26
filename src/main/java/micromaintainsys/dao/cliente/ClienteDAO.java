@@ -1,14 +1,12 @@
 package micromaintainsys.dao.cliente;
 
 import micromaintainsys.model.Cliente;
-import micromaintainsys.model.Ordem;
-
-import java.util.ArrayList;
 
 public interface ClienteDAO {
-    public Cliente create(Cliente cliente);
+    public int create(String endereco, String nome, String telefone);
     public Cliente findById(int id);
-    public void update(Cliente cliente);
+    public <T> boolean update(int clienteId, String atributo, T valor);
+
     public void delete(int id);
 
 
