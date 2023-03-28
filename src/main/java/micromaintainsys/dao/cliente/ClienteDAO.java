@@ -7,7 +7,7 @@ public interface ClienteDAO {
     public Cliente findById(int id);
     public <T> boolean update(int clienteId, String atributo, T valor);
 
-    public void delete(int id);
+    public boolean delete(int id);
 
 
 }

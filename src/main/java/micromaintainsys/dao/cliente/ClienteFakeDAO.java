@@ -5,6 +5,7 @@ import micromaintainsys.model.Ordem;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * Esta classe implementa um DAO para gerenciar objetos do tipo Cliente
@@ -75,8 +76,24 @@ public class ClienteFakeDAO implements ClienteDAO {
 
     }
 
+    /**
+     * Remove um cliente da hashtable clientesCadastrados com base no id do cliente.
+     * Se o id do cliente especificado não for encontrado na hashtable, nenhum cliente é removido.
+     *
+     * @param clienteId o id do cliente a ser removido
+     * @return True se o cliente for removido, false se o cliente não for encontrado.
+     */
     @Override
-    public void delete(int id) {
-
+    public boolean delete(int clienteId) {
+        for (Map.Entry<Integer, Cliente> entry : clientesCadastrados.entrySet()) {
+            int id = entry.getKey();
+            Cliente cliente = entry.getValue();
+            if (id == clienteId) {
+                clientesCadastrados.remove(id);
+                return true;
+            }
+        }
+        return false;
     }
+
 }
