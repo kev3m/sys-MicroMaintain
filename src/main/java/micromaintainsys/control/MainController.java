@@ -9,6 +9,10 @@ import micromaintainsys.model.Ordem;
 import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.Tecnico;
 import micromaintainsys.model.Fatura;
+
+/**
+ * Controller responsável por prover a interface com o sistema.
+ */
 public class MainController {
     private Hashtable<Integer, Tecnico> tecnicosCadastrados;
     private Hashtable<Integer, Cliente> clientesCadastrados;
@@ -20,9 +24,22 @@ public class MainController {
     //Armazena o ID do tecnico logado no sistema
     private int tecnicoSessaoID;
 
+    /**
+     * Cria um novo técnico.
+     * @param nome nome do técnico
+     * @param senha senha do técnico
+     * @return id do novo técnico
+     */
     public int criaTecnico(String nome, String senha){
         return DAO.getTecnicoDAO().cria(nome, senha);
     }
+
+    /**
+     * Realiza o login de um técnico.
+     * @param id id do técnico
+     * @param senha senha do técnico
+     * @return  true: login realizado com sucesso, false: não foi possível realizar o login
+     */
     public boolean loginTecnico(int id, String senha){
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
         if (this.tecnicoSessaoID >=0 && DAO.getTecnicoDAO().autentica(id, senha)){
@@ -31,10 +48,19 @@ public class MainController {
         }
         return false;
     }
+
+    /**
+     * Realiza o log out do técnico.
+     */
     public void logoutTecnico(){
         this.tecnicoSessaoID = -1;
     }
 
+    /**
+     * Remove um técnico do sistema.
+     * @param tecnicoID id do técnico a ser removido
+     * @return
+     */
     public boolean removeTecnico(int tecnicoID){
         if (tecnicoID >= 0 && DAO.getTecnicoDAO().remove(tecnicoID)){
             return true;
