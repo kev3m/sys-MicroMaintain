@@ -29,7 +29,7 @@ public class ClienteFakeDAO implements ClienteDAO {
      * @return O ID do Cliente criado
      */
     public int create(String endereco, String nome, String telefone) {
-        Cliente novoCliente = new Cliente(endereco, nome, telefone, new ArrayList<Ordem>());
+        Cliente novoCliente = new Cliente(endereco, nome, telefone);
         novoCliente.setClienteID(idCounter);
         clientesCadastrados.put(idCounter,novoCliente);
         idCounter++;
