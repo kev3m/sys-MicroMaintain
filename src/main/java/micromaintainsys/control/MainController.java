@@ -24,6 +24,9 @@ public class MainController {
     //Armazena o ID do tecnico logado no sistema
     private int tecnicoSessaoID;
 
+    /*
+    Métodos relacionados a TÉCNICOS
+    */
     /**
      * Cria um novo técnico.
      * @param nome nome do técnico
@@ -63,6 +66,33 @@ public class MainController {
      */
     public boolean removeTecnico(int tecnicoID){
         if (tecnicoID >= 0 && DAO.getTecnicoDAO().remove(tecnicoID)){
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    Métodos relacionados a CLIENTES
+     */
+
+    /**
+     * Cria um novo cliente.
+     * @param nome nome do cliente
+     * @param endereco endereço do cliente
+     * @param telefone telefone do cliente
+     * @return id do cliente
+     */
+    public int criaCliente(String nome, String endereco, String telefone){
+        return DAO.getClienteDAO().cria(nome, endereco, telefone);
+    }
+
+    /**
+     * Remove um cliente.
+     * @param clienteID id do cliente
+     * @return
+     */
+    public boolean removeCliente(int clienteID){
+        if (clienteID >= 0 && DAO.getClienteDAO().remove(clienteID)){
             return true;
         }
         return false;
