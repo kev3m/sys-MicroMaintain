@@ -14,7 +14,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
         return tecnicosCadastrados.get(tecnicoID);
     }
     public int cria(String nome, String senha){
-        Tecnico novoTecnico = new Tecnico(nome, senha, new ArrayList<Ordem>(), new ArrayList<OrdemCompra>());
+        Tecnico novoTecnico = new Tecnico(nome, senha);
         novoTecnico.setTecnicoID(idCounter);
         tecnicosCadastrados.put(idCounter, novoTecnico);
         idCounter++;
