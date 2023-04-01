@@ -9,7 +9,7 @@ public class Cliente {
     private String telefone;
     private ArrayList<Ordem> ordens;
 
-    public Cliente(String endereco, String nome, String telefone){
+    public Cliente(String nome, String endereco, String telefone){
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
