@@ -15,7 +15,7 @@ import java.util.Map;
  * @version 1.0
 
 */
-public class ClienteFakeDAO implements ClienteDAO {
+public class ClienteFakeDAO implements InterfaceCliente {
     /*Alterar lógica de banco de dados */
     static Hashtable<Integer, Cliente> clientesCadastrados;
     private static int idCounter = 0;
@@ -28,8 +28,8 @@ public class ClienteFakeDAO implements ClienteDAO {
      * @param telefone
      * @return O ID do Cliente criado
      */
-    public int create(String endereco, String nome, String telefone) {
-        Cliente novoCliente = new Cliente(endereco, nome, telefone);
+    public int cria(String nome, String endereco, String telefone) {
+        Cliente novoCliente = new Cliente(nome, endereco, telefone);
         novoCliente.setClienteID(idCounter);
         clientesCadastrados.put(idCounter,novoCliente);
         idCounter++;
@@ -42,7 +42,7 @@ public class ClienteFakeDAO implements ClienteDAO {
      * @param clienteId
      * @return O cliente encontrado, ou null se não existir
      */
-    public Cliente findById(int clienteId) {return clientesCadastrados.get(clienteId);}
+    public Cliente pegaPorId(int clienteId) {return clientesCadastrados.get(clienteId);}
 
 
     /**
@@ -54,7 +54,7 @@ public class ClienteFakeDAO implements ClienteDAO {
      * @return true se o cliente foi atualizado com sucesso, ou false se o ID do cliente não foi encontrado ou se o nome do atributo é inválido
      */
     @Override
-    public <T> boolean update(int clienteId, String atributo, T valor) {
+    public <T> boolean atualiza(int clienteId, String atributo, T valor) {
         Cliente cliente = clientesCadastrados.get(clienteId);
         if(cliente == null){
             return false;
@@ -84,7 +84,7 @@ public class ClienteFakeDAO implements ClienteDAO {
      * @return True se o cliente for removido, false se o cliente não for encontrado.
      */
     @Override
-    public boolean delete(int clienteId) {
+    public boolean remove(int clienteId) {
         for (Map.Entry<Integer, Cliente> entry : clientesCadastrados.entrySet()) {
             int id = entry.getKey();
             Cliente cliente = entry.getValue();
