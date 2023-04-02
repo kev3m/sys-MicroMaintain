@@ -11,13 +11,17 @@ public class Ordem {
     private StatusOrdem status;
     private ArrayList<Servico> servicos;
 
-    public Ordem(int clienteID, ArrayList<Servico> servicos){
+    public Ordem(int clienteID, int tecnicoID){
         this.clienteID = clienteID;
+        this.tecnicoID = tecnicoID;
         this.status = StatusOrdem.Aberta;
-        this.servicos = servicos;
+        this.servicos = new ArrayList<Servico>();
 
     }
 
+    public void adicionaServico(CategoriaServico categoriaServico, double valor, Peca peca, String descricao){
+        this.servicos.add(new Servico(categoriaServico, valor, peca, descricao, this.ordemID));
+    }
     public void setClienteID(int id) {this.clienteID = id;}
     public void setTecnicoID(int id) {this.tecnicoID = id;}
     public void setOrdemID(int id) {this.ordemID = id;}
