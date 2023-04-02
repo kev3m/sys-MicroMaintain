@@ -8,11 +8,9 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Esta classe implementa um DAO para gerenciar objetos do tipo Cliente
- * Ela fornece métodos para inserir, atualizar, excluir e buscar clientes.
+ * Implementação de uma interface para um banco de dados falso de cliente,
+ * Permite criar, remover e atualizar informações dos clientes.
  *
- * @author Keven e Freixo
- * @version 1.0
 
 */
 public class ClienteFakeDAO implements InterfaceCliente {
