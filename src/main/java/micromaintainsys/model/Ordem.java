@@ -25,4 +25,12 @@ public class Ordem {
     public  void setStatus(StatusOrdem status) {this.status = status;}
     public void setServicos(Servico servico) {this.servicos.add(servico);}
 
+    public int getClienteID() {return clienteID;}
+    public int getTecnicoID() {return tecnicoID;}
+    public int getOrdemID() {return ordemID;}
+    public String getAvaliacaoFinal() {return avaliacaoFinal;}
+    public StatusOrdem getStatus() {return status;}
+    public ArrayList<Servico> getServicos() {return servicos;}
+
+
 }

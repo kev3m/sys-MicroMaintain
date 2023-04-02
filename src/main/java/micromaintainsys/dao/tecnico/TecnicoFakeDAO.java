@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * Implementação de uma interface para um banco de dados falso de técnicos,
- * permitindo criar, remover, autenticar e atualizar informações dos técnicos.
+ * Implementação do gerenciamento das operações de acesso aos dados.
+ * Permite ler,criar, remover e autenticar e atualizar informações dos técnicos.
  */
 
 public class TecnicoFakeDAO implements InterfaceTecnico{

@@ -8,8 +8,8 @@ import java.util.Hashtable;
 import java.util.Map;
 
 /**
- * Implementação de uma interface para um banco de dados falso de cliente,
- * Permite criar, remover e atualizar informações dos clientes.
+ * Implementação do gerenciamento das operações de acesso aos dados.
+ * Permite Ler, criar, remover e atualizar informações dos clientes.
  *
 
 */
