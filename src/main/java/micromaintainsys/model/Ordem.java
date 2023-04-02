@@ -11,9 +11,9 @@ public class Ordem {
     private StatusOrdem status;
     private ArrayList<Servico> servicos;
 
-    public Ordem(String avaliacaoFinal, StatusOrdem status, ArrayList<Servico> servicos){
-        this.avaliacaoFinal = avaliacaoFinal;
-        this.status = status;
+    public Ordem(int clienteID, ArrayList<Servico> servicos){
+        this.clienteID = clienteID;
+        this.status = StatusOrdem.Aberta;
         this.servicos = servicos;
 
     }
