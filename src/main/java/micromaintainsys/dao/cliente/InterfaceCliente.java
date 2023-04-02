@@ -1,13 +1,14 @@
 package micromaintainsys.dao.cliente;
 
+import micromaintainsys.dao.CRUD;
 import micromaintainsys.model.Cliente;
 
-public interface InterfaceCliente {
-    public int cria(String nome, String endereco, String telefone);
-    public Cliente pegaPorId(int id);
-    public <T> boolean atualiza(int clienteId, String atributo, T valor);
+public interface InterfaceCliente extends CRUD<Cliente> {
+    public int create(String nome, String endereco, String telefone);
 
-    public boolean remove(int id);
+    /* Extendido pelo CRUD */
+    //public <T> boolean update(int clienteId, String atributo, T valor);
+    //public boolean remove(int id);
 
 
 }

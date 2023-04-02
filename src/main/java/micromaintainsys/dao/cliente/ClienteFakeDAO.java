@@ -26,7 +26,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
      * @param telefone
      * @return O ID do Cliente criado
      */
-    public int cria(String nome, String endereco, String telefone) {
+    public int create(String nome, String endereco, String telefone) {
         Cliente novoCliente = new Cliente(nome, endereco, telefone);
         novoCliente.setClienteID(idCounter);
         clientesCadastrados.put(idCounter,novoCliente);
@@ -40,7 +40,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
      * @param clienteId
      * @return O cliente encontrado, ou null se não existir
      */
-    public Cliente pegaPorId(int clienteId) {return clientesCadastrados.get(clienteId);}
+    public Cliente findById(int clienteId) {return clientesCadastrados.get(clienteId);}
 
 
     /**
@@ -52,7 +52,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
      * @return true se o cliente foi atualizado com sucesso, ou false se o ID do cliente não foi encontrado ou se o nome do atributo é inválido
      */
     @Override
-    public <T> boolean atualiza(int clienteId, String atributo, T valor) {
+    public <T> boolean update(int clienteId, String atributo, T valor) {
         Cliente cliente = clientesCadastrados.get(clienteId);
         if(cliente == null){
             return false;
