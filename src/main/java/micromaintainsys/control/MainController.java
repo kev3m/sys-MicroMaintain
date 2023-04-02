@@ -83,7 +83,7 @@ public class MainController {
      * @return id do cliente
      */
     public int criaCliente(String nome, String endereco, String telefone){
-        return DAO.getClienteDAO().create(nome, endereco, telefone);
+        return DAO.getClienteDAO().cria(nome, endereco, telefone);
     }
 
     /**

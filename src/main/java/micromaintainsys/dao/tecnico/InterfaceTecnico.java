@@ -1,11 +1,17 @@
 package micromaintainsys.dao.tecnico;
 
+import micromaintainsys.dao.CRUD;
 import micromaintainsys.model.Tecnico;
 
-public interface InterfaceTecnico {
-    public Tecnico pegaPorId(int tecnicoID);
+public interface InterfaceTecnico extends CRUD<Tecnico> {
     public int cria(String nome, String senha);
     public boolean autentica(int tecnicoID, String senha);
-    public boolean remove(int tecnicoID);
+
+
+
+    /* Extendido pelo CRUD
+    public Tecnico pegaPorId(int tecnicoID);
     public <T> boolean atualiza(int tecnicoID, String atributo, T valor);
+    public boolean remove(int tecnicoID);
+     */
 }
