@@ -1,10 +1,8 @@
 package micromaintainsys.model;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Servico {
-  private enum Categoria {Formatacao, Montagem, Limpeza}
   private double valor;
   private Calendar horarioAbertura;
   private Calendar horarioFinalizacao;
@@ -12,13 +10,24 @@ public class Servico {
   private int ordemID;
   private Peca peca;
   private String descricao;
-  private Categoria categoriaServico;
+  private CategoriaServico categoriaServico;
+  private int servicoID;
 
-  public Servico(Categoria categoriaServico,double valor, Peca peca, String descricao){
+    public int getServicoID() {
+        return servicoID;
+    }
+
+    public void setServicoID(int servicoID) {
+        this.servicoID = servicoID;
+    }
+
+    public Servico(CategoriaServico categoriaServico, double valor, Peca peca, String descricao, int ordemID){
       this.categoriaServico = categoriaServico;
       this.valor = valor;
       this.peca = peca;
       this.descricao = descricao;
+      this.ordemID = ordemID;
+      this.horarioAbertura = Calendar.getInstance();
   }
 
     public void setValor(double valor) {
@@ -42,7 +51,7 @@ public class Servico {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public void setCategoriaServico(Categoria categoriaServico) {
+    public void setCategoriaServico(CategoriaServico categoriaServico) {
         this.categoriaServico = categoriaServico;
     }
 
@@ -68,7 +77,7 @@ public class Servico {
     public String getDescricao() {
         return descricao;
     }
-    public Categoria getCategoriaServico() {
+    public CategoriaServico getCategoriaServico() {
         return categoriaServico;
     }
 
