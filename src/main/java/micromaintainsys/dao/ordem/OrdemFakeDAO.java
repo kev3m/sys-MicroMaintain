@@ -34,7 +34,8 @@ public class OrdemFakeDAO implements InterfaceOrdem{
             case "avaliacaoFinal":
                 ordem.setAvaliacaoFinal((String) valor);
                 break;
-            // Reaproveitar para setar o ID do técnico
+            case "tecnicoID":
+                ordem.setTecnicoID((int) valor);
             default:
                 return false;
         }
