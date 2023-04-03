@@ -18,4 +18,12 @@ public class ServicoFakeDAO {
         idCounter++;
         return novoServico.getServicoID();
     }
+
+    public boolean remove(int servicoId) {
+        Servico result = servicosCadastrados.remove(servicoId);
+        if (result != null){
+            return true;
+        }
+        return false;
+    }
 }
