@@ -118,4 +118,21 @@ public class Tecnico {
         return historicoCompras;
     }
 
+    public boolean temOrdemEmAberto(){
+        boolean emAberto = this.historicoOrdens
+                .get(this.historicoOrdens.size()-1)
+                .getStatus() == Ordem.StatusOrdem.Aberta?
+                true
+                : false;
+        return emAberto;
+    }
+
+    public Ordem pegaUltimaOrdem(){
+        return this.historicoOrdens.get(this.historicoOrdens.size() -1);
+    }
+
+    public void cadastraOrdem(Ordem novaOrdem){
+        this.getHistoricoOrdens().add(novaOrdem);
+    }
+
 }

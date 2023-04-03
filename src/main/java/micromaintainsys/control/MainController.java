@@ -97,7 +97,20 @@ public class MainController {
     /*
     Métodos relacionados a Ordens
      */
-    public int criaOrdem(int clienteID, int tecnicoID){
-        return DAO.getOrdemDAO().cria(clienteID, tecnicoID);
+    public int criaOrdem(int clienteID){
+        return DAO.getOrdemDAO().cria(clienteID);
+    }
+
+    public boolean atribuiOrdem(Ordem ordem, int tecnicoID){
+        Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(tecnicoID);
+        /*TODO criar uma exception p/ lidar com isso!*/
+        if (tecnico.temOrdemEmAberto())
+            return false;
+        else{
+            tecnico.cadastraOrdem(ordem);
+            ordem.setTecnicoID(tecnicoID);
+
+            return true;
+        }
     }
 }

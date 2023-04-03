@@ -11,7 +11,7 @@ public class Ordem {
     private StatusOrdem status;
     private ArrayList<Servico> servicos;
 
-    public Ordem(int clienteID, int tecnicoID){
+    public Ordem(int clienteID){
         this.clienteID = clienteID;
         this.tecnicoID = tecnicoID;
         this.status = StatusOrdem.Aberta;

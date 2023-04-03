@@ -13,8 +13,8 @@ public class OrdemFakeDAO implements InterfaceOrdem{
     static Hashtable<Integer, Ordem> ordensCadastradas;
     private static int idCounter = 0;
 
-    public int cria(int clienteID, int tecnicoID){
-        Ordem novaOrdem = new Ordem(clienteID, tecnicoID);
+    public int cria(int clienteID){
+        Ordem novaOrdem = new Ordem(clienteID);
         novaOrdem.setOrdemID(idCounter);
         ordensCadastradas.put(idCounter, novaOrdem);
         idCounter++;
