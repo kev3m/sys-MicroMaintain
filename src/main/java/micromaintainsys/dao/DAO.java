@@ -26,8 +26,8 @@ public class DAO {
         return interfaceTecnico;
     }
     public static InterfaceOrdem getOrdemDAO(){
-        if(InterfaceOrdem == null){
-            InterfaceOrdem = new OrdemFakeDAO();
+        if(interfaceOrdem == null){
+            interfaceOrdem = new OrdemFakeDAO();
         }
         return interfaceOrdem;
     }
