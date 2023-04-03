@@ -8,10 +8,4 @@ public interface InterfaceTecnico extends CRUD<Tecnico> {
     public boolean autentica(int tecnicoID, String senha);
 
 
-
-    /* Extendido pelo CRUD
-    public Tecnico pegaPorId(int tecnicoID);
-    public <T> boolean atualiza(int tecnicoID, String atributo, T valor);
-    public boolean remove(int tecnicoID);
-     */
 }

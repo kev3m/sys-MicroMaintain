@@ -2,6 +2,7 @@ package micromaintainsys.dao.cliente;
 
 import micromaintainsys.model.Cliente;
 import micromaintainsys.model.Ordem;
+import micromaintainsys.model.Tecnico;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -83,14 +84,11 @@ public class ClienteFakeDAO implements InterfaceCliente {
      */
     @Override
     public boolean remove(int clienteId) {
-        for (Map.Entry<Integer, Cliente> entry : clientesCadastrados.entrySet()) {
-            int id = entry.getKey();
-            Cliente cliente = entry.getValue();
-            if (id == clienteId) {
-                clientesCadastrados.remove(id);
-                return true;
-            }
+        Cliente result = clientesCadastrados.remove(clienteId);
+        if (result != null){
+            return true;
         }
+
         return false;
     }
 

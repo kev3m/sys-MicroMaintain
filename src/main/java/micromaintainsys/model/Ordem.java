@@ -22,6 +22,8 @@ public class Ordem {
     public void adicionaServico(CategoriaServico categoriaServico, double valor, Peca peca, String descricao){
         this.servicos.add(new Servico(categoriaServico, valor, peca, descricao, this.ordemID));
     }
+
+
     public void setClienteID(int id) {this.clienteID = id;}
     public void setTecnicoID(int id) {this.tecnicoID = id;}
     public void setOrdemID(int id) {this.ordemID = id;}

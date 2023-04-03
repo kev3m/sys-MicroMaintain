@@ -4,11 +4,7 @@ import java.util.Hashtable;
 import java.util.Queue;
 
 import micromaintainsys.dao.DAO;
-import micromaintainsys.model.Cliente;
-import micromaintainsys.model.Ordem;
-import micromaintainsys.model.OrdemCompra;
-import micromaintainsys.model.Tecnico;
-import micromaintainsys.model.Fatura;
+import micromaintainsys.model.*;
 
 /**
  * Controller responsável por prover a interface com o sistema.
@@ -96,5 +92,12 @@ public class MainController {
             return true;
         }
         return false;
+    }
+
+    /*
+    Métodos relacionados a Ordens
+     */
+    public int criaOrdem(int clienteID, int tecnicoID){
+        return DAO.getOrdemDAO().cria(clienteID, tecnicoID);
     }
 }
