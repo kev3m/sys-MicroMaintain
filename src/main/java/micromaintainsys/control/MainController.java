@@ -1,4 +1,5 @@
 package micromaintainsys.control;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Queue;
@@ -115,7 +116,27 @@ public class MainController {
         }
     }
 
+    /**
+     * Gera a fatura de uma ordem com o valor igual
+     * ao da soma dos serviços cadastrados na ordem
+     * @param ordem
+     * @return
+     */
+    public Fatura geraFatura(Ordem ordem){
+        if (ordem.getFaturaID() > -1){
+            return null;
+        }
+        int ordemID = ordem.getOrdemID();
+
+        ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
+        double valotTotal = servicosOrdem.stream().mapToDouble(Servico::getValor).sum();
+        Fatura fatura = DAO.getFaturaDAO().cria(ordemID, valotTotal);
+        ordem.setFaturaID(fatura.getFaturaID());
+        return fatura;
+    }
     public Servico criaServico(CategoriaServico categoria, double valor, Peca peca, String descricao, int ordemID ){
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
+
+
 }

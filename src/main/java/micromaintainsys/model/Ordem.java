@@ -10,28 +10,13 @@ public class Ordem {
     private String avaliacaoFinal;
     private StatusOrdem status;
     private ArrayList<Servico> servicos;
-    private Fatura fatura;
+    private int faturaID = -1;
 
     public Ordem(int clienteID){
         this.clienteID = clienteID;
         this.tecnicoID = tecnicoID;
         this.status = StatusOrdem.Aberta;
-        this.servicos = new ArrayList<Servico>();
 
-    }
-
-    public void adicionaServico(CategoriaServico categoriaServico, double valor, Peca peca, String descricao){
-        this.servicos.add(new Servico(categoriaServico, valor, peca, descricao, this.ordemID));
-    }
-
-    public boolean gerarFatura(){
-        if (fatura != null){
-            return false;
-        }
-        Fatura fatura = new Fatura(this);
-        fatura.setValorTotal(getOrdemValor());
-        this.fatura = fatura;
-        return true;
     }
 
     public double getOrdemValor(){
@@ -53,5 +38,10 @@ public class Ordem {
     public StatusOrdem getStatus() {return status;}
     public ArrayList<Servico> getServicos() {return servicos;}
 
-
+    public int getFaturaID() {
+        return faturaID;
+    }
+    public void setFaturaID(int faturaID) {
+        this.faturaID = faturaID;
+    }
 }
