@@ -18,12 +18,6 @@ public class Ordem {
         this.status = StatusOrdem.Aberta;
 
     }
-
-    public double getOrdemValor(){
-        ArrayList<Servico> servicos = this.servicos;
-        return servicos.stream().mapToDouble(Servico::getValor).sum();
-    }
-
     public void setClienteID(int id) {this.clienteID = id;}
     public void setTecnicoID(int id) {this.tecnicoID = id;}
     public void setOrdemID(int id) {this.ordemID = id;}
