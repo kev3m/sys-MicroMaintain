@@ -67,31 +67,15 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
    }
 
     /**
-     * Atualiza um atributo de técnico
-     * @param tecnicoID
-     * @param atributo
-     * @param valor
-     * @return true: atualização efetuada, false: técnico não encontrado ou não foi possível realizar a atualização
-     * @param <T>
+     * Atualiza os dados do técnico
+     * @param tecnico
+     * @return
      */
-   public <T> boolean atualiza(int tecnicoID, String atributo, T valor){
-        Tecnico tecnico = tecnicosCadastrados.get(tecnicoID);
-        if (tecnico == null){
-            return false;
-        }
-        switch(atributo){
-            case "nome":
-                tecnico.setNome((String) valor);
-                break;
-            case "senha":
-                tecnico.setSenha((String) valor);
-                break;
-            case "adm":
-                tecnico.setAdm((boolean) valor);
-                break;
-            default:
-                return false;
-       }
+   public boolean atualiza(Tecnico tecnico) {
+    /*Na implementação propriamente dita do DAO,
+    essa função recebe um objeto e sobrescreve
+    os dados
+     */
        return true;
    }
 }

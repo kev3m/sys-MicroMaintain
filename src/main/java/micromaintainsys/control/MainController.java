@@ -10,8 +10,6 @@ import micromaintainsys.model.*;
  * Controller responsável por prover a interface com o sistema.
  */
 public class MainController {
-    private Hashtable<Integer, Tecnico> tecnicosCadastrados;
-    private Hashtable<Integer, Cliente> clientesCadastrados;
     private Queue<Ordem> ordensAbertas;
     private ArrayList<Ordem> ordensCanceladas;
     private ArrayList<Ordem> ordensFinalizadas;
@@ -109,7 +107,7 @@ public class MainController {
         else{
             tecnico.cadastraOrdem(ordem);
             ordem.setTecnicoID(tecnicoID);
-
+            DAO.getTecnicoDAO().atualiza(tecnico);
             return true;
         }
     }

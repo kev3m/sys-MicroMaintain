@@ -22,23 +22,7 @@ public class OrdemFakeDAO implements InterfaceOrdem{
     }
     public Ordem pegaPorId(int ordemId) {return ordensCadastradas.get(ordemId);}
 
-    public <T> boolean atualiza(int ordemId, String atributo, T valor){
-        Ordem ordem = ordensCadastradas.get(ordemId);
-        if (ordem == null){
-            return false;
-        }
-        switch(atributo){
-            case "status":
-                ordem.setStatus((Ordem.StatusOrdem) valor);
-                break;
-            case "avaliacaoFinal":
-                ordem.setAvaliacaoFinal((String) valor);
-                break;
-            case "tecnicoID":
-                ordem.setTecnicoID((int) valor);
-            default:
-                return false;
-        }
+    public <T> boolean atualiza(Ordem ordem){
         return true;
     }
 

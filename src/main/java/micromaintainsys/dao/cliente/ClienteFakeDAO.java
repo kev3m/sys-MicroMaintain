@@ -45,34 +45,13 @@ public class ClienteFakeDAO implements InterfaceCliente {
 
 
     /**
-     * Atualiza um atributo de um cliente no mapa de clientes cadastrados.
      *
-     * @param clienteId o ID do cliente a ser atualizado
-     * @param atributo o nome do atributo a ser atualizado ("nome", "endereco" ou "telefone")
-     * @param valor o novo valor para o atributo
-     * @return true se o cliente foi atualizado com sucesso, ou false se o ID do cliente não foi encontrado ou se o nome do atributo é inválido
+     * @param cliente
+     * @return
      */
     @Override
-    public <T> boolean atualiza(int clienteId, String atributo, T valor) {
-        Cliente cliente = clientesCadastrados.get(clienteId);
-        if(cliente == null){
-            return false;
-        }
-        switch (atributo){
-            case "nome":
-                cliente.setNome((String) valor);
-                break;
-            case "endereco":
-                cliente.setEndereco((String) valor);
-                break;
-            case "telefone":
-                cliente.setTelefone((String) valor);
-                break;
-            default:
-                return false;
-        }
+    public boolean atualiza(Cliente cliente) {
         return true;
-
     }
 
     /**
