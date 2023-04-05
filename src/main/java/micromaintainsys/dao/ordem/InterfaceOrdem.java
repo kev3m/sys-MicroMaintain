@@ -8,4 +8,5 @@ import java.util.ArrayList;
 
 public interface InterfaceOrdem extends CRUD<Ordem> {
     public Ordem cria(int clienteID);
+    public boolean atualiza(Ordem ordem);
 }
