@@ -6,6 +6,8 @@ import micromaintainsys.dao.fatura.FaturaFakeDAO;
 import micromaintainsys.dao.fatura.InterfaceFatura;
 import micromaintainsys.dao.ordem.InterfaceOrdem;
 import micromaintainsys.dao.ordem.OrdemFakeDAO;
+import micromaintainsys.dao.pagamento.InterfacePagamento;
+import micromaintainsys.dao.pagamento.PagamentoFakeDAO;
 import micromaintainsys.dao.servico.InterfaceServico;
 import micromaintainsys.dao.servico.ServicoFakeDAO;
 import micromaintainsys.dao.tecnico.InterfaceTecnico;
@@ -17,6 +19,7 @@ public class DAO {
     private static InterfaceOrdem interfaceOrdem;
     private static InterfaceServico interfaceServico;
     private static InterfaceFatura interfaceFatura;
+    private static InterfacePagamento interfacePagamento;
 
     public static InterfaceCliente getClienteDAO(){
         if(interfaceCliente == null){
@@ -49,5 +52,12 @@ public class DAO {
             interfaceFatura = new FaturaFakeDAO();
         }
         return interfaceFatura;
+    }
+
+    public static InterfacePagamento getPagamentoDAO(){
+        if(interfacePagamento == null){
+            interfacePagamento = new PagamentoFakeDAO();
+        }
+        return interfacePagamento;
     }
 }
