@@ -100,7 +100,9 @@ public class MainController {
     Métodos relacionados a Ordens
      */
     public Ordem criaOrdem(int clienteID){
-        return DAO.getOrdemDAO().cria(clienteID);
+        Ordem novaOrdem = DAO.getOrdemDAO().cria(clienteID);
+        this.ordensAbertas.add(novaOrdem);
+        return novaOrdem;
     }
 
     public boolean atribuiOrdem(Ordem ordem, int tecnicoID){
@@ -112,6 +114,7 @@ public class MainController {
             tecnico.cadastraOrdem(ordem);
             ordem.setTecnicoID(tecnicoID);
             DAO.getTecnicoDAO().atualiza(tecnico);
+            DAO.getOrdemDAO().atualiza(ordem);
             return true;
         }
     }
@@ -138,5 +141,14 @@ public class MainController {
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
 
+    public Pagamento realizaPagamento(TipoPagamento tipo, double valor, int faturaID){
+        Fatura fatura = DAO.getFaturaDAO().pegaPorId(faturaID);
+        /*TODO tratar caso de o pagamento ser mais que o necessário (vai ter função troco?)*/
+        //double restante = fatura.getValorTotal() - fatura.getValorPago();
+
+        fatura.setValorPago(fatura.getValorPago() + valor);
+        Pagamento novoPagamento = DAO.getPagamentoDAO().cria(tipo, valor, faturaID);
+        return novoPagamento;
+    }
 
 }
