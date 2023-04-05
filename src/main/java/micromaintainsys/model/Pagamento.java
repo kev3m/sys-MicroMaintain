@@ -1,20 +1,30 @@
 package micromaintainsys.model;
 
 public class Pagamento {
-    private String tipoPagamento;
+    private TipoPagamento tipoPagamento;
     private double valor;
     private int faturaID;
+    private int pagamentoID;
 
-    public Pagamento(String tipoPagamento, double valor){
+    public int getPagamentoID() {
+        return pagamentoID;
+    }
+
+    public void setPagamentoID(int pagamentoID) {
+        this.pagamentoID = pagamentoID;
+    }
+
+    public Pagamento(TipoPagamento tipoPagamento, double valor, int faturaID){
         this.tipoPagamento = tipoPagamento;
         this.valor = valor;
+        this.faturaID = faturaID;
         /*Implementar a geração de ID único*/
     }
-    public String getTipoPagamento() {
+    public TipoPagamento getTipoPagamento() {
         return tipoPagamento;
     }
 
-    public void setTipoPagamento(String tipoPagamento) {
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
 
