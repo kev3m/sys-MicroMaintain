@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Fatura {
     private double valorTotal;
-    private ArrayList<Pagamento> pagamentos;
     private int ordemID;
     private double valorPago;
     private int faturaID;
@@ -22,13 +21,6 @@ public class Fatura {
         this.faturaID = faturaID;
     }
 
-    public void addPagamento(String tipo, double valor){
-        pagamentos.add(new Pagamento(tipo, valor));
-    }
-
-    public ArrayList<Pagamento> getPagamentos(){
-        return pagamentos;
-    }
     public double getValorTotal() {
         return valorTotal;
     }
