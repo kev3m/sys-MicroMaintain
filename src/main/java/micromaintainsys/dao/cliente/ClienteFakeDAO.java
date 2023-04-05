@@ -27,12 +27,12 @@ public class ClienteFakeDAO implements InterfaceCliente {
      * @param telefone
      * @return O ID do Cliente criado
      */
-    public int cria(String nome, String endereco, String telefone) {
+    public Cliente cria(String nome, String endereco, String telefone) {
         Cliente novoCliente = new Cliente(nome, endereco, telefone);
         novoCliente.setClienteID(idCounter);
         clientesCadastrados.put(idCounter,novoCliente);
         idCounter++;
-        return novoCliente.getId();
+        return novoCliente;
     }
 
     /**

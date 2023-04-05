@@ -7,5 +7,5 @@ import micromaintainsys.model.Servico;
 import java.util.ArrayList;
 
 public interface InterfaceOrdem extends CRUD<Ordem> {
-    public int cria(int clienteID);
+    public Ordem cria(int clienteID);
 }

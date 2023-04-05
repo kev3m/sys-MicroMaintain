@@ -13,16 +13,16 @@ public class OrdemFakeDAO implements InterfaceOrdem{
     static Hashtable<Integer, Ordem> ordensCadastradas;
     private static int idCounter = 0;
 
-    public int cria(int clienteID){
+    public Ordem cria(int clienteID){
         Ordem novaOrdem = new Ordem(clienteID);
         novaOrdem.setOrdemID(idCounter);
         ordensCadastradas.put(idCounter, novaOrdem);
         idCounter++;
-        return novaOrdem.getOrdemID();
+        return novaOrdem;
     }
     public Ordem pegaPorId(int ordemId) {return ordensCadastradas.get(ordemId);}
 
-    public <T> boolean atualiza(Ordem ordem){
+    public boolean atualiza(Ordem ordem){
         return true;
     }
 

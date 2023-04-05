@@ -31,12 +31,12 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      * @param senha
      * @return ID do técnico criado
      */
-    public int cria(String nome, String senha){
+    public Tecnico cria(String nome, String senha){
         Tecnico novoTecnico = new Tecnico(nome, senha);
         novoTecnico.setTecnicoID(idCounter);
         tecnicosCadastrados.put(idCounter, novoTecnico);
         idCounter++;
-        return novoTecnico.getTecnicoID();
+        return novoTecnico;
    }
 
     /**

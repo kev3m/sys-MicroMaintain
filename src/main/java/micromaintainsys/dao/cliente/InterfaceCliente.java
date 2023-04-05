@@ -4,7 +4,7 @@ import micromaintainsys.dao.CRUD;
 import micromaintainsys.model.Cliente;
 
 public interface InterfaceCliente extends CRUD<Cliente> {
-    public int cria(String nome, String endereco, String telefone);
+    public Cliente cria(String nome, String endereco, String telefone);
     public boolean atualiza(Cliente cliente);
 
 }
