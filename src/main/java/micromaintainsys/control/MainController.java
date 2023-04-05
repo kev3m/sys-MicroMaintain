@@ -113,6 +113,7 @@ public class MainController {
         else{
             tecnico.cadastraOrdem(ordem);
             ordem.setTecnicoID(tecnicoID);
+            ordem.setStatus(StatusOrdem.Andamento);
             DAO.getTecnicoDAO().atualiza(tecnico);
             DAO.getOrdemDAO().atualiza(ordem);
             return true;

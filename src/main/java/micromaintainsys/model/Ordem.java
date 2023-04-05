@@ -3,7 +3,6 @@ package micromaintainsys.model;
 import java.util.ArrayList;
 
 public class Ordem {
-    public enum StatusOrdem {Pagamento, Aberta, Finalizada, Cancelada}
     private int clienteID;
     private int tecnicoID;
     private int ordemID;

@@ -121,7 +121,7 @@ public class Tecnico {
     public boolean temOrdemEmAberto(){
         boolean emAberto = this.historicoOrdens
                 .get(this.historicoOrdens.size()-1)
-                .getStatus() == Ordem.StatusOrdem.Aberta?
+                .getStatus() == StatusOrdem.Aberta?
                 true
                 : false;
         return emAberto;
