@@ -8,6 +8,11 @@ public class Fatura {
     private int ordemID;
     private double valorPago;
 
+    public Fatura(Ordem ordem) {
+
+    }
+
+
     public void addPagamento(String tipo, double valor){
         pagamentos.add(new Pagamento(tipo, valor));
     }
