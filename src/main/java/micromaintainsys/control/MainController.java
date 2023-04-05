@@ -16,7 +16,7 @@ public class MainController {
     private ArrayList<OrdemCompra> ordensCompras;
     private ArrayList<Fatura> faturas;
     //Armazena o ID do tecnico logado no sistema
-    private int tecnicoSessaoID;
+    private Tecnico tecnicoSessao;
 
     /*
     Métodos relacionados a TÉCNICOS
@@ -27,7 +27,7 @@ public class MainController {
      * @param senha senha do técnico
      * @return id do novo técnico
      */
-    public int criaTecnico(String nome, String senha){
+    public Tecnico criaTecnico(String nome, String senha){
         return DAO.getTecnicoDAO().cria(nome, senha);
     }
 
@@ -39,8 +39,11 @@ public class MainController {
      */
     public boolean loginTecnico(int id, String senha){
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
-        if (this.tecnicoSessaoID >=0 && DAO.getTecnicoDAO().autentica(id, senha)){
-            this.tecnicoSessaoID = id;
+        Tecnico loginTecnico = DAO.getTecnicoDAO().pegaPorId(id);
+        if (this.tecnicoSessao == null
+                && loginTecnico != null
+                && DAO.getTecnicoDAO().autentica(id, senha)){
+            this.tecnicoSessao = loginTecnico;
             return true;
         }
         return false;
@@ -50,7 +53,7 @@ public class MainController {
      * Realiza o log out do técnico.
      */
     public void logoutTecnico(){
-        this.tecnicoSessaoID = -1;
+        this.tecnicoSessao = null;
     }
 
     /**
@@ -74,9 +77,9 @@ public class MainController {
      * @param nome nome do cliente
      * @param endereco endereço do cliente
      * @param telefone telefone do cliente
-     * @return id do cliente
+     * @return objeto do novo cliente
      */
-    public int criaCliente(String nome, String endereco, String telefone){
+    public Cliente criaCliente(String nome, String endereco, String telefone){
         return DAO.getClienteDAO().cria(nome, endereco, telefone);
     }
 
@@ -95,7 +98,7 @@ public class MainController {
     /*
     Métodos relacionados a Ordens
      */
-    public int criaOrdem(int clienteID){
+    public Ordem criaOrdem(int clienteID){
         return DAO.getOrdemDAO().cria(clienteID);
     }
 
@@ -110,5 +113,9 @@ public class MainController {
             DAO.getTecnicoDAO().atualiza(tecnico);
             return true;
         }
+    }
+
+    public Servico criaServico(CategoriaServico categoria, double valor, Peca peca, String descricao, int ordemID ){
+        return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
 }
