@@ -7,11 +7,20 @@ public class Fatura {
     private ArrayList<Pagamento> pagamentos;
     private int ordemID;
     private double valorPago;
+    private int faturaID;
 
-    public Fatura(Ordem ordem) {
-
+    public Fatura(int ordemID, double valorTotal) {
+        this.ordemID = ordemID;
+        this.valorTotal = valorTotal;
     }
 
+    public int getFaturaID() {
+        return faturaID;
+    }
+
+    public void setFaturaID(int faturaID) {
+        this.faturaID = faturaID;
+    }
 
     public void addPagamento(String tipo, double valor){
         pagamentos.add(new Pagamento(tipo, valor));
