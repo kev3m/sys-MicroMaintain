@@ -2,6 +2,8 @@ package micromaintainsys.dao.servico;
 
 import micromaintainsys.model.*;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
 /**
  * Implementação do gerenciamento das operações de acesso aos dados.
@@ -30,5 +32,16 @@ public class ServicoFakeDAO implements InterfaceServico {
             return true;
         }
         return false;
+    }
+    public ArrayList<Servico> pegaTodosPorOrdemID(int ordemID){
+        ArrayList<Servico> servicos = new ArrayList<Servico>();
+        Enumeration<Servico> servicosEnum = this.servicosCadastrados.elements();
+        while (servicosEnum.hasMoreElements()){
+            Servico servico = servicosEnum.nextElement();
+            if (servico.getOrdemID() == ordemID){
+                servicos.add(servico);
+            }
+        }
+        return servicos;
     }
 }
