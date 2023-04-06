@@ -8,7 +8,7 @@ public class Servico {
   private Calendar horarioFinalizacao;
   private double avaliacaoCliente;
   private int ordemID;
-  private Peca peca;
+  private String peca;
   private String descricao;
   private CategoriaServico categoriaServico;
   private int servicoID;
@@ -21,7 +21,7 @@ public class Servico {
         this.servicoID = servicoID;
     }
 
-    public Servico(CategoriaServico categoriaServico, double valor, Peca peca, String descricao, int ordemID){
+    public Servico(CategoriaServico categoriaServico, double valor, String peca, String descricao, int ordemID){
       this.categoriaServico = categoriaServico;
       this.valor = valor;
       this.peca = peca;
@@ -45,7 +45,7 @@ public class Servico {
     public void setOrdemID(int ordemID) {
         this.ordemID = ordemID;
     }
-    public void setPecas(Peca peca) {
+    public void setPeca(String peca) {
         this.peca = peca;
     }
     public void setDescricao(String descricao) {
@@ -71,7 +71,7 @@ public class Servico {
         return ordemID;
     }
 
-    public Peca getPeca() {
+    public String getPeca() {
         return peca;
     }
     public String getDescricao() {

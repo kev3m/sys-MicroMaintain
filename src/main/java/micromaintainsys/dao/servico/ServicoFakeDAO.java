@@ -13,7 +13,7 @@ public class ServicoFakeDAO implements InterfaceServico {
     static Hashtable<Integer, Servico> servicosCadastrados;
     private static int idCounter = 0;
 
-    public Servico cria(CategoriaServico categoriaServico, double valor, Peca peca, String descricao, int ordemID){
+    public Servico cria(CategoriaServico categoriaServico, double valor, String peca, String descricao, int ordemID){
         Servico novoServico = new Servico(categoriaServico, valor, peca, descricao, ordemID);
         novoServico.setServicoID(idCounter);
         servicosCadastrados.put(idCounter, novoServico);
