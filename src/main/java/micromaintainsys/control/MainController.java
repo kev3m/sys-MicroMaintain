@@ -18,6 +18,7 @@ public class MainController {
     private ArrayList<Fatura> faturas;
     //Armazena o ID do tecnico logado no sistema
     private Tecnico tecnicoSessao;
+    private Estoque estoque;
 
     /*
     Métodos relacionados a TÉCNICOS
@@ -152,4 +153,13 @@ public class MainController {
         return novoPagamento;
     }
 
+    /*
+    Métods relacionados a Estoque/OrdemCompra
+     */
+
+    public Estoque criaEstoque(){
+        //this.estoque = DAO.getEstoqueDAO().cria()
+        return DAO.getEstoqueDAO().cria();
+
+    }
 }
