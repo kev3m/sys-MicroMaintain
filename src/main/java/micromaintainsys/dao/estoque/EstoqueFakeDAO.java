@@ -3,50 +3,47 @@ package micromaintainsys.dao.estoque;
 import micromaintainsys.model.Estoque;
 import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.Peca;
+import micromaintainsys.model.TipoDePeca;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class EstoqueFakeDAO implements InterfaceEstoque {
-    private ArrayList<Peca> pecas;
+    private Hashtable<TipoDePeca, Integer> pecas;
     private ArrayList<OrdemCompra> ordensCompra;
 
     public Estoque cria(){
-        ArrayList<Peca> pecas = new ArrayList<>();
+        Hashtable<TipoDePeca, Integer> pecas = new Hashtable<>();
         ArrayList<OrdemCompra> ordensCompra = new ArrayList<>();
         Estoque estoque = new Estoque(pecas, ordensCompra);
         return estoque;
     }
 
     @Override
-    public void adicionarPeca(Peca peca) {
-        pecas.add(peca);
+    public void adicionaPeca(TipoDePeca peca) {
+        pecas.replace(peca, pecas.get(peca) + 1);
     }
 
     @Override
-    public void removerPeca(Peca peca) {
-        pecas.remove(peca);
+    public void removePeca(TipoDePeca peca) {
+        pecas.replace(peca, pecas.get(peca) -1);
     }
 
     @Override
-    public Peca buscarPeca(String nome) {
-        for (Peca peca : pecas) {
-            if (peca.getNome().equals(nome)) {
-                return peca;
-            }
-        }
-        return null;
+    public int pegaEstoqueDePeca(TipoDePeca peca) {
+        return this.pecas.get(peca);
     }
 
     @Override
-    public void criarOrdemCompra(OrdemCompra ordemCompra) {
+    public void criaOrdemCompra(OrdemCompra ordemCompra) {
         ordensCompra.add(ordemCompra);
     }
     @Override
-    public void removerOrdemCompra(OrdemCompra ordemCompra) {
+    public void removeOrdemCompra(OrdemCompra ordemCompra) {
         ordensCompra.remove(ordemCompra);
     }
     @Override
-    public ArrayList<OrdemCompra> verificarOrdensCompra() {
+    public ArrayList<OrdemCompra> verificaOrdensCompra() {
         return ordensCompra;
     }
 
