@@ -3,34 +3,42 @@ package micromaintainsys.dao.estoque;
 import micromaintainsys.model.Estoque;
 import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.Peca;
-import micromaintainsys.model.TipoDePeca;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class EstoqueFakeDAO implements InterfaceEstoque {
-    private Hashtable<TipoDePeca, Integer> pecas;
+    private Hashtable<String, Integer> pecas;
     private ArrayList<OrdemCompra> ordensCompra;
 
     public Estoque cria(){
-        Hashtable<TipoDePeca, Integer> pecas = new Hashtable<>();
+        Hashtable<String, Integer> pecas = new Hashtable<>();
         ArrayList<OrdemCompra> ordensCompra = new ArrayList<>();
         Estoque estoque = new Estoque(pecas, ordensCompra);
         return estoque;
     }
 
     @Override
-    public void adicionaPeca(TipoDePeca peca) {
-        pecas.replace(peca, pecas.get(peca) + 1);
+    public void adicionaPeca(String peca, int quantidade) {
+        peca = peca.toLowerCase();
+        if (!pecas.containsKey(peca)){
+            pecas.put(peca, quantidade);
+        }
+        pecas.replace(peca, pecas.get(peca) + quantidade);
     }
 
     @Override
-    public void removePeca(TipoDePeca peca) {
-        pecas.replace(peca, pecas.get(peca) -1);
+    public void removePeca(String peca, int quantidade) {
+        peca = peca.toLowerCase();
+        /*Não pode tirar mais que o que tem estoque*/
+        if (quantidade > pecas.get(peca))
+            quantidade = pecas.get(peca);
+        pecas.replace(peca, pecas.get(peca) -quantidade);
     }
 
     @Override
-    public int pegaEstoqueDePeca(TipoDePeca peca) {
+    public int pegaEstoqueDePeca(String peca) {
+        peca = peca.toLowerCase();
         return this.pecas.get(peca);
     }
 
