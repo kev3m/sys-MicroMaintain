@@ -17,7 +17,6 @@ public class EstoqueFakeDAO implements InterfaceEstoque {
         return estoque;
     }
 
-
     @Override
     public void adicionarPeca(Peca peca) {
         pecas.add(peca);
@@ -36,6 +35,19 @@ public class EstoqueFakeDAO implements InterfaceEstoque {
             }
         }
         return null;
+    }
+
+    @Override
+    public void criarOrdemCompra(OrdemCompra ordemCompra) {
+        ordensCompra.add(ordemCompra);
+    }
+    @Override
+    public void removerOrdemCompra(OrdemCompra ordemCompra) {
+        ordensCompra.remove(ordemCompra);
+    }
+    @Override
+    public ArrayList<OrdemCompra> verificarOrdensCompra() {
+        return ordensCompra;
     }
 
 }
