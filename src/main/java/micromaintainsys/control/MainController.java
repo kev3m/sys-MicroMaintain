@@ -20,6 +20,9 @@ public class MainController {
     private Tecnico tecnicoSessao;
     private Estoque estoque;
 
+    public MainController(){
+        this.estoque = criaEstoque();
+    }
     /*
     Métodos relacionados a TÉCNICOS
     */
@@ -139,7 +142,7 @@ public class MainController {
         ordem.setFaturaID(fatura.getFaturaID());
         return fatura;
     }
-    public Servico criaServico(CategoriaServico categoria, double valor, Peca peca, String descricao, int ordemID ){
+    public Servico criaServico(CategoriaServico categoria, double valor, String peca, String descricao, int ordemID ){
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
 
@@ -160,6 +163,15 @@ public class MainController {
     public Estoque criaEstoque(){
         //this.estoque = DAO.getEstoqueDAO().cria()
         return DAO.getEstoqueDAO().cria();
+    }
+
+    public void compraPeca(String peca, int quantidade, double valorUnitario){
+        OrdemCompra novaOrdem = new OrdemCompra(peca, quantidade, valorUnitario);
+        this.estoque.criaOrdemCompra(novaOrdem);
+        this.estoque.adicionaPeca(peca, quantidade);
+        DAO.getEstoqueDAO().atualiza(estoque);
 
     }
+
+
 }
