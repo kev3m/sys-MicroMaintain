@@ -1,6 +1,7 @@
 package micromaintainsys.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Hashtable;
 
 public class Estoque {
@@ -49,5 +50,9 @@ public class Estoque {
     }
     public ArrayList<OrdemCompra> verificaOrdensCompra() {
         return ordensCompra;
+    }
+
+    public RelatorioCompras geraRelatorioCompras(Calendar inicio, Calendar fim){
+        return new RelatorioCompras(this.ordensCompra, inicio, fim);
     }
 }

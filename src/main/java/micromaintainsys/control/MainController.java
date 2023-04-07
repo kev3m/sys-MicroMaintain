@@ -1,6 +1,7 @@
 package micromaintainsys.control;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Queue;
 
@@ -170,7 +171,10 @@ public class MainController {
         this.estoque.criaOrdemCompra(novaOrdem);
         this.estoque.adicionaPeca(peca, quantidade);
         DAO.getEstoqueDAO().atualiza(estoque);
+    }
 
+    public RelatorioCompras geraRelatorioCompras(Calendar inicio, Calendar fim){
+        return this.estoque.geraRelatorioCompras(inicio, fim);
     }
 
 
