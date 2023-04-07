@@ -180,6 +180,11 @@ public class MainController {
         DAO.getEstoqueDAO().atualiza(estoque);
     }
 
+    /*Métodos relacionados a relatórios*/
+    public RelatorioServicos geraRelatorioServicos(Calendar inicio, Calendar fim){
+        ArrayList<Servico> servicos = DAO.getServicoDAO().pegaTodosPorDataCriacao(inicio, fim);
+        return new RelatorioServicos(servicos);
+    }
     public RelatorioCompras geraRelatorioCompras(Calendar inicio, Calendar fim){
         return this.estoque.geraRelatorioCompras(inicio, fim);
     }
