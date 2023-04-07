@@ -34,4 +34,16 @@ public class RelatorioCompras {
             }
         }
     }
+
+    public Hashtable<String, Integer> getPecasCompradas() {
+        return pecasCompradas;
+    }
+
+    public ArrayList<OrdemCompra> getOrdens() {
+        return ordens;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
 }
