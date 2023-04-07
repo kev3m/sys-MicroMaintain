@@ -5,8 +5,8 @@ import java.util.Calendar;
 import java.util.Hashtable;
 
 public class RelatorioCompras {
-    Hashtable<String, Integer> pecasCompradas = new Hashtable<String, Integer>();
-    ArrayList<OrdemCompra> ordens = new ArrayList<OrdemCompra>();
+    Hashtable<String, Integer> pecasCompradas = new Hashtable<>();
+    ArrayList<OrdemCompra> ordens = new ArrayList<>();
     double valorTotal = 0;
 
     /**
@@ -18,19 +18,17 @@ public class RelatorioCompras {
      * @param fim data até a qual deve-se considerar as Ordens de Compra
      */
     public RelatorioCompras(ArrayList<OrdemCompra> ordensDeCompra, Calendar inicio, Calendar fim){
-        for (int i = 0; i < ordensDeCompra.size(); i++){
-            OrdemCompra ordemCompra = ordensDeCompra.get(i);
+        for (OrdemCompra ordemCompra : ordensDeCompra) {
             if (ordemCompra.getDataCriacao().after(inicio)
-                    && ordemCompra.getDataCriacao().before(fim)){
+                    && ordemCompra.getDataCriacao().before(fim)) {
                 this.ordens.add(ordemCompra);
                 this.valorTotal += ordemCompra.getValorUnitario() * ordemCompra.getQuantidade();
                 String nomePeca = ordemCompra.getPeca();
                 boolean hasKey = pecasCompradas.containsKey(nomePeca);
-                if (hasKey){
+                if (hasKey) {
                     int novoValor = pecasCompradas.get(nomePeca) + ordemCompra.getQuantidade();
                     this.pecasCompradas.replace(nomePeca, novoValor);
-                }
-                else{
+                } else {
                     this.pecasCompradas.put(nomePeca, ordemCompra.getQuantidade());
                 }
             }
