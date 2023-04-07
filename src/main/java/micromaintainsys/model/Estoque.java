@@ -22,9 +22,10 @@ public class Estoque {
         if (!pecas.containsKey(peca)){
             pecas.put(peca, quantidade);
         }
-        pecas.replace(peca, pecas.get(peca) + quantidade);
+        else{
+            pecas.replace(peca, pecas.get(peca) + quantidade);
+        }
     }
-
     public void removePeca(String peca, int quantidade) {
         peca = peca.toLowerCase();
         /*Não pode tirar mais que o que tem estoque*/
