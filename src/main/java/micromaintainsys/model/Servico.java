@@ -8,6 +8,7 @@ public class Servico {
   private Calendar horarioFinalizacao;
   private double avaliacaoCliente;
   private int ordemID;
+  private boolean avaliado = false;
   private String peca;
   private String descricao;
   private CategoriaServico categoriaServico;
@@ -28,18 +29,14 @@ public class Servico {
       this.descricao = descricao;
       this.ordemID = ordemID;
       this.horarioAbertura = Calendar.getInstance();
-  }
+      this.horarioFinalizacao = null;
+    }
 
     public void setValor(double valor) {
         this.valor = valor;
     }
-    public void setHorarioAbertura(Calendar horarioAbertura) {
-        this.horarioAbertura = horarioAbertura;
-    }
-    public void setHorarioFinalizacao(Calendar horarioFinalizacao) {
-        this.horarioFinalizacao = horarioFinalizacao;
-    }
-    public void setAvaliacaoCliente(double avaliacaoCliente) {
+    public void avaliaServico(double avaliacaoCliente) {
+        this.avaliado = true;
         this.avaliacaoCliente = avaliacaoCliente;
     }
     public void setOrdemID(int ordemID) {
@@ -54,7 +51,6 @@ public class Servico {
     public void setCategoriaServico(CategoriaServico categoriaServico) {
         this.categoriaServico = categoriaServico;
     }
-
     public double getValor() {
         return valor;
     }
@@ -80,5 +76,10 @@ public class Servico {
     public CategoriaServico getCategoriaServico() {
         return categoriaServico;
     }
-
+    public boolean foiAvaliado(){
+        return this.avaliado;
+    }
+    public void encerraServico(){
+        this.horarioFinalizacao = Calendar.getInstance();
+    }
 }
