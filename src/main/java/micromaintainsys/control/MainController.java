@@ -102,7 +102,7 @@ public class MainController {
     }
 
     /*
-    Métodos relacionados a Ordens
+    Métodos relacionados a Ordens e Serviços
      */
     public Ordem criaOrdem(int clienteID){
         Ordem novaOrdem = DAO.getOrdemDAO().cria(clienteID);
@@ -125,6 +125,17 @@ public class MainController {
         }
     }
 
+    public Servico criaServico(CategoriaServico categoria, double valor, String peca, String descricao, int ordemID ){
+        return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
+    }
+
+    public void encerraServico(int servicoID){
+        Servico servico = DAO.getServicoDAO().pegaPorId(servicoID);
+        servico.encerraServico();
+        DAO.getServicoDAO().atualiza(servico);
+    }
+
+    /*Métodos relacionados a Pagamento e Fatura */
     /**
      * Gera a fatura de uma ordem com o valor igual
      * ao da soma dos serviços cadastrados na ordem
@@ -143,10 +154,6 @@ public class MainController {
         ordem.setFaturaID(fatura.getFaturaID());
         return fatura;
     }
-    public Servico criaServico(CategoriaServico categoria, double valor, String peca, String descricao, int ordemID ){
-        return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
-    }
-
     public Pagamento realizaPagamento(TipoPagamento tipo, double valor, int faturaID){
         Fatura fatura = DAO.getFaturaDAO().pegaPorId(faturaID);
         /*TODO tratar caso de o pagamento ser mais que o necessário (vai ter função troco?)*/
@@ -176,6 +183,5 @@ public class MainController {
     public RelatorioCompras geraRelatorioCompras(Calendar inicio, Calendar fim){
         return this.estoque.geraRelatorioCompras(inicio, fim);
     }
-
 
 }
