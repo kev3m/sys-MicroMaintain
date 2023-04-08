@@ -32,8 +32,8 @@ public class TecnicoTest {
     }
     @Test
     public void testSetarNome() {
-        tecnico.setNome("Jane Doe");
-        assertEquals("Jane Doe", tecnico.getNome());
+        tecnico.setNome("Paulo T");
+        assertEquals("Paulo T", tecnico.getNome());
     }
 
     @Test
