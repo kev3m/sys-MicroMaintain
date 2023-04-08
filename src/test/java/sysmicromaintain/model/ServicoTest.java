@@ -5,7 +5,7 @@ import micromaintainsys.model.CategoriaServico;
 import micromaintainsys.model.Servico;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.ArrayList;
+
 
 public class ServicoTest {
     private Servico servico;
