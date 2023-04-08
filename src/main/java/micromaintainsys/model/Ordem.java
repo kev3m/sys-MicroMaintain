@@ -15,6 +15,7 @@ public class Ordem {
         this.clienteID = clienteID;
         this.tecnicoID = tecnicoID;
         this.status = StatusOrdem.Aberta;
+        this.servicos = new ArrayList<>();
 
     }
     public void setClienteID(int id) {this.clienteID = id;}
