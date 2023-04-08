@@ -13,7 +13,7 @@ public class Cliente {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.ordens = null;
+        this.ordens = new ArrayList<>();
     }
 
     public void setNome(String nome) {this.nome = nome;}
