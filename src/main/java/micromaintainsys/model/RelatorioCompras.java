@@ -9,6 +9,7 @@ public class RelatorioCompras {
     ArrayList<OrdemCompra> ordens = new ArrayList<>();
     double valorTotal = 0;
 
+
     /**
      * Construtor do Relatório de Compras
      * Gera o relatório de compras.

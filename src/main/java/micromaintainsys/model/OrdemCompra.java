@@ -17,6 +17,7 @@ public class OrdemCompra {
     public double getValorUnitario() {
         return valorUnitario;
     }
+    public double getValorCompra(){ return (valorUnitario * quantidade); }
 
     public void setValorUnitario(double valorUnitario) {
         this.valorUnitario = valorUnitario;
