@@ -32,14 +32,21 @@ public class Estoque {
         /*Não pode tirar mais que o que tem estoque*/
         if (quantidade > pecas.get(peca))
             quantidade = pecas.get(peca);
-        pecas.replace(peca, pecas.get(peca) -quantidade);
+        pecas.replace(peca, pecas.get(peca) - quantidade);
     }
 
     public void deletaPeca(String peca){
-        pecas.remove(peca);
+        peca = peca.toLowerCase();
+        if(pecas.containsKey(peca)) {
+            pecas.remove(peca);
+        }
     }
+
     public int pegaEstoqueDePeca(String peca) {
         peca = peca.toLowerCase();
+        if(!pecas.containsKey(peca)){
+            return 0;
+        }
         return this.pecas.get(peca);
     }
     public void criaOrdemCompra(OrdemCompra ordemCompra) {
