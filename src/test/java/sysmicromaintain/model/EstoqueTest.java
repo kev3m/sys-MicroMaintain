@@ -95,7 +95,7 @@ public class EstoqueTest {
 
         double totalCompra = ordemCompra1.getValorCompra() + ordemCompra2.getValorCompra() + ordemCompra3.getValorCompra();
 
-        assertEquals(totalCompra, relatorio.getValorTotal(), 0.001);
+        assertEquals(totalCompra, relatorio.getValorTotal(), 0);
     }
 
 
