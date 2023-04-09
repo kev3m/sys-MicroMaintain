@@ -15,6 +15,7 @@ public class EstoqueTest {
     private Estoque estoque;
     private OrdemCompra ordemCompra;
     private ArrayList<OrdemCompra> ordensCompra;
+    private Calendar inicio = Calendar.getInstance();
 
     
     @Before
@@ -74,17 +75,14 @@ public class EstoqueTest {
         assertTrue(ordensCompra.contains(ordemCompra_2));
     }
 
-
-    //CORRIGIR GERAÇÃO DE RELATÓRIO
     @Test
     public void testGeraRelatorioCompras() {
         OrdemCompra ordemCompra1 = new OrdemCompra("HD", 10,90.00);
         OrdemCompra ordemCompra2 = new OrdemCompra("RAM", 5,120.00);
         OrdemCompra ordemCompra3 = new OrdemCompra("CPU", 2,400.00);
 
-        Calendar inicio = Calendar.getInstance();
         Calendar fim = Calendar.getInstance();
-        fim.add(Calendar.MONTH, 1);
+        fim.add(Calendar.WEEK_OF_MONTH, 1);
 
         estoque.criaOrdemCompra(ordemCompra1);
         estoque.criaOrdemCompra(ordemCompra2);
@@ -94,7 +92,6 @@ public class EstoqueTest {
         assertEquals(3, relatorio.getOrdens().size());
 
         double totalCompra = ordemCompra1.getValorCompra() + ordemCompra2.getValorCompra() + ordemCompra3.getValorCompra();
-
         assertEquals(totalCompra, relatorio.getValorTotal(), 0);
     }
 
