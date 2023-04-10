@@ -241,8 +241,8 @@ public class MainController {
         int ordemID = ordem.getOrdemID();
 
         ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
-        double valotTotal = servicosOrdem.stream().mapToDouble(Servico::getValor).sum();
-        Fatura fatura = DAO.getFaturaDAO().cria(ordemID, valotTotal);
+        double valorTotal = servicosOrdem.stream().mapToDouble(Servico::getValor).sum();
+        Fatura fatura = DAO.getFaturaDAO().cria(ordemID, valorTotal);
         ordem.setFaturaID(fatura.getFaturaID());
         return fatura;
     }
