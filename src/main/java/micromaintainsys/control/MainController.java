@@ -2,7 +2,6 @@ package micromaintainsys.control;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Hashtable;
 import java.util.Queue;
 
 import micromaintainsys.dao.DAO;
@@ -108,6 +107,13 @@ public class MainController {
         }
     }
 
+    public boolean _hasPermission(Tecnico tecnico){
+        /*técnico normal tentando manipular objetos de outro técnico*/
+        if (this.tecnicoSessao.getTecnicoID() != tecnico.getTecnicoID()
+                && !this.tecnicoSessao.isAdm())
+            return false;
+        return true;
+    }
     /*
     Métodos relacionados a CLIENTES
      */
@@ -146,27 +152,71 @@ public class MainController {
     /*
     Métodos relacionados a Ordens e Serviços
      */
-    public Ordem criaOrdem(int clienteID){
+    public Ordem criaOrdem(int clienteID) throws UserNotLoggedInException{
+        if (this.tecnicoSessao == null){
+            throw new UserNotLoggedInException();
+        }
         Ordem novaOrdem = DAO.getOrdemDAO().cria(clienteID);
         this.ordensAbertas.add(novaOrdem);
         return novaOrdem;
     }
 
-    public boolean atribuiOrdem(Ordem ordem, int tecnicoID){
+    public boolean atribuiOrdem(int tecnicoID) throws UserNotLoggedInException, InvalidUserException, NotAllowedException{
         Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(tecnicoID);
-        /*TODO criar uma exception p/ lidar com isso!*/
-        if (tecnico.temOrdemEmAberto())
+        Ordem ordem = this.ordensAbertas.poll();
+        /*Nenhum usuário logado*/
+        if (this.tecnicoSessao == null)
+            throw new UserNotLoggedInException();
+        /*Técnico a receber a ordem não existe*/
+        if (tecnico == null){
+            throw new InvalidUserException(tecnicoID);
+        }
+        /*Usuário normal tentando atribuir ordem a outro usuário*/
+        if (!this._hasPermission(tecnico))
+            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        /*Técnico já tem ordem em aberto*/
+        if (this.tecnicoSessao.getOrdemEmAndamentoID() >= 0)
             return false;
-        else{
-            tecnico.cadastraOrdem(ordem);
-            ordem.setTecnicoID(tecnicoID);
-            ordem.setStatus(StatusOrdem.Andamento);
-            DAO.getTecnicoDAO().atualiza(tecnico);
+        /*A fila de ordens abertas está vazia*/
+        if (ordem == null){
+            return false;
+        }
+        this.tecnicoSessao.setOrdemEmAndamentoID(ordem.getOrdemID());
+        ordem.setTecnicoID(this.tecnicoSessao.getTecnicoID());
+        ordem.setStatus(StatusOrdem.Andamento);
+        DAO.getTecnicoDAO().atualiza(tecnico);
+        DAO.getOrdemDAO().atualiza(ordem);
+        return true;
+    }
+
+    public boolean fechaOrdem(int ordemID) throws UserNotLoggedInException{
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
+        Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
+        if (this.tecnicoSessao == null)
+            throw new UserNotLoggedInException();
+        /*Usuário normal tentando atribuir ordem a outro usuário*/
+        if (!this._hasPermission(tecnicoDaOrdem))
+            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        if (ordem.getStatus() != StatusOrdem.Andamento)
+            return false;
+
+        /*Testa se todos os serviços da ordem já foram encerrados*/
+        ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
+        boolean emAberto = false;
+        for (Servico servico: servicosOrdem){
+            if (servico.foiEncerrado()){
+                emAberto = true;
+                break;
+            }
+        }
+        if (emAberto) return false;
+        else {
+            ordem.setStatus(StatusOrdem.Pagamento);
+            tecnicoDaOrdem.setOrdemEmAndamentoID(-1);
             DAO.getOrdemDAO().atualiza(ordem);
             return true;
         }
     }
-
     public Servico criaServico(CategoriaServico categoria, double valor, String peca, String descricao, int ordemID ){
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
