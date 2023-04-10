@@ -7,8 +7,12 @@ public class Tecnico {
     private String nome;
     private String senha;
     private int tecnicoID;
+    private int ordemEmAndamentoID;
+
+    /* TODO Estudar remoção: deixar a cargo do DAO de Ordens e Compras */
     private ArrayList<Ordem> historicoOrdens;
     private ArrayList<OrdemCompra> historicoCompras;
+    /* *********************************************************** */
 
     /**
      * Construtor da classe.
@@ -54,21 +58,6 @@ public class Tecnico {
         this.tecnicoID = tecnicoID;
     }
 
-    /**
-     * Modifica o histórico de ordens do técnico.
-     * @param historicoOrdens histórico de ordens
-     */
-    public void setHistoricoOrdens(ArrayList<Ordem> historicoOrdens) {
-        this.historicoOrdens = historicoOrdens;
-    }
-
-    /**
-     * Modifica o histórico de compras do técnico.
-     * @param historicoCompras histórico de compras
-     */
-    public void setHistoricoCompras(ArrayList<OrdemCompra> historicoCompras) {
-        this.historicoCompras = historicoCompras;
-    }
 
     /**
      * Indica se o técnico é administrador ou não.
@@ -102,6 +91,32 @@ public class Tecnico {
         return tecnicoID;
     }
 
+    public int getOrdemEmAndamentoID(){
+        return ordemEmAndamentoID;
+    }
+    public void setOrdemEmAndamentoID(int abertoID){
+        this.ordemEmAndamentoID = abertoID;
+    }
+
+
+    /* TODO Estudar remoção: deixar a cargo do DAO de Ordens e Compras */
+
+    /**
+     * Modifica o histórico de ordens do técnico.
+     * @param historicoOrdens histórico de ordens
+     */
+    public void setHistoricoOrdens(ArrayList<Ordem> historicoOrdens) {
+        this.historicoOrdens = historicoOrdens;
+    }
+
+    /**
+     * Modifica o histórico de compras do técnico.
+     * @param historicoCompras histórico de compras
+     */
+    public void setHistoricoCompras(ArrayList<OrdemCompra> historicoCompras) {
+        this.historicoCompras = historicoCompras;
+    }
+
     /**
      * Retorna o histórico de ordens do técnico.
      * @return
@@ -118,6 +133,14 @@ public class Tecnico {
         return historicoCompras;
     }
 
+    public Ordem pegaUltimaOrdem(){
+        return this.historicoOrdens.get(this.historicoOrdens.size() -1);
+    }
+
+    public void cadastraOrdem(Ordem novaOrdem){
+        this.getHistoricoOrdens().add(novaOrdem);
+    }
+
     public boolean temOrdemEmAberto(){
         boolean emAberto = this.historicoOrdens
                 .get(this.historicoOrdens.size()-1)
@@ -125,14 +148,6 @@ public class Tecnico {
                 true
                 : false;
         return emAberto;
-    }
-
-    public Ordem pegaUltimaOrdem(){
-        return this.historicoOrdens.get(this.historicoOrdens.size() -1);
-    }
-
-    public void cadastraOrdem(Ordem novaOrdem){
-        this.getHistoricoOrdens().add(novaOrdem);
     }
 
 }
