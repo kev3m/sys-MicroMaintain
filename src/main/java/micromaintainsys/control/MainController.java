@@ -6,6 +6,9 @@ import java.util.Hashtable;
 import java.util.Queue;
 
 import micromaintainsys.dao.DAO;
+import micromaintainsys.exceptions.InvalidUserException;
+import micromaintainsys.exceptions.NotAllowedException;
+import micromaintainsys.exceptions.UserNotLoggedInException;
 import micromaintainsys.model.*;
 
 /**
@@ -27,14 +30,25 @@ public class MainController {
     /*
     Métodos relacionados a TÉCNICOS
     */
+
     /**
      * Cria um novo técnico.
      * @param nome nome do técnico
      * @param senha senha do técnico
-     * @return id do novo técnico
+     * @return novo técnico
+     * @throws UserNotLoggedInException nenhum usuário logado
+     * @throws NotAllowedException usuário não tem permissão para executar
      */
-    public Tecnico criaTecnico(String nome, String senha){
-        return DAO.getTecnicoDAO().cria(nome, senha);
+    public Tecnico criaTecnico(String nome, String senha) throws UserNotLoggedInException, NotAllowedException{
+        if (this.tecnicoSessao == null){
+            throw new UserNotLoggedInException();
+        }
+        else if (!this.tecnicoSessao.isAdm()){
+            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        }
+        else{
+            return DAO.getTecnicoDAO().cria(nome, senha);
+        }
     }
 
     /**
@@ -42,12 +56,15 @@ public class MainController {
      * @param id id do técnico
      * @param senha senha do técnico
      * @return  true: login realizado com sucesso, false: não foi possível realizar o login
+     * @throws InvalidUserException usuário não existe
      */
-    public boolean loginTecnico(int id, String senha){
+    public boolean loginTecnico(int id, String senha) throws InvalidUserException{
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
         Tecnico loginTecnico = DAO.getTecnicoDAO().pegaPorId(id);
-        if (this.tecnicoSessao == null
-                && loginTecnico != null
+        if (loginTecnico == null){
+            throw new InvalidUserException(id);
+        }
+        else if (this.tecnicoSessao == null
                 && DAO.getTecnicoDAO().autentica(id, senha)){
             this.tecnicoSessao = loginTecnico;
             return true;
@@ -57,21 +74,38 @@ public class MainController {
 
     /**
      * Realiza o log out do técnico.
+     * @return
      */
-    public void logoutTecnico(){
-        this.tecnicoSessao = null;
+    public boolean logoutTecnico(){
+        if (this.tecnicoSessao != null){
+            this.tecnicoSessao = null;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
      * Remove um técnico do sistema.
      * @param tecnicoID id do técnico a ser removido
-     * @return
+     * @throws UserNotLoggedInException nenhum usuário logado
+     * @throws NotAllowedException usuário não tem permissão para executar
+     * @throws InvalidUserException usuário a ser removido não existe
      */
-    public boolean removeTecnico(int tecnicoID){
-        if (tecnicoID >= 0 && DAO.getTecnicoDAO().remove(tecnicoID)){
-            return true;
+    public void removeTecnico(int tecnicoID) throws InvalidUserException, NotAllowedException, UserNotLoggedInException{
+        if (this.tecnicoSessao == null){
+            throw new UserNotLoggedInException();
         }
-        return false;
+        else if (!this.tecnicoSessao.isAdm()){
+            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        }
+        else if(DAO.getTecnicoDAO().pegaPorId(tecnicoID) == null){
+            throw new InvalidUserException(tecnicoID);
+        }
+        else{
+            DAO.getTecnicoDAO().remove(tecnicoID);
+        }
     }
 
     /*
@@ -84,8 +118,12 @@ public class MainController {
      * @param endereco endereço do cliente
      * @param telefone telefone do cliente
      * @return objeto do novo cliente
+     * @throws UserNotLoggedInException nenhum usuário logado
      */
-    public Cliente criaCliente(String nome, String endereco, String telefone){
+    public Cliente criaCliente(String nome, String endereco, String telefone) throws UserNotLoggedInException{
+        if (this.tecnicoSessao == null){
+            throw new UserNotLoggedInException();
+        }
         return DAO.getClienteDAO().cria(nome, endereco, telefone);
     }
 
@@ -93,8 +131,12 @@ public class MainController {
      * Remove um cliente.
      * @param clienteID id do cliente
      * @return
+     * @throws UserNotLoggedInException nenhum usuário logado
      */
-    public boolean removeCliente(int clienteID){
+    public boolean removeCliente(int clienteID) throws UserNotLoggedInException{
+        if (this.tecnicoSessao == null){
+            throw new UserNotLoggedInException();
+        }
         if (clienteID >= 0 && DAO.getClienteDAO().remove(clienteID)){
             return true;
         }
