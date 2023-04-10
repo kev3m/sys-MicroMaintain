@@ -82,4 +82,7 @@ public class Servico {
     public void encerraServico(){
         this.horarioFinalizacao = Calendar.getInstance();
     }
+    public boolean foiEncerrado(){
+        return this.horarioFinalizacao != null? true : false;
+    }
 }
