@@ -218,11 +218,22 @@ public class MainController {
         }
     }
     public Servico criaServico(CategoriaServico categoria, double valor, String peca, String descricao, int ordemID ){
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
+        Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
+        if (!_hasPermission(tecnicoDaOrdem)){
+            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        }
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
 
     public void encerraServico(int servicoID){
         Servico servico = DAO.getServicoDAO().pegaPorId(servicoID);
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(servico.getOrdemID());
+        Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
+
+        if (!_hasPermission(tecnicoDaOrdem)){
+            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        }
         servico.encerraServico();
         DAO.getServicoDAO().atualiza(servico);
     }
@@ -244,6 +255,7 @@ public class MainController {
         double valorTotal = servicosOrdem.stream().mapToDouble(Servico::getValor).sum();
         Fatura fatura = DAO.getFaturaDAO().cria(ordemID, valorTotal);
         ordem.setFaturaID(fatura.getFaturaID());
+        DAO.getOrdemDAO().atualiza(ordem);
         return fatura;
     }
     public Pagamento realizaPagamento(TipoPagamento tipo, double valor, int faturaID){
