@@ -2,7 +2,7 @@ package micromaintainsys.model;
 
 import java.util.ArrayList;
 
-public class Ordem {
+public class Ordem implements Comparable<Ordem>{
     private int clienteID;
     private int tecnicoID;
     private int ordemID;
@@ -17,6 +17,9 @@ public class Ordem {
         this.status = StatusOrdem.Aberta;
         this.servicos = new ArrayList<>();
 
+    }
+    public int compareTo(Ordem outra){
+        return this.ordemID - outra.ordemID;
     }
     public void setClienteID(int id) {this.clienteID = id;}
     public void setTecnicoID(int id) {this.tecnicoID = id;}
