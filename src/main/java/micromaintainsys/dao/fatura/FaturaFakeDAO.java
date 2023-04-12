@@ -2,6 +2,7 @@ package micromaintainsys.dao.fatura;
 
 import micromaintainsys.model.Fatura;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class FaturaFakeDAO implements InterfaceFatura {
@@ -27,6 +28,9 @@ public class FaturaFakeDAO implements InterfaceFatura {
             return true;
         }
         return false;
+    }
+    public ArrayList<Fatura> pegaTodas(){
+        return (ArrayList<Fatura>) this.faturasCadastradas.values();
     }
 }
 
