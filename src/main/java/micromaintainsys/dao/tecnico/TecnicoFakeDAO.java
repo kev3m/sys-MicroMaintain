@@ -10,8 +10,14 @@ import java.util.Hashtable;
 
 public class TecnicoFakeDAO implements InterfaceTecnico{
     static Hashtable<Integer, Tecnico> tecnicosCadastrados;
-    private static int idCounter = 0;
+    private static int idCounter = 1;
 
+    public TecnicoFakeDAO(){
+        Tecnico adm = new Tecnico("admin", "admin");
+        adm.setAdm(true);
+        adm.setTecnicoID(0);
+        tecnicosCadastrados.put(0, adm);
+    }
     /**
      * Busca e retorna um técnico por ID
      * @param tecnicoID
