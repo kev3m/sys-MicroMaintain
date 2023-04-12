@@ -131,6 +131,7 @@ public class MainController {
         if (!tecnicoSessao.isAdm()) throw new NotAllowedException(tecnicoID);
         if (tecnico == null) throw new InvalidUserException(tecnicoID);
         tecnico.setAdm(adm);
+        DAO.getTecnicoDAO().atualiza(tecnico);
     }
 
     public boolean _hasPermission(Tecnico tecnico){
@@ -184,6 +185,7 @@ public class MainController {
         }
         Ordem novaOrdem = DAO.getOrdemDAO().cria(clienteID);
         this.ordensAbertas.add(novaOrdem);
+        this.ordensServico.add(novaOrdem);
         return novaOrdem;
     }
 
