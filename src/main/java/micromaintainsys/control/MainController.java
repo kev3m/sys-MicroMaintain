@@ -301,22 +301,31 @@ public class MainController {
         ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
         double valorTotal = servicosOrdem.stream().mapToDouble(Servico::getValor).sum();
         Fatura fatura = DAO.getFaturaDAO().cria(ordemID, valorTotal);
+        this.faturas.add(fatura);
         ordem.setFaturaID(fatura.getFaturaID());
         DAO.getOrdemDAO().atualiza(ordem);
         return fatura;
     }
     public Pagamento realizaPagamento(TipoPagamento tipo, double valor, int faturaID){
         Fatura fatura = DAO.getFaturaDAO().pegaPorId(faturaID);
-        /*TODO tratar caso de o pagamento ser mais que o necessário (vai ter função troco?)*/
-        //double restante = fatura.getValorTotal() - fatura.getValorPago();
+        double totalPago = fatura.getValorPago() + valor;
+        double restante = fatura.getValorTotal() - totalPago;
+        if(restante < 0)
+            throw new PaymentExceedsAmountException(restante);
 
-        fatura.setValorPago(fatura.getValorPago() + valor);
+        fatura.setValorPago(totalPago);
+        /*Se todos os pagamentos já foram realizados, encerra a ordem*/
+        if (totalPago - fatura.getValorTotal() == 0){
+            Ordem ordemPaga = DAO.getOrdemDAO().pegaPorId(fatura.getOrdemID());
+            ordemPaga.setStatus(StatusOrdem.Finalizada);
+            DAO.getOrdemDAO().atualiza(ordemPaga);
+        }
         Pagamento novoPagamento = DAO.getPagamentoDAO().cria(tipo, valor, faturaID);
         return novoPagamento;
     }
 
     /*
-    Métods relacionados a Estoque/OrdemCompra
+    Métodos relacionados a Estoque/OrdemCompra
      */
 
     public Estoque criaEstoque(){
