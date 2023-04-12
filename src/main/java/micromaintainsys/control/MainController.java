@@ -1,8 +1,6 @@
 package micromaintainsys.control;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Queue;
+import java.util.*;
 
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.*;
@@ -13,8 +11,7 @@ import micromaintainsys.model.*;
  */
 public class MainController {
     private Queue<Ordem> ordensAbertas;
-    private ArrayList<Ordem> ordensCanceladas;
-    private ArrayList<Ordem> ordensFinalizadas;
+    private ArrayList<Ordem> ordensServico;
     private ArrayList<OrdemCompra> ordensCompras;
     private ArrayList<Fatura> faturas;
     //Armazena o ID do tecnico logado no sistema
@@ -23,7 +20,11 @@ public class MainController {
 
     public MainController(){
         this.estoque = criaEstoque();
-    }
+        ArrayList<Ordem> abertas = DAO.getOrdemDAO().pegaTodasPorStatus(StatusOrdem.Aberta);
+        Collections.sort(abertas);
+        this.ordensAbertas = new LinkedList<Ordem>(abertas);
+        this.ordensServico = new ArrayList<>(DAO.getOrdemDAO().pegaTodas());
+   }
     /*
     Métodos relacionados a TÉCNICOS
     */
