@@ -1,9 +1,9 @@
 package micromaintainsys.dao.ordem;
 
-import micromaintainsys.model.Cliente;
 import micromaintainsys.model.Ordem;
-import micromaintainsys.model.Tecnico;
+import micromaintainsys.model.StatusOrdem;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 /**
  * Implementação do gerenciamento das operações de acesso aos dados.
@@ -32,5 +32,17 @@ public class OrdemFakeDAO implements InterfaceOrdem{
             return true;
         }
         return false;
+    }
+    public ArrayList<Ordem> pegaTodasPorStatus(StatusOrdem status){
+        ArrayList<Ordem> ordensStatus = new ArrayList<>();
+        for (Ordem ordem: this.ordensCadastradas.values()){
+            if (ordem.getStatus() == status){
+                ordensStatus.add(ordem);
+            }
+        }
+        return ordensStatus;
+    }
+    public ArrayList<Ordem> pegaTodas(){
+        return (ArrayList<Ordem>) this.ordensCadastradas.values();
     }
 }
