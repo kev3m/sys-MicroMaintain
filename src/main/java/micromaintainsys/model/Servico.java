@@ -39,9 +39,6 @@ public class Servico {
         this.avaliado = true;
         this.avaliacaoCliente = avaliacaoCliente;
     }
-    public void setOrdemID(int ordemID) {
-        this.ordemID = ordemID;
-    }
     public void setPeca(String peca) {
         this.peca = peca;
     }
