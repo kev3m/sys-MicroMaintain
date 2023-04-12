@@ -62,4 +62,7 @@ public class Estoque {
     public RelatorioCompras geraRelatorioCompras(Calendar inicio, Calendar fim){
         return new RelatorioCompras(this.ordensCompra, inicio, fim);
     }
+    public Hashtable<String, Integer> getPecas(){
+        return this.pecas;
+    }
 }
