@@ -5,9 +5,7 @@ import java.util.Calendar;
 import java.util.Queue;
 
 import micromaintainsys.dao.DAO;
-import micromaintainsys.exceptions.InvalidUserException;
-import micromaintainsys.exceptions.NotAllowedException;
-import micromaintainsys.exceptions.UserNotLoggedInException;
+import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
 
 /**
@@ -51,24 +49,30 @@ public class MainController {
     }
 
     /**
-     * Realiza o login de um técnico.
-     * @param id id do técnico
-     * @param senha senha do técnico
-     * @return  true: login realizado com sucesso, false: não foi possível realizar o login
-     * @throws InvalidUserException usuário não existe
+     * Realiza login do tecnico
+     * @param id
+     * @param senha
+     * @throws InvalidUserException
+     * @throws UserAlreadyLoggedInException
+     * @throws WrongPasswordException
      */
-    public boolean loginTecnico(int id, String senha) throws InvalidUserException{
+    public void loginTecnico(int id, String senha) throws
+            InvalidUserException,
+            UserAlreadyLoggedInException,
+            WrongPasswordException{
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
         Tecnico loginTecnico = DAO.getTecnicoDAO().pegaPorId(id);
         if (loginTecnico == null){
             throw new InvalidUserException(id);
         }
-        else if (this.tecnicoSessao == null
-                && DAO.getTecnicoDAO().autentica(id, senha)){
-            this.tecnicoSessao = loginTecnico;
-            return true;
+        else if(this.tecnicoSessao != null){
+            throw new UserAlreadyLoggedInException();
         }
-        return false;
+        boolean success = DAO.getTecnicoDAO().autentica(id, senha);
+        if (success)
+             this.tecnicoSessao = loginTecnico;
+        else
+            throw new WrongPasswordException();
     }
 
     /**
