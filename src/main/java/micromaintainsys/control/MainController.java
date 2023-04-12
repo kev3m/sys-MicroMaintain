@@ -113,6 +113,26 @@ public class MainController {
         }
     }
 
+    /**
+     * Define se o usuário em questão é administrador
+     * Apenas administradores podem utilizar.
+     * @param tecnicoID
+     * @param adm
+     * @throws UserNotLoggedInException
+     * @throws NotAllowedException
+     * @throws InvalidUserException
+     */
+    public void setAdmTecnico(int tecnicoID, boolean adm) throws
+            UserNotLoggedInException,
+            NotAllowedException,
+            InvalidUserException{
+        Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(tecnicoID);
+        if (tecnicoSessao == null) throw new UserNotLoggedInException();
+        if (!tecnicoSessao.isAdm()) throw new NotAllowedException(tecnicoID);
+        if (tecnico == null) throw new InvalidUserException(tecnicoID);
+        tecnico.setAdm(adm);
+    }
+
     public boolean _hasPermission(Tecnico tecnico){
         /*técnico normal tentando manipular objetos de outro técnico*/
         if (this.tecnicoSessao.getTecnicoID() != tecnico.getTecnicoID()
