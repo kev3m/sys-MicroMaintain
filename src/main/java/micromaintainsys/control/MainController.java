@@ -24,6 +24,7 @@ public class MainController {
         Collections.sort(abertas);
         this.ordensAbertas = new LinkedList<Ordem>(abertas);
         this.ordensServico = new ArrayList<>(DAO.getOrdemDAO().pegaTodas());
+        this.faturas = new ArrayList<>(DAO.getFaturaDAO().pegaTodas());
    }
     /*
     Métodos relacionados a TÉCNICOS
