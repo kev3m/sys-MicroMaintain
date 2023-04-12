@@ -245,12 +245,31 @@ public class MainController {
             return true;
         }
     }
-    public Servico criaServico(CategoriaServico categoria, double valor, String peca, String descricao, int ordemID ){
-        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
-        Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
-        if (!_hasPermission(tecnicoDaOrdem)){
-            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+    public Servico criaServico(
+                                CategoriaServico categoria,
+                                double valor,
+                                String peca,
+                                String descricao,
+                                int ordemID)
+            throws
+                AssemblyWithEmptyComponentException,
+                ComponentOutOfStockException,
+                ComponentDoesNotExistException{
+
+        if (peca != ""){
+            peca = peca.toLowerCase();
+            /*Tipo de peça nunca foi comprado*/
+            if (!this.estoque.getPecas().containsKey(peca))
+                throw new ComponentDoesNotExistException();
+            /*Tipo de peça fora de estoque*/
+            if (this.estoque.getPecas().get(peca) == 0)
+                throw new ComponentOutOfStockException();
         }
+        /*Montagem sem especificação de peça*/
+        else if (peca == "" && categoria == CategoriaServico.Montagem)
+            throw new AssemblyWithEmptyComponentException();
+
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
 
