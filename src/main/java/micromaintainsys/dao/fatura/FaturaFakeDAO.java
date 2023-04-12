@@ -30,7 +30,7 @@ public class FaturaFakeDAO implements InterfaceFatura {
         return false;
     }
     public ArrayList<Fatura> pegaTodas(){
-        return (ArrayList<Fatura>) this.faturasCadastradas.values();
+        return (ArrayList<Fatura>) faturasCadastradas.values();
     }
 }
 

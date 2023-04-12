@@ -35,7 +35,7 @@ public class OrdemFakeDAO implements InterfaceOrdem{
     }
     public ArrayList<Ordem> pegaTodasPorStatus(StatusOrdem status){
         ArrayList<Ordem> ordensStatus = new ArrayList<>();
-        for (Ordem ordem: this.ordensCadastradas.values()){
+        for (Ordem ordem: ordensCadastradas.values()){
             if (ordem.getStatus() == status){
                 ordensStatus.add(ordem);
             }
@@ -43,6 +43,6 @@ public class OrdemFakeDAO implements InterfaceOrdem{
         return ordensStatus;
     }
     public ArrayList<Ordem> pegaTodas(){
-        return (ArrayList<Ordem>) this.ordensCadastradas.values();
+        return (ArrayList<Ordem>) ordensCadastradas.values();
     }
 }

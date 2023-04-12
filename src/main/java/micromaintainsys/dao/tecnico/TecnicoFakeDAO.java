@@ -1,10 +1,6 @@
 package micromaintainsys.dao.tecnico;
 
-import micromaintainsys.model.Ordem;
-import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.Tecnico;
-
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
