@@ -70,5 +70,8 @@ public class ClienteFakeDAO implements InterfaceCliente {
 
         return false;
     }
+    public void zerarIDCounter(){
+        idCounter = 0;
+    }
 
 }
