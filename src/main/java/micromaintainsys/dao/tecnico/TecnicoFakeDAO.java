@@ -80,4 +80,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      */
        return true;
    }
+    public void resetIDCounter(){
+        idCounter = 1;
+    }
 }
