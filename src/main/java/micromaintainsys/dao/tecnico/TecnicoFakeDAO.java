@@ -9,7 +9,7 @@ import java.util.Hashtable;
  */
 
 public class TecnicoFakeDAO implements InterfaceTecnico{
-    static Hashtable<Integer, Tecnico> tecnicosCadastrados;
+    static Hashtable<Integer, Tecnico> tecnicosCadastrados = new Hashtable<>();
     private static int idCounter = 1;
 
     public TecnicoFakeDAO(){

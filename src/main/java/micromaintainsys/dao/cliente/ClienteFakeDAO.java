@@ -16,7 +16,7 @@ import java.util.Map;
 */
 public class ClienteFakeDAO implements InterfaceCliente {
     /*Alterar lógica de banco de dados */
-    static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();;
+    static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();
     private static int idCounter = 0;
 
     /**
