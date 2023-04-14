@@ -19,6 +19,7 @@ public class ClienteFakeDAOTest {
         clientesCadastrados = new Hashtable<Integer, Cliente>();
         cliente = dao.cria("Pedro", "Rua Principal, 123", "(55) 8888-8888");
         cliente_2 = dao.cria("João", "Rua Secundaria, 456", "(75) 9999-9999");
+        dao.zerarIDCounter();
 
     }
 
