@@ -19,7 +19,7 @@ public class ClienteFakeDAOTest {
         clientesCadastrados = new Hashtable<Integer, Cliente>();
         cliente = dao.cria("Pedro", "Rua Principal, 123", "(55) 8888-8888");
         cliente_2 = dao.cria("João", "Rua Secundaria, 456", "(75) 9999-9999");
-        dao.zerarIDCounter();
+        dao.resetIDCounter();
 
     }
 
@@ -46,7 +46,7 @@ public class ClienteFakeDAOTest {
         Cliente cliente_2Encontrado = dao.pegaPorId(cliente_2.getId());
         assertEquals(cliente_2, cliente_2Encontrado);
 
-        Cliente clienteNaoEncontrado = dao.pegaPorId(3);
+        Cliente clienteNaoEncontrado = dao.pegaPorId(999);
         assertNull(clienteNaoEncontrado);
     }
 
