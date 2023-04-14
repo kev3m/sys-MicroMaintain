@@ -10,7 +10,7 @@ import java.util.Hashtable;
  * Permite criar, remover, autenticar e atualizar informações das ordens.
  */
 public class OrdemFakeDAO implements InterfaceOrdem{
-    static Hashtable<Integer, Ordem> ordensCadastradas;
+    static Hashtable<Integer, Ordem> ordensCadastradas = new Hashtable<>();
     private static int idCounter = 0;
 
     public Ordem cria(int clienteID){
@@ -45,4 +45,6 @@ public class OrdemFakeDAO implements InterfaceOrdem{
     public ArrayList<Ordem> pegaTodas(){
         return (ArrayList<Ordem>) ordensCadastradas.values();
     }
+    public void resetIDCounter(){ idCounter = 1;}
+
 }
