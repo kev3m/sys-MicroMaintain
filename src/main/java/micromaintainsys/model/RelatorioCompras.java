@@ -19,9 +19,13 @@ public class RelatorioCompras {
      * @param fim data até a qual deve-se considerar as Ordens de Compra
      */
     public RelatorioCompras(ArrayList<OrdemCompra> ordensDeCompra, Calendar inicio, Calendar fim){
+        long inicioMs = inicio.getTimeInMillis();
+        long fimMs = fim.getTimeInMillis();
+
         for (OrdemCompra ordemCompra : ordensDeCompra) {
-            if (ordemCompra.getDataCriacao().after(inicio)
-                    && ordemCompra.getDataCriacao().before(fim)) {
+            long ordemInicioMs = ordemCompra.getDataCriacao().getTimeInMillis();
+            if ((ordemInicioMs - inicioMs) >= 0
+                    && (fimMs - ordemInicioMs) >= 0) {
                 this.ordens.add(ordemCompra);
                 this.valorTotal += ordemCompra.getValorUnitario() * ordemCompra.getQuantidade();
                 String nomePeca = ordemCompra.getPeca();
