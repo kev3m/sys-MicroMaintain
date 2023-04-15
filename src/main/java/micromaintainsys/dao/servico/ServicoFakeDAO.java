@@ -11,7 +11,7 @@ import java.util.Hashtable;
  * Permite criar, remover, autenticar e atualizar informações das ordens.
  */
 public class ServicoFakeDAO implements InterfaceServico {
-    static Hashtable<Integer, Servico> servicosCadastrados;
+    static Hashtable<Integer, Servico> servicosCadastrados = new Hashtable<>();
     private static int idCounter = 0;
 
     public Servico cria(CategoriaServico categoriaServico, double valor, String peca, String descricao, int ordemID){
