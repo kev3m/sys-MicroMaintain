@@ -81,14 +81,11 @@ public class EstoqueTest {
         OrdemCompra ordemCompra2 = new OrdemCompra("RAM", 5,120.00);
         OrdemCompra ordemCompra3 = new OrdemCompra("CPU", 2,400.00);
 
-        Calendar fim = Calendar.getInstance();
-        fim.add(Calendar.WEEK_OF_MONTH, 1);
-
         estoque.criaOrdemCompra(ordemCompra1);
         estoque.criaOrdemCompra(ordemCompra2);
         estoque.criaOrdemCompra(ordemCompra3);
 
-        RelatorioCompras relatorio = estoque.geraRelatorioCompras(inicio, fim);
+        RelatorioCompras relatorio = estoque.geraRelatorioCompras(inicio, Calendar.getInstance());
         assertEquals(3, relatorio.getOrdens().size());
 
         double totalCompra = ordemCompra1.getValorCompra() + ordemCompra2.getValorCompra() + ordemCompra3.getValorCompra();
