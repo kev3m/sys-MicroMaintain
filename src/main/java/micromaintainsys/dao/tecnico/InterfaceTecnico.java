@@ -11,5 +11,7 @@ public interface InterfaceTecnico extends CRUD<Tecnico> {
     public Tecnico pegaPorId(int tecnicoID);
     public boolean atualiza(Tecnico tecnico);
     public ArrayList<Tecnico> pegaTodos();
+    /*Apenas para testes*/
+    public void resetIDCounter();
 
 }
