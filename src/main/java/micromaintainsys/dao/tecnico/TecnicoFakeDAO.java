@@ -1,6 +1,8 @@
 package micromaintainsys.dao.tecnico;
 
 import micromaintainsys.model.Tecnico;
+
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -80,5 +82,8 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      */
        return true;
    }
+   public ArrayList<Tecnico>pegaTodos(){
+       return (new ArrayList<Tecnico>(tecnicosCadastrados.values()));
+    }
     public void resetIDCounter(){ idCounter = 1;}
 }
