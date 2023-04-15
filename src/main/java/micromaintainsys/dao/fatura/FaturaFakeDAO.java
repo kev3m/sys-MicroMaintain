@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class FaturaFakeDAO implements InterfaceFatura {
-    static Hashtable<Integer, Fatura> faturasCadastradas;
+    static Hashtable<Integer, Fatura> faturasCadastradas = new Hashtable<>();
     private static int idCounter = 0;
 
     public Fatura cria(int ordemID, double valorTotal){
@@ -30,7 +30,7 @@ public class FaturaFakeDAO implements InterfaceFatura {
         return false;
     }
     public ArrayList<Fatura> pegaTodas(){
-        return (ArrayList<Fatura>) faturasCadastradas.values();
+        return (new ArrayList<Fatura>(faturasCadastradas.values()));
     }
 }
 

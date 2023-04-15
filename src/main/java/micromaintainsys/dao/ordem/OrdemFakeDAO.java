@@ -43,7 +43,7 @@ public class OrdemFakeDAO implements InterfaceOrdem{
         return ordensStatus;
     }
     public ArrayList<Ordem> pegaTodas(){
-        return (ArrayList<Ordem>) ordensCadastradas.values();
+        return new ArrayList<Ordem>(ordensCadastradas.values());
     }
     public void resetIDCounter(){ idCounter = 1;}
 
