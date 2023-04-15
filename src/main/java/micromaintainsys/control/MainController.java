@@ -1,5 +1,4 @@
 package micromaintainsys.control;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import micromaintainsys.dao.DAO;
@@ -10,13 +9,12 @@ import micromaintainsys.model.*;
  * Controller responsável por prover a interface com o sistema.
  */
 public class MainController {
-    private Queue<Ordem> ordensAbertas;
-    private ArrayList<Ordem> ordensServico;
-    private ArrayList<OrdemCompra> ordensCompras;
-    private ArrayList<Fatura> faturas;
+    private final Queue<Ordem> ordensAbertas;
+    private final ArrayList<Ordem> ordensServico;
+    private final ArrayList<Fatura> faturas;
     //Armazena o ID do tecnico logado no sistema
     private Tecnico tecnicoSessao;
-    private Estoque estoque;
+    private final Estoque estoque;
 
     public MainController(){
         this.estoque = criaEstoque();
@@ -287,6 +285,9 @@ public class MainController {
             DAO.getOrdemDAO().atualiza(ordem);
             return true;
         }
+    }
+    public ArrayList<Ordem> listaTodasAsOrdens(){
+        return ordensServico;
     }
     public Servico criaServico(
                                 CategoriaServico categoria,

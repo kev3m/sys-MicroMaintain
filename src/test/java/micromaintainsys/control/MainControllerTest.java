@@ -95,15 +95,19 @@ public class MainControllerTest extends TestCase {
 
         controller.atribuiOrdem(novoTecnico.getTecnicoID());
 
-        /*Encerra serviços e ordem e faz pagamento*/
+        /*Encerra serviços e ordem*/
         controller.encerraServico(servico1.getServicoID());
         controller.encerraServico(servico2.getServicoID());
         controller.fechaOrdem(ordemCriada.getOrdemID());
+
+        /*Gera fatura e faz pagamento*/
         Fatura fatura = controller.geraFatura(ordemCriada.getOrdemID());
         controller.realizaPagamento(TipoPagamento.Dinheiro, 50, fatura.getFaturaID());
         controller.realizaPagamento(TipoPagamento.Pix, 55.5, fatura.getFaturaID());
         assertEquals(StatusOrdem.Finalizada, ordemCriada.getStatus());
         Calendar fimProcesso = Calendar.getInstance();
+
+        /*Testa dados do relatório*/
         RelatorioCompras relatorioCompras = controller.geraRelatorioCompras(inicioProcesso, fimProcesso);
         assertEquals(25.0, relatorioCompras.getValorTotal());
         assertEquals(1, relatorioCompras.getOrdens().size());

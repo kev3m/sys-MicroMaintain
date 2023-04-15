@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Hashtable;
 
+import micromaintainsys.dao.DAO;
 import micromaintainsys.dao.ordem.OrdemFakeDAO;
 import micromaintainsys.model.Ordem;
 import micromaintainsys.model.StatusOrdem;
@@ -29,7 +30,8 @@ public class OrdemFakeDAOTest {
         @Test
         public void testCria() {
             assertNotNull(ordem);
-            assertEquals(0, ordem.getOrdemID());
+            int ordens = DAO.getOrdemDAO().pegaTodas().size();
+            assertEquals(ordens-1, ordem.getOrdemID());
             assertEquals(1, ordem.getClienteID());
         }
 
@@ -57,6 +59,8 @@ public class OrdemFakeDAOTest {
         //Pagamento, Aberta, Finalizada, Cancelada, Andamento
         @Test
         public void testPegaTodasPorStatus() {
+            int emAndamento = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Andamento).size();
+            int finalizadas = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Finalizada).size();
             Ordem ordem2 = ordemFakeDAO.cria(1);
             Ordem ordem3 = ordemFakeDAO.cria(2);
             Ordem ordem4 = ordemFakeDAO.cria(2);
@@ -64,11 +68,12 @@ public class OrdemFakeDAOTest {
             ordem3.setStatus(StatusOrdem.Finalizada);
             ordem4.setStatus(StatusOrdem.Andamento);
 
+
             ArrayList<Ordem> ordensEmAndamento = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Andamento);
-            assertEquals(2, ordensEmAndamento.size());
+            assertEquals(emAndamento + 2, ordensEmAndamento.size());
 
             ArrayList<Ordem> ordensFinalizadas = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Finalizada);
-            assertEquals(1, ordensFinalizadas.size());
+            assertEquals(finalizadas + 1, ordensFinalizadas.size());
 
             ArrayList<Ordem> ordensCanceladas = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Cancelada);
             assertEquals(0, ordensCanceladas.size());
