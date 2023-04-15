@@ -189,7 +189,27 @@ public class MainController {
         return novaOrdem;
     }
 
-    public boolean atribuiOrdem(int tecnicoID) throws UserNotLoggedInException, InvalidUserException, NotAllowedException{
+    /**
+     * Atribui a ordem em aberto mais antiga a um técnico.
+     * Caso o estoque não seja suficiente para realizar um serviço da ordem,
+     * lança uma exceção.
+     * @param tecnicoID
+     * @return
+     * @throws UserNotLoggedInException
+     * @throws InvalidUserException
+     * @throws NotAllowedException
+     * @throws AssemblyWithEmptyComponentException
+     * @throws ComponentOutOfStockException
+     * @throws ComponentDoesNotExistException
+     */
+    public boolean atribuiOrdem(int tecnicoID) throws
+            UserNotLoggedInException,
+            InvalidUserException,
+            NotAllowedException,
+            AssemblyWithEmptyComponentException,
+            ComponentOutOfStockException,
+            ComponentDoesNotExistException{
+
         Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(tecnicoID);
         Ordem ordem = this.ordensAbertas.poll();
         /*Nenhum usuário logado*/
@@ -208,6 +228,23 @@ public class MainController {
         /*A fila de ordens abertas está vazia*/
         if (ordem == null){
             return false;
+        }
+        /*Verificações de serviço*/
+        for (Servico servico: DAO.getServicoDAO().pegaTodosPorOrdemID(ordem.getOrdemID())) {
+            String peca = servico.getPeca().toLowerCase();
+            CategoriaServico categoria = servico.getCategoriaServico();
+            /*Serviço tem peça*/
+            if (peca != "") {
+                /*Tipo de peça nunca foi comprado*/
+                if (!this.estoque.getPecas().containsKey(peca))
+                    throw new ComponentDoesNotExistException(peca);
+                /*Tipo de peça fora de estoque*/
+                if (this.estoque.getPecas().get(peca) == 0)
+                    throw new ComponentOutOfStockException(peca);
+                    /*Montagem sem especificação de peça*/
+                else if (peca == "" && categoria == CategoriaServico.Montagem)
+                    throw new AssemblyWithEmptyComponentException();
+            }
         }
         this.tecnicoSessao.setOrdemEmAndamentoID(ordem.getOrdemID());
         ordem.setTecnicoID(this.tecnicoSessao.getTecnicoID());
@@ -250,25 +287,7 @@ public class MainController {
                                 double valor,
                                 String peca,
                                 String descricao,
-                                int ordemID)
-            throws
-                AssemblyWithEmptyComponentException,
-                ComponentOutOfStockException,
-                ComponentDoesNotExistException{
-
-        if (peca != ""){
-            peca = peca.toLowerCase();
-            /*Tipo de peça nunca foi comprado*/
-            if (!this.estoque.getPecas().containsKey(peca))
-                throw new ComponentDoesNotExistException();
-            /*Tipo de peça fora de estoque*/
-            if (this.estoque.getPecas().get(peca) == 0)
-                throw new ComponentOutOfStockException();
-        }
-        /*Montagem sem especificação de peça*/
-        else if (peca == "" && categoria == CategoriaServico.Montagem)
-            throw new AssemblyWithEmptyComponentException();
-
+                                int ordemID){
         Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
