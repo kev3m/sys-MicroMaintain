@@ -7,7 +7,7 @@ public class Tecnico {
     private String nome;
     private String senha;
     private int tecnicoID;
-    private int ordemEmAndamentoID;
+    private int ordemEmAndamentoID = -1;
 
     /* TODO Estudar remoção: deixar a cargo do DAO de Ordens e Compras */
     private ArrayList<Ordem> historicoOrdens;
@@ -141,6 +141,7 @@ public class Tecnico {
         this.getHistoricoOrdens().add(novaOrdem);
     }
 
+    /*TODO estudar remoção*/
     public boolean temOrdemEmAberto(){
         boolean emAberto = this.historicoOrdens
                 .get(this.historicoOrdens.size()-1)
