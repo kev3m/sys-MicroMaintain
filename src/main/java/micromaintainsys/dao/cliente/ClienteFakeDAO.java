@@ -70,6 +70,9 @@ public class ClienteFakeDAO implements InterfaceCliente {
 
         return false;
     }
+    public ArrayList<Cliente> pegaTodos(){
+        return new ArrayList<>(clientesCadastrados.values());
+    }
     public void resetIDCounter(){
         idCounter = 0;
     }
