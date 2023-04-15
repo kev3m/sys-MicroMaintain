@@ -1,31 +1,32 @@
 package micromaintainsys.control;
 
 import junit.framework.TestCase;
-import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.InvalidUserException;
 import micromaintainsys.exceptions.UserAlreadyLoggedInException;
 import micromaintainsys.exceptions.WrongPasswordException;
 import micromaintainsys.model.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import org.junit.Test;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Queue;
 
 public class MainControllerTest extends TestCase {
+    /*TODO
+        * testar remoção de técnico
+        * testar setAdmTecnico
+        * testar removeCliente
+     */
     private MainController controller = new MainController();
 
     @Test
     public void testLoginLogoutAdm() {
         controller.loginTecnico(0, "admin");
         assertNotNull(controller.getTecnicoSessao());
-        assertEquals(true, controller.getTecnicoSessao().isAdm());
-        controller.logoutTecnico();
+        assertTrue(controller.getTecnicoSessao().isAdm());
+        boolean sucesso = controller.logoutTecnico();
+        assertTrue(sucesso);
         assertNull(controller.getTecnicoSessao());
     }
     @Test

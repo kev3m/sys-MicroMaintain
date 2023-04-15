@@ -9,6 +9,9 @@ import micromaintainsys.model.*;
  * Controller responsável por prover a interface com o sistema.
  */
 public class MainController {
+    /*TODO
+    Implementar método de avaliação do cliente
+     */
     private final Queue<Ordem> ordensAbertas;
     private final ArrayList<Ordem> ordensServico;
     private final ArrayList<Fatura> faturas;
@@ -20,7 +23,7 @@ public class MainController {
         this.estoque = criaEstoque();
         ArrayList<Ordem> abertas = DAO.getOrdemDAO().pegaTodasPorStatus(StatusOrdem.Aberta);
         Collections.sort(abertas);
-        this.ordensAbertas = new LinkedList<Ordem>(abertas);
+        this.ordensAbertas = new LinkedList<>(abertas);
         this.ordensServico = new ArrayList<>(DAO.getOrdemDAO().pegaTodas());
         this.faturas = new ArrayList<>(DAO.getFaturaDAO().pegaTodas());
    }
@@ -50,11 +53,11 @@ public class MainController {
 
     /**
      * Realiza login do tecnico
-     * @param id
-     * @param senha
-     * @throws InvalidUserException
-     * @throws UserAlreadyLoggedInException
-     * @throws WrongPasswordException
+     * @param id id do técnico
+     * @param senha senha do técnico
+     * @throws InvalidUserException usuário inválido
+     * @throws UserAlreadyLoggedInException algum usuário já está logado
+     * @throws WrongPasswordException senha errada
      */
     public void loginTecnico(int id, String senha) throws
             InvalidUserException,
@@ -77,7 +80,7 @@ public class MainController {
 
     /**
      * Realiza o log out do técnico.
-     * @return
+     * @return true se o logout foi realizado com sucesso, false caso não
      */
     public boolean logoutTecnico(){
         if (this.tecnicoSessao != null){
@@ -114,11 +117,11 @@ public class MainController {
     /**
      * Define se o usuário em questão é administrador
      * Apenas administradores podem utilizar.
-     * @param tecnicoID
-     * @param adm
-     * @throws UserNotLoggedInException
-     * @throws NotAllowedException
-     * @throws InvalidUserException
+     * @param tecnicoID id do técnico
+     * @param adm true se usuário for administrador, false caso contrário
+     * @throws UserNotLoggedInException usuário não está logado
+     * @throws NotAllowedException operação não permitida
+     * @throws InvalidUserException usuário a ser definido como administrador é inválido
      */
     public void setAdmTecnico(int tecnicoID, boolean adm) throws
             UserNotLoggedInException,
@@ -137,10 +140,8 @@ public class MainController {
 
     public boolean _hasPermission(Tecnico tecnico){
         /*técnico normal tentando manipular objetos de outro técnico*/
-        if (this.tecnicoSessao.getTecnicoID() != tecnico.getTecnicoID()
-                && !this.tecnicoSessao.isAdm())
-            return false;
-        return true;
+        return this.tecnicoSessao.getTecnicoID() == tecnico.getTecnicoID()
+                || this.tecnicoSessao.isAdm();
     }
     /*
     Métodos relacionados a CLIENTES
@@ -164,17 +165,14 @@ public class MainController {
     /**
      * Remove um cliente.
      * @param clienteID id do cliente
-     * @return
+     * @return operação bem sucedida
      * @throws UserNotLoggedInException nenhum usuário logado
      */
     public boolean removeCliente(int clienteID) throws UserNotLoggedInException{
         if (this.tecnicoSessao == null){
             throw new UserNotLoggedInException();
         }
-        if (clienteID >= 0 && DAO.getClienteDAO().remove(clienteID)){
-            return true;
-        }
-        return false;
+        return clienteID >= 0 && DAO.getClienteDAO().remove(clienteID);
     }
     ArrayList<Cliente>listaClientes(){
         return DAO.getClienteDAO().pegaTodos();
@@ -197,14 +195,14 @@ public class MainController {
      * Atribui a ordem em aberto mais antiga a um técnico.
      * Caso o estoque não seja suficiente para realizar um serviço da ordem,
      * lança uma exceção.
-     * @param tecnicoID
-     * @return
-     * @throws UserNotLoggedInException
-     * @throws InvalidUserException
-     * @throws NotAllowedException
-     * @throws AssemblyWithEmptyComponentException
-     * @throws ComponentOutOfStockException
-     * @throws ComponentDoesNotExistException
+     * @param tecnicoID id do técnico a receber a ordem
+     * @return  true se ordem foi atribuída com sucesso, false em outro caso
+     * @throws UserNotLoggedInException nenhum usuário logado no sistema
+     * @throws InvalidUserException técnico a ter a ordem atribuída é inválido
+     * @throws NotAllowedException usuário não tem permissão para realizar a operação
+     * @throws AssemblyWithEmptyComponentException serviço de montagem não possui componente
+     * @throws ComponentOutOfStockException componente necessário para executar serviço fora de estoque
+     * @throws ComponentDoesNotExistException componente necessário para executar serviço não foi cadastrado no estoque
      */
     public boolean atribuiOrdem(int tecnicoID) throws
             UserNotLoggedInException,
@@ -238,17 +236,17 @@ public class MainController {
             String peca = servico.getPeca().toLowerCase();
             CategoriaServico categoria = servico.getCategoriaServico();
             /*Serviço tem peça*/
-            if (peca != "") {
+            if (!peca.equals("")) {
                 /*Tipo de peça nunca foi comprado*/
                 if (!this.estoque.getPecas().containsKey(peca))
                     throw new ComponentDoesNotExistException(peca);
                 /*Tipo de peça fora de estoque*/
                 if (this.estoque.getPecas().get(peca) == 0)
                     throw new ComponentOutOfStockException(peca);
-                    /*Montagem sem especificação de peça*/
-                else if (peca == "" && categoria == CategoriaServico.Montagem)
-                    throw new AssemblyWithEmptyComponentException();
             }
+            /*Montagem sem especificação de peça*/
+            else if (peca == "" && categoria == CategoriaServico.Montagem)
+                throw new AssemblyWithEmptyComponentException();
         }
         tecnico.setOrdemEmAndamentoID(ordem.getOrdemID());
         ordem.setTecnicoID(tecnico.getTecnicoID());
@@ -304,19 +302,19 @@ public class MainController {
         Ordem ordem = DAO.getOrdemDAO().pegaPorId(servico.getOrdemID());
         Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
 
-        if (!_hasPermission(tecnicoDaOrdem)){
-            throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+        if (_hasPermission(tecnicoDaOrdem)){
+            servico.encerraServico();
+            DAO.getServicoDAO().atualiza(servico);
         }
-        servico.encerraServico();
-        DAO.getServicoDAO().atualiza(servico);
+        else throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
     }
 
     /*Métodos relacionados a Pagamento e Fatura */
     /**
      * Gera a fatura de uma ordem com o valor igual
      * ao da soma dos serviços cadastrados na ordem
-     * @param ordemID
-     * @return
+     * @param ordemID ID da ordem
+     * @return fatura referente à ordem gerada
      */
     public Fatura geraFatura(int ordemID){
         Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
@@ -346,8 +344,7 @@ public class MainController {
             ordemPaga.setStatus(StatusOrdem.Finalizada);
             DAO.getOrdemDAO().atualiza(ordemPaga);
         }
-        Pagamento novoPagamento = DAO.getPagamentoDAO().cria(tipo, valor, faturaID);
-        return novoPagamento;
+        return DAO.getPagamentoDAO().cria(tipo, valor, faturaID);
     }
 
     /*
@@ -381,5 +378,9 @@ public class MainController {
 
     public Queue<Ordem> getOrdensAbertas(){
         return this.ordensAbertas;
+    }
+
+    public ArrayList<Fatura> getFaturas(){
+        return this.faturas;
     }
 }
