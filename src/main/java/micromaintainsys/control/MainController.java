@@ -133,6 +133,9 @@ public class MainController {
         tecnico.setAdm(adm);
         DAO.getTecnicoDAO().atualiza(tecnico);
     }
+    public ArrayList<Tecnico> listaTecnicos(){
+        return DAO.getTecnicoDAO().pegaTodos();
+    }
 
     public boolean _hasPermission(Tecnico tecnico){
         /*técnico normal tentando manipular objetos de outro técnico*/
@@ -368,4 +371,7 @@ public class MainController {
         return this.estoque.geraRelatorioCompras(inicio, fim);
     }
 
+    public Tecnico getTecnicoSessao() {
+        return tecnicoSessao;
+    }
 }
