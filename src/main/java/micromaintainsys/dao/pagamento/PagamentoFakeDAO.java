@@ -6,7 +6,7 @@ import micromaintainsys.model.TipoPagamento;
 import java.util.Hashtable;
 
 public class PagamentoFakeDAO implements InterfacePagamento{
-    static Hashtable<Integer, Pagamento> pagamentosCadastrados;
+    static Hashtable<Integer, Pagamento> pagamentosCadastrados = new Hashtable<>();
     private static int idCounter = 0;
     public Pagamento cria(TipoPagamento pagamento, double valor, int faturaID){
        Pagamento novoPagamento = new Pagamento(pagamento, valor, faturaID);
