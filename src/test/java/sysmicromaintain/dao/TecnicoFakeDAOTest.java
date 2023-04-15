@@ -1,5 +1,7 @@
 package sysmicromaintain.dao;
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import micromaintainsys.dao.tecnico.TecnicoFakeDAO;
@@ -27,7 +29,9 @@ public class TecnicoFakeDAOTest {
 
     @Test
     public void testPegaPorIdNaoExistente() {
-        tecnico = tecnicoDAO.pegaPorId(2);
+        ArrayList<Tecnico> tecnicos = tecnicoDAO.pegaTodos();
+        int i = tecnicos.size();
+        tecnico = tecnicoDAO.pegaPorId(i);
         assertNull(tecnico);
     }
 
