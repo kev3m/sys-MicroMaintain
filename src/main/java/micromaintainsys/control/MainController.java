@@ -229,7 +229,7 @@ public class MainController {
         if (!this._hasPermission(tecnico))
             throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
         /*Técnico já tem ordem em aberto*/
-        if (this.tecnicoSessao.getOrdemEmAndamentoID() >= 0)
+        if (tecnico.getOrdemEmAndamentoID() >= 0)
             return false;
         /*A fila de ordens abertas está vazia*/
         if (ordem == null){
@@ -252,8 +252,8 @@ public class MainController {
                     throw new AssemblyWithEmptyComponentException();
             }
         }
-        this.tecnicoSessao.setOrdemEmAndamentoID(ordem.getOrdemID());
-        ordem.setTecnicoID(this.tecnicoSessao.getTecnicoID());
+        tecnico.setOrdemEmAndamentoID(ordem.getOrdemID());
+        ordem.setTecnicoID(tecnico.getTecnicoID());
         ordem.setStatus(StatusOrdem.Andamento);
         DAO.getTecnicoDAO().atualiza(tecnico);
         DAO.getOrdemDAO().atualiza(ordem);
@@ -314,14 +314,14 @@ public class MainController {
     /**
      * Gera a fatura de uma ordem com o valor igual
      * ao da soma dos serviços cadastrados na ordem
-     * @param ordem
+     * @param ordemID
      * @return
      */
-    public Fatura geraFatura(Ordem ordem){
+    public Fatura geraFatura(int ordemID){
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
         if (ordem.getFaturaID() > -1){
             return null;
         }
-        int ordemID = ordem.getOrdemID();
 
         ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
         double valorTotal = servicosOrdem.stream().mapToDouble(Servico::getValor).sum();
@@ -376,5 +376,9 @@ public class MainController {
 
     public Tecnico getTecnicoSessao() {
         return tecnicoSessao;
+    }
+
+    public Queue<Ordem> getOrdensAbertas(){
+        return this.ordensAbertas;
     }
 }
