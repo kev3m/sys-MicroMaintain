@@ -178,6 +178,9 @@ public class MainController {
         }
         return false;
     }
+    ArrayList<Cliente>listaClientes(){
+        return DAO.getClienteDAO().pegaTodos();
+    }
 
     /*
     Métodos relacionados a Ordens e Serviços
