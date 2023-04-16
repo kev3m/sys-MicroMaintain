@@ -280,7 +280,7 @@ public class MainController {
         ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
         boolean emAberto = false;
         for (Servico servico: servicosOrdem){
-            if (servico.foiEncerrado()){
+            if (!servico.foiEncerrado()){
                 emAberto = true;
                 break;
             }

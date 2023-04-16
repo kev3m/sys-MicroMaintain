@@ -80,6 +80,6 @@ public class Servico {
         this.horarioFinalizacao = Calendar.getInstance();
     }
     public boolean foiEncerrado(){
-        return this.horarioFinalizacao != null? true : false;
+        return this.horarioFinalizacao == null? false : true;
     }
 }
