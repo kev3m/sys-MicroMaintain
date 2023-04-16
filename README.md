@@ -18,9 +18,10 @@ A estruturação do projeto foi realizada com base no padrão arquitetural MVC (
 
  A adoção desse padrão permitiu uma melhor organização e manutenibilidade do código, além de uma maior facilidade na implementação de novas funcionalidades e modificações na aplicação.
 
- ## 🛠️ Recursos
-
-- Registro de Clientes
+ ## 🛠️ Funcionalidades e Recursos
+O sistema é iniciado com um usuário administrador, cujo ID é definido como 0. Para começar a utilizar o sistema, é necessário realizar o login utilizando a conta do administrador. Após o login, o sistema oferece diversas funcionalidades, incluindo:
+ 
+- Registro de Técnicos e Clientes
 - Gerenciamento de Ordens de Serviço
 - Agendamento de Atendimento
 - Gerenciamento de Peças e Estoque
@@ -35,13 +36,22 @@ O projeto foi desenvolvido utilizando a linguagem Java em sua versão mais atual
 
 Foram formados grupos de trabalho compostos por estudantes da disciplina EXA 863. Além disso, a Universidade disponibilizou tutores e professores orientadores para auxiliar os alunos durante todo o processo de desenvolvimento.
 
-## 📝 Diagrama de Classes
-![Diagrama de Classes-1](https://user-images.githubusercontent.com/52084984/230636147-c4132dc1-b502-450f-9a51-b79cb836b675.png)
-
-
 
 ## 📝 Diagrama de Casos de Uso
 ![Diagrama de Casos de Uso-1](https://user-images.githubusercontent.com/52084984/230635712-8bd3920d-790a-4571-815a-b0e5c9469ade.png)
+
+## 🎬 Rodando o Projeto
+
+- Clone este repositório
+
+```bash
+  git clone https://github.com/kev3m/sys_MicroMaintain
+```
+- Abra o projeto
+```bash
+  cd sys_MicroMaintain
+
+```
 
 
 
