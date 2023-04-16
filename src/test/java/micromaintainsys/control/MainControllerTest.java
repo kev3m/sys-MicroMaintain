@@ -11,7 +11,6 @@ import java.util.List;
 
 public class MainControllerTest extends TestCase {
     /*TODO
-        * testar setAdmTecnico
         * testar removeCliente
      */
     private final MainController controller = new MainController();
@@ -94,6 +93,16 @@ public class MainControllerTest extends TestCase {
         controller.loginTecnico(novoTecnicoID, "123");
         assertTrue(controller.getTecnicoSessao().isAdm());
     }
+
+    public void testeCriaERemoveCliente(){
+        controller.loginTecnico(0, "admin");
+        int nClientes = controller.listaClientes().size();
+        int novoClienteID = controller.criaCliente("Ana", "Rua dos Bobos n. 0", "000000000").getId();
+        assertEquals(nClientes + 1, controller.listaClientes().size());
+        boolean resRemocao = controller.removeCliente(novoClienteID);
+        assertTrue(resRemocao);
+        assertEquals(nClientes, controller.listaClientes().size());
+    }
     public void testCriacaoTecnicoAtePagamentoFatura(){
         Calendar inicioProcesso = Calendar.getInstance();
         /*Cria técnico*/
@@ -113,10 +122,12 @@ public class MainControllerTest extends TestCase {
 
         boolean resAtribuicao = controller.atribuiOrdem(novoTecnico.getTecnicoID());
         assertTrue(resAtribuicao);
+        assertEquals(StatusOrdem.Andamento, ordemCriada.getStatus());
         /*Encerra serviços e ordem*/
         controller.encerraServico(servico1.getServicoID());
         controller.encerraServico(servico2.getServicoID());
-        boolean resFechamento = controller.fechaOrdem(ordemCriada.getOrdemID());
+        boolean resFechamento = false;
+        resFechamento = controller.fechaOrdem(ordemCriada.getOrdemID());
         assertTrue(resFechamento);
 
         /*Gera fatura e faz pagamento*/
