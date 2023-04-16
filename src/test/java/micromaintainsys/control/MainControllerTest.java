@@ -86,6 +86,14 @@ public class MainControllerTest extends TestCase {
         }
         assertTrue(removido);
     }
+    public void testAtribuicaoAdm(){
+        controller.loginTecnico(0, "admin");
+        int novoTecnicoID = controller.criaTecnico("José", "123").getTecnicoID();
+        controller.setAdmTecnico(novoTecnicoID, true);
+        controller.logoutTecnico();
+        controller.loginTecnico(novoTecnicoID, "123");
+        assertTrue(controller.getTecnicoSessao().isAdm());
+    }
     public void testCriacaoTecnicoAtePagamentoFatura(){
         Calendar inicioProcesso = Calendar.getInstance();
         /*Cria técnico*/
@@ -125,5 +133,4 @@ public class MainControllerTest extends TestCase {
         assertEquals(2, relatorioServicos.getTotalEncerrados());
         assertEquals(0, relatorioServicos.getTotalEmAberto());
     }
-
 }
