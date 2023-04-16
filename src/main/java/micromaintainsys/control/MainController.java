@@ -93,6 +93,15 @@ public class MainController {
     }
 
     /**
+     * Pega um técnico por ID
+     * @param tecnicoID
+     * @return um objeto do tipo Tecnico
+     */
+    public Tecnico pegaTecnicoPorId(int tecnicoID){
+        return DAO.getTecnicoDAO().pegaPorId(tecnicoID);
+    }
+
+    /**
      * Remove um técnico do sistema.
      * @param tecnicoID id do técnico a ser removido
      * @throws UserNotLoggedInException nenhum usuário logado
@@ -134,6 +143,11 @@ public class MainController {
         tecnico.setAdm(adm);
         DAO.getTecnicoDAO().atualiza(tecnico);
     }
+
+    /**
+     * Lista todos os técnicos
+     * @return uma lista contendo todos os técnicos cadastrados
+     */
     public ArrayList<Tecnico> listaTecnicos(){
         return DAO.getTecnicoDAO().pegaTodos();
     }
