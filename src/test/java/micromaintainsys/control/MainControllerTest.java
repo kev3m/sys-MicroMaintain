@@ -6,21 +6,16 @@ import micromaintainsys.exceptions.UserAlreadyLoggedInException;
 import micromaintainsys.exceptions.WrongPasswordException;
 import micromaintainsys.model.*;
 
-import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.List;
-import java.util.Queue;
 
 public class MainControllerTest extends TestCase {
     /*TODO
-        * testar remoção de técnico
         * testar setAdmTecnico
         * testar removeCliente
      */
-    private MainController controller = new MainController();
+    private final MainController controller = new MainController();
 
-    @Test
     public void testLoginLogoutAdm() {
         controller.loginTecnico(0, "admin");
         assertNotNull(controller.getTecnicoSessao());
@@ -29,7 +24,7 @@ public class MainControllerTest extends TestCase {
         assertTrue(sucesso);
         assertNull(controller.getTecnicoSessao());
     }
-    @Test
+
     public void testCriaELogaTecnico(){
         controller.loginTecnico(0, "admin");
         Tecnico tecnicoCriado = controller.criaTecnico("Joao", "123");
@@ -42,7 +37,7 @@ public class MainControllerTest extends TestCase {
         assertEquals(controller.getTecnicoSessao().getNome(), tecnicoCriado.getNome());
         controller.logoutTecnico();
     }
-    @Test
+
     public void testSenhaErrada(){
         boolean wrongPass = false;
         try{
@@ -51,9 +46,9 @@ public class MainControllerTest extends TestCase {
         catch (WrongPasswordException e){
             wrongPass = true;
         }
-        assertEquals(true, wrongPass);
+        assertTrue(wrongPass);
     }
-    @Test
+
     public void testLoginUsuarioLogado(){
         boolean alreadyLogged = false;
         controller.loginTecnico(0, "admin");
@@ -63,9 +58,9 @@ public class MainControllerTest extends TestCase {
         catch (UserAlreadyLoggedInException e){
             alreadyLogged = true;
         }
-        assertEquals(true, alreadyLogged);
+        assertTrue(alreadyLogged);
     }
-    @Test
+
     public void testLoginUsuarioInvalido(){
         boolean invalidUser = false;
         try{
@@ -74,18 +69,32 @@ public class MainControllerTest extends TestCase {
         catch (InvalidUserException e){
             invalidUser = true;
         }
-        assertEquals(true, invalidUser);
+        assertTrue(invalidUser);
     }
-    public void testSistemaCompleto(){
+
+    public void testRemoveTecnico(){
+        controller.loginTecnico(0, "admin");
+        int novoTecnicoID = controller.criaTecnico("Paulo", "456").getTecnicoID();
+        controller.removeTecnico(novoTecnicoID);
+        controller.logoutTecnico();
+        boolean removido = false;
+        try{
+            controller.loginTecnico(novoTecnicoID, "456");
+        }
+        catch(InvalidUserException e){
+            removido = true;
+        }
+        assertTrue(removido);
+    }
+    public void testCriacaoTecnicoAtePagamentoFatura(){
         Calendar inicioProcesso = Calendar.getInstance();
         /*Cria técnico*/
         controller.loginTecnico(0, "admin");
         Tecnico novoTecnico = controller.criaTecnico("Pedro", "senha");
-        Queue<Ordem> abertas = controller.getOrdensAbertas();
         controller.logoutTecnico();
 
         /*Loga no novo técnico e cadastra cliente*/
-                controller.loginTecnico(novoTecnico.getTecnicoID(), "senha");
+        controller.loginTecnico(novoTecnico.getTecnicoID(), "senha");
         Cliente clienteCriado = controller.criaCliente("Geraldo", "Rua Nascimento Silva 107", "7199999999");
 
         /*Compra peça, cadastra ordem e serviços e atribui ao técnico*/
