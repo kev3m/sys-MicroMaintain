@@ -116,7 +116,9 @@ public class MainControllerTest extends TestCase {
 
         /*Compra peça, cadastra ordem e serviços e atribui ao técnico*/
         controller.compraPeca("bateriaBIOS", 50, 0.5);
+        int totalOrdens = controller.listaTodasAsOrdens().size();
         Ordem ordemCriada = controller.criaOrdem(clienteCriado.getId());
+        assertEquals(totalOrdens+1, controller.listaTodasAsOrdens().size());
         Servico servico1 = controller.criaServico(CategoriaServico.Limpeza, 75.5, "", "Limpeza completa", ordemCriada.getOrdemID());
         Servico servico2 = controller.criaServico(CategoriaServico.Montagem, 30, "bateriaBIOS", "Trocar bateria da BIOS", ordemCriada.getOrdemID());
 
@@ -126,6 +128,9 @@ public class MainControllerTest extends TestCase {
         /*Encerra serviços e ordem*/
         controller.encerraServico(servico1.getServicoID());
         controller.encerraServico(servico2.getServicoID());
+        controller.avaliaServico(servico1.getServicoID(), 8);
+        controller.avaliaServico(servico2.getServicoID(), 2);
+
         boolean resFechamento = false;
         resFechamento = controller.fechaOrdem(ordemCriada.getOrdemID());
         assertTrue(resFechamento);
@@ -144,5 +149,7 @@ public class MainControllerTest extends TestCase {
         RelatorioServicos relatorioServicos = controller.geraRelatorioServicos(inicioProcesso, fimProcesso);
         assertEquals(2, relatorioServicos.getTotalEncerrados());
         assertEquals(0, relatorioServicos.getTotalEmAberto());
+        assertEquals(2, relatorioServicos.getTotalAvaliacoes());
+        assertEquals(5.0, relatorioServicos.getMediaAvaliacoes());
     }
 }
