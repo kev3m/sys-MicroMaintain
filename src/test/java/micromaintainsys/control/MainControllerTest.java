@@ -111,12 +111,13 @@ public class MainControllerTest extends TestCase {
         Servico servico1 = controller.criaServico(CategoriaServico.Limpeza, 75.5, "", "Limpeza completa", ordemCriada.getOrdemID());
         Servico servico2 = controller.criaServico(CategoriaServico.Montagem, 30, "bateriaBIOS", "Trocar bateria da BIOS", ordemCriada.getOrdemID());
 
-        controller.atribuiOrdem(novoTecnico.getTecnicoID());
-
+        boolean resAtribuicao = controller.atribuiOrdem(novoTecnico.getTecnicoID());
+        assertTrue(resAtribuicao);
         /*Encerra serviços e ordem*/
         controller.encerraServico(servico1.getServicoID());
         controller.encerraServico(servico2.getServicoID());
-        controller.fechaOrdem(ordemCriada.getOrdemID());
+        boolean resFechamento = controller.fechaOrdem(ordemCriada.getOrdemID());
+        assertTrue(resFechamento);
 
         /*Gera fatura e faz pagamento*/
         Fatura fatura = controller.geraFatura(ordemCriada.getOrdemID());
