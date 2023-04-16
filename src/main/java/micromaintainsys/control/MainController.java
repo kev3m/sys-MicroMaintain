@@ -64,7 +64,7 @@ public class MainController {
             UserAlreadyLoggedInException,
             WrongPasswordException{
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
-        Tecnico loginTecnico = DAO.getTecnicoDAO().pegaPorId(id);
+        Tecnico loginTecnico = pegaTecnicoPorId(id);
         if (loginTecnico == null){
             throw new InvalidUserException(id);
         }
@@ -94,7 +94,7 @@ public class MainController {
 
     /**
      * Pega um técnico por ID
-     * @param tecnicoID
+     * @param tecnicoID id do técnico
      * @return um objeto do tipo Tecnico
      */
     public Tecnico pegaTecnicoPorId(int tecnicoID){
@@ -214,7 +214,6 @@ public class MainController {
      * @throws UserNotLoggedInException nenhum usuário logado no sistema
      * @throws InvalidUserException técnico a ter a ordem atribuída é inválido
      * @throws NotAllowedException usuário não tem permissão para realizar a operação
-     * @throws AssemblyWithEmptyComponentException serviço de montagem não possui componente
      * @throws ComponentOutOfStockException componente necessário para executar serviço fora de estoque
      * @throws ComponentDoesNotExistException componente necessário para executar serviço não foi cadastrado no estoque
      */
@@ -248,7 +247,6 @@ public class MainController {
         /*Verificações de serviço*/
         for (Servico servico: DAO.getServicoDAO().pegaTodosPorOrdemID(ordem.getOrdemID())) {
             String peca = servico.getPeca().toLowerCase();
-            CategoriaServico categoria = servico.getCategoriaServico();
             /*Serviço tem peça*/
             if (!peca.equals("")) {
                 /*Tipo de peça nunca foi comprado*/
@@ -258,9 +256,6 @@ public class MainController {
                 if (this.estoque.getPecas().get(peca) == 0)
                     throw new ComponentOutOfStockException(peca);
             }
-            /*Montagem sem especificação de peça*/
-            else if (peca == "" && categoria == CategoriaServico.Montagem)
-                throw new AssemblyWithEmptyComponentException();
         }
         tecnico.setOrdemEmAndamentoID(ordem.getOrdemID());
         ordem.setTecnicoID(tecnico.getTecnicoID());
@@ -301,13 +296,27 @@ public class MainController {
     public ArrayList<Ordem> listaTodasAsOrdens(){
         return ordensServico;
     }
+
+    /**
+     *
+     * @param categoria categoria do serviço
+     * @param valor valor cobrado pelo serviço
+     * @param peca  peça utilizada pelo serviço ("" para serviço sem peça)
+     * @param descricao descrição do serviço
+     * @param ordemID   ID da ordem a que o serviço pertence
+     * @return um novo objeto do tipo Servico
+     * @throws AssemblyWithEmptyComponentException serviço de montagem sem especificação de peça
+     */
     public Servico criaServico(
                                 CategoriaServico categoria,
                                 double valor,
                                 String peca,
                                 String descricao,
-                                int ordemID){
-        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
+                                int ordemID) throws
+                AssemblyWithEmptyComponentException{
+        /*Montagem sem especificação de peça*/
+        if (categoria == CategoriaServico.Montagem && peca.equals(""))
+            throw new AssemblyWithEmptyComponentException();
         return DAO.getServicoDAO().cria(categoria, valor, peca, descricao, ordemID);
     }
 
@@ -321,6 +330,21 @@ public class MainController {
             DAO.getServicoDAO().atualiza(servico);
         }
         else throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
+    }
+
+    /** Avalia um serviço
+     *
+     * @param servicoID id do serviço
+     * @param avaliacao avaliação do cliente
+     * @return true se a operação foi realizada com sucesso, false caso contrário
+     */
+    public boolean avaliaServico(int servicoID, double avaliacao){
+        Servico servico = DAO.getServicoDAO().pegaPorId(servicoID);
+        if (servico != null){
+            servico.avaliaServico(avaliacao);
+            return true;
+        }
+        return false;
     }
 
     /*Métodos relacionados a Pagamento e Fatura */
@@ -344,6 +368,14 @@ public class MainController {
         DAO.getOrdemDAO().atualiza(ordem);
         return fatura;
     }
+
+    /**
+     * Realiza pagamento de uma fatura
+     * @param tipo método de pagamento
+     * @param valor valor do pagamento
+     * @param faturaID ID da fatura a que o pagamento se refere
+     * @return um novo objeto do tipo Pagamento
+     */
     public Pagamento realizaPagamento(TipoPagamento tipo, double valor, int faturaID){
         Fatura fatura = DAO.getFaturaDAO().pegaPorId(faturaID);
         double totalPago = fatura.getValorPago() + valor;
@@ -370,6 +402,12 @@ public class MainController {
         return DAO.getEstoqueDAO().cria();
     }
 
+    /**
+     * Cria uma nova ordem de compra
+     * @param peca peça a ser comparada
+     * @param quantidade quantidade de peças a ser comprada
+     * @param valorUnitario valor individual da peça
+     */
     public void compraPeca(String peca, int quantidade, double valorUnitario){
         OrdemCompra novaOrdem = new OrdemCompra(peca, quantidade, valorUnitario);
         this.estoque.criaOrdemCompra(novaOrdem);
@@ -378,23 +416,50 @@ public class MainController {
     }
 
     /*Métodos relacionados a relatórios*/
+
+    /**
+     * Gera relatório de serviços
+     * @param inicio data de início do relatório
+     * @param fim data de fim do relatório
+     * @return um novo objeto contendo os dados do relatório de serviços
+     */
     public RelatorioServicos geraRelatorioServicos(Calendar inicio, Calendar fim){
         ArrayList<Servico> servicos = DAO.getServicoDAO().pegaTodosPorDataCriacao(inicio, fim);
         return new RelatorioServicos(servicos);
     }
+
+    /**
+     * Gera relatório de compras
+     * @param inicio data de início do relatório
+     * @param fim data de fim do relatório
+     * @return um novo objeto contendo os dados do relatório de compras
+     */
     public RelatorioCompras geraRelatorioCompras(Calendar inicio, Calendar fim){
         return this.estoque.geraRelatorioCompras(inicio, fim);
     }
 
+    /**
+     * Retorna o técnico atualmente logado no sistema
+     * @return objeto do tipo técnico
+     */
     public Tecnico getTecnicoSessao() {
         return tecnicoSessao;
     }
 
+    /**
+     * Lista todas as ordens em aberto
+     * @return a fila de ordens
+     */
     public Queue<Ordem> getOrdensAbertas(){
         return this.ordensAbertas;
     }
 
+    /**
+     * Lista todas as faturas registradas
+     * @return a lista de faturas
+     */
     public ArrayList<Fatura> getFaturas(){
         return this.faturas;
     }
+
 }
