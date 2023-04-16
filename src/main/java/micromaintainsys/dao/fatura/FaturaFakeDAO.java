@@ -32,5 +32,9 @@ public class FaturaFakeDAO implements InterfaceFatura {
     public ArrayList<Fatura> pegaTodas(){
         return (new ArrayList<Fatura>(faturasCadastradas.values()));
     }
+    public void resetIDCounter(){
+        idCounter = 0;
+    }
+
 }
 
