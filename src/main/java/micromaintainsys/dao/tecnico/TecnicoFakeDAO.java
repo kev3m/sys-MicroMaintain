@@ -11,7 +11,13 @@ import java.util.Hashtable;
  */
 
 public class TecnicoFakeDAO implements InterfaceTecnico{
+    /**
+     * Armazena os tecnicos cadastradps.
+     */
     static Hashtable<Integer, Tecnico> tecnicosCadastrados = new Hashtable<>();
+    /**
+     Contador estático usado para gerar IDs únicos para cada novo tecnico criado.
+     */
     private static int idCounter = 1;
 
     public TecnicoFakeDAO(){
@@ -82,8 +88,15 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      */
        return true;
    }
+    /**
+     Retorna todos os tecnicos cadastrados.
+     @return Lista de todos os tecnicos cadastrados.
+     */
    public ArrayList<Tecnico>pegaTodos(){
        return (new ArrayList<Tecnico>(tecnicosCadastrados.values()));
     }
+    /**
+     Reseta o contador de IDs das faturas para 1.
+     */
     public void resetIDCounter(){ idCounter = 1;}
 }
