@@ -28,4 +28,8 @@ public class PagamentoFakeDAO implements InterfacePagamento{
         }
         return false;
     }
+    public void resetIDCounter(){
+        idCounter = 0;
+    }
+
 }
