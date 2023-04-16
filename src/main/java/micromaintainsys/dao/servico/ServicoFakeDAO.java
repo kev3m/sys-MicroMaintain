@@ -55,4 +55,7 @@ public class ServicoFakeDAO implements InterfaceServico {
         }
         return servicos;
     }
+    public void resetIDCounter(){
+        idCounter = 0;
+    }
 }
