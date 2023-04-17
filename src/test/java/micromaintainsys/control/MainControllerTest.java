@@ -10,9 +10,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MainControllerTest extends TestCase {
-    /*TODO
-        * testar removeCliente
-     */
     private final MainController controller = new MainController();
 
     public void testLoginLogoutAdm() {
@@ -117,8 +114,10 @@ public class MainControllerTest extends TestCase {
         /*Compra peça, cadastra ordem e serviços e atribui ao técnico*/
         controller.compraPeca("bateriaBIOS", 50, 0.5);
         int totalOrdens = controller.listaTodasAsOrdens().size();
+        int ordensAbertas = controller.getOrdensAbertas().size();
         Ordem ordemCriada = controller.criaOrdem(clienteCriado.getId());
         assertEquals(totalOrdens+1, controller.listaTodasAsOrdens().size());
+        assertEquals(ordensAbertas + 1, controller.getOrdensAbertas().size());
         Servico servico1 = controller.criaServico(CategoriaServico.Limpeza, 75.5, "", "Limpeza completa", ordemCriada.getOrdemID());
         Servico servico2 = controller.criaServico(CategoriaServico.Montagem, 30, "bateriaBIOS", "Trocar bateria da BIOS", ordemCriada.getOrdemID());
 
@@ -128,17 +127,20 @@ public class MainControllerTest extends TestCase {
         /*Encerra serviços e ordem*/
         controller.encerraServico(servico1.getServicoID());
         controller.encerraServico(servico2.getServicoID());
-        controller.avaliaServico(servico1.getServicoID(), 8);
-        controller.avaliaServico(servico2.getServicoID(), 2);
+        boolean resAvaliacaoS1 = controller.avaliaServico(servico1.getServicoID(), 8);
+        boolean resAvaliacaoS2 = controller.avaliaServico(servico2.getServicoID(), 2);
+        assertTrue(resAvaliacaoS1);
+        assertTrue(resAvaliacaoS2);
 
-        boolean resFechamento = false;
-        resFechamento = controller.fechaOrdem(ordemCriada.getOrdemID());
+        boolean resFechamento = controller.fechaOrdem(ordemCriada.getOrdemID());
         assertTrue(resFechamento);
 
         /*Gera fatura e faz pagamento*/
         Fatura fatura = controller.geraFatura(ordemCriada.getOrdemID());
-        controller.realizaPagamento(TipoPagamento.Dinheiro, 50, fatura.getFaturaID());
-        controller.realizaPagamento(TipoPagamento.Pix, 55.5, fatura.getFaturaID());
+        Pagamento pagamento1 = controller.realizaPagamento(TipoPagamento.Dinheiro, 50, fatura.getFaturaID());
+        Pagamento pagamento2 = controller.realizaPagamento(TipoPagamento.Pix, 55.5, fatura.getFaturaID());
+        assertNotNull(pagamento1);
+        assertNotNull(pagamento2);
         assertEquals(StatusOrdem.Finalizada, ordemCriada.getStatus());
         Calendar fimProcesso = Calendar.getInstance();
 
