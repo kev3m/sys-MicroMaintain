@@ -2,13 +2,37 @@ package micromaintainsys.model;
 
 import java.util.ArrayList;
 
+/**
+ Classe que representa um relatório de serviços.
+ */
 public class RelatorioServicos {
+    /**
+     Lista de serviços que compõem o relatório.
+     */
     ArrayList<Servico> servicos = new ArrayList<>();
+    /**
+     Valor total de espera em milisegundos.
+     */
     long esperaTotal = 0;
+    /**
+     Valor médio de espera em milisegundos.
+     */
     long mediaEspera = 0;
+    /**
+     Total de serviços encerrados.
+     */
     int totalEncerrados = 0;
+    /**
+     Media de avaliações.
+     */
     double mediaAvaliacoes = 0;
+    /**
+     Total de serviços avaliados.
+     */
     int totalAvaliacoes = 0;
+    /**
+     Total de serviços em aberto.
+     */
     int totalEmAberto = 0;
 
     /**
@@ -36,7 +60,10 @@ public class RelatorioServicos {
         this.mediaAvaliacoes = agregadoAvaliacoes/totalAvaliacoes;
         this.mediaEspera = this.esperaTotal/this.totalEncerrados;
     }
-
+    /**
+     *
+     * @return lista de serviços que compõem o relatório
+     */
     public ArrayList<Servico> getServicos() {
         return servicos;
     }
@@ -56,19 +83,31 @@ public class RelatorioServicos {
     public long getMediaEspera() {
         return mediaEspera;
     }
-
+    /**
+     *
+     * @return total de serviços encerrados
+     */
     public int getTotalEncerrados() {
         return totalEncerrados;
     }
-
+    /**
+     *
+     * @return média de avaliações
+     */
     public double getMediaAvaliacoes() {
         return mediaAvaliacoes;
     }
-
+    /**
+     *
+     * @return total de serviços avaliados
+     */
     public int getTotalAvaliacoes() {
         return totalAvaliacoes;
     }
-
+    /**
+     *
+     * @return total de serviços em aberto
+     */
     public int getTotalEmAberto() {
         return totalEmAberto;
     }

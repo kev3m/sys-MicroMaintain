@@ -4,9 +4,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
 
+/**
+ * Classe que representa um relatório de compras.
+ */
 public class RelatorioCompras {
+    /**
+     * Hashtable de peças compradas.
+     */
     Hashtable<String, Integer> pecasCompradas = new Hashtable<>();
+    /**
+     * Lista de ordens de compra.
+     */
     ArrayList<OrdemCompra> ordens = new ArrayList<>();
+    /**
+     * Valor total das ordens de compra.
+     */
     double valorTotal = 0;
 
 
@@ -40,14 +52,24 @@ public class RelatorioCompras {
         }
     }
 
+    /**
+     * Obtém a Hashtable de peças compradas.
+     * @return Hashtable de peças compradas.
+     */
     public Hashtable<String, Integer> getPecasCompradas() {
         return pecasCompradas;
     }
-
+    /**
+     * Obtém a lista de ordens de compra.
+     * @return Lista de ordens de compra.
+     */
     public ArrayList<OrdemCompra> getOrdens() {
         return ordens;
     }
-
+    /**
+     * Obtém o valor total das ordens de compra.
+     * @return Valor total das ordens de compra.
+     */
     public double getValorTotal() {
         return valorTotal;
     }

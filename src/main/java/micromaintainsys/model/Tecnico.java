@@ -2,15 +2,39 @@ package micromaintainsys.model;
 
 import java.util.ArrayList;
 
+/**
+ Classe que representa um técnico.
+ */
 public class Tecnico {
+    /**
+     Definição de categoria administrador.
+     */
     private boolean adm;
+    /**
+     Nome do técnico.
+     */
     private String nome;
+    /**
+     Senha do técnico.
+     */
     private String senha;
+    /**
+     ID do técnico.
+     */
     private int tecnicoID;
+    /**
+     ID da ordem de serviço em andamento.
+     */
     private int ordemEmAndamentoID = -1;
 
     /* TODO Estudar remoção: deixar a cargo do DAO de Ordens e Compras */
+    /**
+     Histórico de ordens de serviço do técnico.
+     */
     private ArrayList<Ordem> historicoOrdens;
+    /**
+     Histórico de ordens de compra do técnico.
+     */
     private ArrayList<OrdemCompra> historicoCompras;
     /* *********************************************************** */
 
@@ -90,10 +114,17 @@ public class Tecnico {
     public int getTecnicoID() {
         return tecnicoID;
     }
-
+    /**
+     * Retorna o ID da ordem de serviço em andamento.
+     * @return
+     */
     public int getOrdemEmAndamentoID(){
         return ordemEmAndamentoID;
     }
+    /**
+     * Modifica o ID da ordem de serviço em andamento.
+     * @param abertoID novo ID da ordem de serviço em andamento
+     */
     public void setOrdemEmAndamentoID(int abertoID){
         this.ordemEmAndamentoID = abertoID;
     }
@@ -133,14 +164,26 @@ public class Tecnico {
         return historicoCompras;
     }
 
+    /**
+     * Retorna a última ordem de serviço do técnico.
+     * @return
+     */
     public Ordem pegaUltimaOrdem(){
         return this.historicoOrdens.get(this.historicoOrdens.size() -1);
     }
 
+    /**
+     * Cadastra ordem
+     * @param novaOrdem
+     */
     public void cadastraOrdem(Ordem novaOrdem){
         this.getHistoricoOrdens().add(novaOrdem);
     }
 
+    /**
+     * Verifica se o técnico tem ordem em aberto.
+     * @return true se o técnico tem ordem em aberto e false caso contrário.
+     */
     /*TODO estudar remoção*/
     public boolean temOrdemEmAberto(){
         boolean emAberto = this.historicoOrdens

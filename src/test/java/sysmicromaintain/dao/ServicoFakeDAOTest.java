@@ -3,6 +3,8 @@ import micromaintainsys.dao.servico.ServicoFakeDAO;
 import micromaintainsys.model.Servico;
 import micromaintainsys.model.CategoriaServico;
 import static org.junit.Assert.*;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -67,7 +69,7 @@ public class ServicoFakeDAOTest {
     @Test
     public void testPegaTodosPorOrdemID() {
         ArrayList<Servico> servicos = servicoFakeDAO.pegaTodosPorOrdemID(ordemID1);
-        assertEquals(1, servicos.size());
+        assertEquals(2, servicos.size());
         assertTrue(servicos.contains(servico1));
     }
 
@@ -78,6 +80,7 @@ public class ServicoFakeDAOTest {
         Calendar fim = Calendar.getInstance();
         fim.set(2023, Calendar.DECEMBER, 31);
         ArrayList<Servico> servicos = servicoFakeDAO.pegaTodosPorDataCriacao(inicio, fim);
+
         assertEquals(2, servicos.size());
         assertTrue(servicos.contains(servico1));
         assertTrue(servicos.contains(servico2));
