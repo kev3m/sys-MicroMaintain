@@ -19,11 +19,13 @@ public class ServicoFakeDAOTest {
     @Before
     public void setUp() {
         servicoFakeDAO = new ServicoFakeDAO();
+        servicoFakeDAO.esvaziarServicosCadastrados();
         ordemID1 = 1;
         ordemID2 = 2;
         servico1 = servicoFakeDAO.cria(CategoriaServico.Formatacao, 100.00, null, "Formatação e atualização de OS", ordemID1);
         servico2 = servicoFakeDAO.cria(CategoriaServico.Montagem, 200.00, "Placa-Mãe", "Montagem de mobo", ordemID2);
         servicoFakeDAO.resetIDCounter();
+
     }
 
     @Test
@@ -69,8 +71,9 @@ public class ServicoFakeDAOTest {
     @Test
     public void testPegaTodosPorOrdemID() {
         ArrayList<Servico> servicos = servicoFakeDAO.pegaTodosPorOrdemID(ordemID1);
-        assertEquals(2, servicos.size());
+        assertEquals(1, servicos.size());
         assertTrue(servicos.contains(servico1));
+        assertFalse(servicos.contains(servico2));
     }
 
     @Test
