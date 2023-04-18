@@ -17,6 +17,7 @@ public class TecnicoFakeDAOTest {
         tecnicoDAO = new TecnicoFakeDAO();
         tecnico = tecnicoDAO.cria("Paulo Tec", "123");
         tecnicoDAO.resetIDCounter();
+
     }
 
     @Test
@@ -29,9 +30,7 @@ public class TecnicoFakeDAOTest {
 
     @Test
     public void testPegaPorIdNaoExistente() {
-        ArrayList<Tecnico> tecnicos = tecnicoDAO.pegaTodos();
-        int i = tecnicos.size();
-        tecnico = tecnicoDAO.pegaPorId(i);
+        tecnico = tecnicoDAO.pegaPorId(999);
         assertNull(tecnico);
     }
 

@@ -99,4 +99,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      Reseta o contador de IDs das faturas para 1.
      */
     public void resetIDCounter(){ idCounter = 1;}
+    public void removeTodos(){
+        tecnicosCadastrados.clear();
+    }
 }
