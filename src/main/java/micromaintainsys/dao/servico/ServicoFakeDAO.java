@@ -69,10 +69,8 @@ public class ServicoFakeDAO implements InterfaceServico {
      * @return Todos os Servicos associados a Ordem de Serviço especificada
      */
     public ArrayList<Servico> pegaTodosPorOrdemID(int ordemID){
-        ArrayList<Servico> servicos = new ArrayList<Servico>();
-        Enumeration<Servico> servicosEnum = this.servicosCadastrados.elements();
-        while (servicosEnum.hasMoreElements()){
-            Servico servico = servicosEnum.nextElement();
+        ArrayList<Servico> servicos = new ArrayList<>();
+        for (Servico servico: this.servicosCadastrados.values()){
             if (servico.getOrdemID() == ordemID){
                 servicos.add(servico);
             }
@@ -101,5 +99,8 @@ public class ServicoFakeDAO implements InterfaceServico {
      */
     public void resetIDCounter(){
         idCounter = 0;
+    }
+    public void esvaziarServicosCadastrados() {
+        servicosCadastrados.clear();
     }
 }
