@@ -1,11 +1,12 @@
 package micromaintainsys.model;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 
 /**
  Classe que representa um cliente.
  */
-public class Cliente {
+public class Cliente implements Serializable {
 
     /**
 

@@ -1,12 +1,14 @@
 package micromaintainsys.dao.cliente;
+import java.io.File;
+import java.io.Serializable;
+import java.util.Hashtable;
 
 import micromaintainsys.model.Cliente;
-import micromaintainsys.model.Ordem;
-import micromaintainsys.model.Tecnico;
+import static micromaintainsys.utils.FileUtils.*;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Map;
+
+
 
 /**
  * Implementação do gerenciamento das operações de acesso aos dados.
@@ -14,10 +16,16 @@ import java.util.Map;
  *
 
 */
-public class ClienteFakeDAO implements InterfaceCliente {
+public class ClienteFakeDAO implements InterfaceCliente, Serializable {
     /*Alterar lógica de banco de dados */
+    private static final String FILE_PATH = System.getProperty("user.dir") + File.separator + "clientes.bin";
+
     static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();
     private static int idCounter = 0;
+
+    public ClienteFakeDAO(){
+        carregaDados(FILE_PATH);
+    }
 
     /**
      * Cria um objeto do tipo Cliente
@@ -32,6 +40,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
         novoCliente.setClienteID(idCounter);
         clientesCadastrados.put(idCounter,novoCliente);
         idCounter++;
+        salvaDados(clientesCadastrados, FILE_PATH);
         return novoCliente;
     }
 
@@ -42,7 +51,6 @@ public class ClienteFakeDAO implements InterfaceCliente {
      * @return O cliente encontrado, ou null se não existir
      */
     public Cliente pegaPorId(int clienteId) {return clientesCadastrados.get(clienteId);}
-
 
     /**
      *
@@ -65,6 +73,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
     public boolean remove(int clienteId) {
         Cliente result = clientesCadastrados.remove(clienteId);
         if (result != null){
+            salvaDados(clientesCadastrados, FILE_PATH);
             return true;
         }
 
@@ -75,6 +84,10 @@ public class ClienteFakeDAO implements InterfaceCliente {
     }
     public void resetIDCounter(){
         idCounter = 0;
+    }
+    public void esvaziarClientesCadastrados() {
+        clientesCadastrados.clear();
+        salvaDados(clientesCadastrados, FILE_PATH);
     }
 
 }
