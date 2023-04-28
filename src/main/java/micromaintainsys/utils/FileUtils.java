@@ -6,10 +6,9 @@ import java.nio.file.Paths;
 
 public class FileUtils {
 
-    public static String findPath(String fileName) {
-        String separator = File.separator;
-        String path = "src" + separator + "resources" + separator + "data" + separator + fileName;
-        return Paths.get(path).toAbsolutePath().toString();
+    public static String getFilePath(String fileName) {
+        String filePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "resources" + File.separator + "data" + File.separator + fileName;
+        return filePath;
     }
     public static Object carregaDados(String filePath) {
         try (FileInputStream fileIn = new FileInputStream(filePath);

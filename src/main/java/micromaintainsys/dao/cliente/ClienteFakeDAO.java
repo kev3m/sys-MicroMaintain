@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Hashtable;
 
 import micromaintainsys.model.Cliente;
+import micromaintainsys.utils.FileUtils;
+
 import static micromaintainsys.utils.FileUtils.*;
 
 import java.util.ArrayList;
@@ -18,7 +20,11 @@ import java.util.ArrayList;
 */
 public class ClienteFakeDAO implements InterfaceCliente, Serializable {
     /*Alterar lógica de banco de dados */
-    private static final String FILE_PATH = System.getProperty("user.dir") + File.separator + "clientes.bin";
+    private static final String FILE_NAME = "clientes.bin";
+    private static final String FILE_PATH = initFilePath();
+    private static String initFilePath() {
+        return getFilePath(FILE_NAME);
+    }
 
     static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();
     private static int idCounter = 0;
