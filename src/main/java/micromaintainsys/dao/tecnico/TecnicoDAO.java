@@ -10,7 +10,7 @@ import java.util.Hashtable;
  * Permite ler,criar, remover e autenticar e atualizar informações dos técnicos.
  */
 
-public class TecnicoFakeDAO implements InterfaceTecnico{
+public class TecnicoDAO implements InterfaceTecnico{
     /**
      * Armazena os tecnicos cadastradps.
      */
@@ -20,7 +20,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      */
     private static int idCounter = 1;
 
-    public TecnicoFakeDAO(){
+    public TecnicoDAO(){
         Tecnico adm = new Tecnico("admin", "admin");
         adm.setAdm(true);
         adm.setTecnicoID(0);

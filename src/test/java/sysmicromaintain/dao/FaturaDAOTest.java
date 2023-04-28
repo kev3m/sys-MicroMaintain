@@ -1,5 +1,5 @@
 package sysmicromaintain.dao;
-import micromaintainsys.dao.fatura.FaturaFakeDAO;
+import micromaintainsys.dao.fatura.FaturaDAO;
 import micromaintainsys.model.Fatura;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,13 +8,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-public class FaturaFakeDAOTest {
-    private FaturaFakeDAO faturaFakeDAO;
+public class FaturaDAOTest {
+    private FaturaDAO faturaFakeDAO;
     private Fatura fatura;
 
     @Before
     public void setUp() {
-        faturaFakeDAO = new FaturaFakeDAO();
+        faturaFakeDAO = new FaturaDAO();
         fatura = faturaFakeDAO.cria(1, 100.00);
         faturaFakeDAO.resetIDCounter();
     }

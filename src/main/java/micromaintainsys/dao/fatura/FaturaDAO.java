@@ -10,7 +10,7 @@ import java.util.Hashtable;
  * acesso a dados relacionados à fatura.
  */
 
-public class FaturaFakeDAO implements InterfaceFatura {
+public class FaturaDAO implements InterfaceFatura {
     /**
      Hashtable que mapeia IDs de faturas para as faturas correspondentes.
      */

@@ -1,5 +1,5 @@
 package sysmicromaintain.dao;
-import micromaintainsys.dao.pagamento.PagamentoFakeDAO;
+import micromaintainsys.dao.pagamento.PagamentoDAO;
 import micromaintainsys.model.Pagamento;
 import micromaintainsys.model.TipoPagamento;
 import org.junit.Assert;
@@ -10,14 +10,14 @@ import org.junit.Test;
 
 
 
-public class PagamentoFakeDAOTest {
-    private PagamentoFakeDAO pagamentoFakeDAO;
+public class PagamentoDAOTest {
+    private PagamentoDAO pagamentoDAO;
     private Pagamento pagamento,resultado;
 
     @Before
     public void setUp() {
-        pagamentoFakeDAO = new PagamentoFakeDAO();
-        pagamentoFakeDAO.resetIDCounter();
+        pagamentoDAO = new PagamentoDAO();
+        pagamentoDAO.resetIDCounter();
     }
 
     @Test
@@ -26,7 +26,7 @@ public class PagamentoFakeDAOTest {
         double valor = 100.0;
         int faturaID = 1;
 
-        pagamento = pagamentoFakeDAO.cria(tipoPagamento, valor, faturaID);
+        pagamento = pagamentoDAO.cria(tipoPagamento, valor, faturaID);
         Assert.assertNotNull(pagamento);
         Assert.assertEquals(tipoPagamento, pagamento.getTipoPagamento());
         Assert.assertEquals(valor, pagamento.getValor(), 0.0);
@@ -38,7 +38,7 @@ public class PagamentoFakeDAOTest {
         pagamento = new Pagamento(TipoPagamento.Credito, 50.0, 1);
         pagamento.setPagamentoID(1);
 
-        boolean resultado = pagamentoFakeDAO.atualiza(pagamento);
+        boolean resultado = pagamentoDAO.atualiza(pagamento);
         Assert.assertTrue(resultado);
     }
 
@@ -57,12 +57,12 @@ public class PagamentoFakeDAOTest {
     public void testRemovePagamento() {
         Pagamento pagamento = new Pagamento(TipoPagamento.Credito, 50.0, 1);
         pagamento.setPagamentoID(1);
-        pagamentoFakeDAO.cria(TipoPagamento.Pix, 100.0, 2);
-        pagamentoFakeDAO.cria(TipoPagamento.Dinheiro, 150.0, 3);
+        pagamentoDAO.cria(TipoPagamento.Pix, 100.0, 2);
+        pagamentoDAO.cria(TipoPagamento.Dinheiro, 150.0, 3);
 
-        boolean resultado = pagamentoFakeDAO.remove(1);
+        boolean resultado = pagamentoDAO.remove(1);
 
         Assert.assertTrue(resultado);
-        Assert.assertNull(pagamentoFakeDAO.pegaPorId(1));
+        Assert.assertNull(pagamentoDAO.pegaPorId(1));
     }
 }

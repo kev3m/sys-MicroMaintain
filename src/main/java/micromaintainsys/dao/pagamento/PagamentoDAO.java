@@ -9,7 +9,7 @@ import java.util.Hashtable;
  * Classe que implementa a interface InterfacePagamento e fornece uma implementação para as operações de
  * acesso a dados relacionados aos pagamentos
  */
-public class PagamentoFakeDAO implements InterfacePagamento{
+public class PagamentoDAO implements InterfacePagamento{
     /**
      * Hashtable que armazena os pagamentos cadastrados.
      */

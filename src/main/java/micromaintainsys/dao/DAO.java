@@ -4,16 +4,16 @@ import micromaintainsys.dao.cliente.ClienteDAO;
 import micromaintainsys.dao.cliente.InterfaceCliente;
 import micromaintainsys.dao.estoque.EstoqueDAO;
 import micromaintainsys.dao.estoque.InterfaceEstoque;
-import micromaintainsys.dao.fatura.FaturaFakeDAO;
+import micromaintainsys.dao.fatura.FaturaDAO;
 import micromaintainsys.dao.fatura.InterfaceFatura;
 import micromaintainsys.dao.ordem.InterfaceOrdem;
-import micromaintainsys.dao.ordem.OrdemFakeDAO;
+import micromaintainsys.dao.ordem.OrdemDAO;
 import micromaintainsys.dao.pagamento.InterfacePagamento;
-import micromaintainsys.dao.pagamento.PagamentoFakeDAO;
+import micromaintainsys.dao.pagamento.PagamentoDAO;
 import micromaintainsys.dao.servico.InterfaceServico;
-import micromaintainsys.dao.servico.ServicoFakeDAO;
+import micromaintainsys.dao.servico.ServicoDAO;
 import micromaintainsys.dao.tecnico.InterfaceTecnico;
-import micromaintainsys.dao.tecnico.TecnicoFakeDAO;
+import micromaintainsys.dao.tecnico.TecnicoDAO;
 
 public class DAO {
     private static InterfaceCliente interfaceCliente;
@@ -32,34 +32,34 @@ public class DAO {
     }
     public static InterfaceTecnico getTecnicoDAO(){
         if(interfaceTecnico == null){
-            interfaceTecnico = new TecnicoFakeDAO();
+            interfaceTecnico = new TecnicoDAO();
         }
         return interfaceTecnico;
     }
     public static InterfaceOrdem getOrdemDAO(){
         if(interfaceOrdem == null){
-            interfaceOrdem = new OrdemFakeDAO();
+            interfaceOrdem = new OrdemDAO();
         }
         return interfaceOrdem;
     }
 
     public static InterfaceServico getServicoDAO(){
         if(interfaceServico == null){
-            interfaceServico = new ServicoFakeDAO();
+            interfaceServico = new ServicoDAO();
         }
         return interfaceServico;
     }
 
     public static InterfaceFatura getFaturaDAO(){
         if(interfaceFatura == null){
-            interfaceFatura = new FaturaFakeDAO();
+            interfaceFatura = new FaturaDAO();
         }
         return interfaceFatura;
     }
 
     public static InterfacePagamento getPagamentoDAO(){
         if(interfacePagamento == null){
-            interfacePagamento = new PagamentoFakeDAO();
+            interfacePagamento = new PagamentoDAO();
         }
         return interfacePagamento;
     }

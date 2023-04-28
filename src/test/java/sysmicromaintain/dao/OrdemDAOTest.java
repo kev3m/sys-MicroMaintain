@@ -1,20 +1,17 @@
 package sysmicromaintain.dao;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Hashtable;
 
 import micromaintainsys.dao.DAO;
-import micromaintainsys.dao.ordem.OrdemFakeDAO;
+import micromaintainsys.dao.ordem.OrdemDAO;
 import micromaintainsys.model.Ordem;
 import micromaintainsys.model.StatusOrdem;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class OrdemFakeDAOTest {
+public class OrdemDAOTest {
 
-        private OrdemFakeDAO ordemFakeDAO;
+        private OrdemDAO ordemFakeDAO;
         private ArrayList<Ordem> ordens = new ArrayList<>();
         private Ordem ordem;
 
@@ -22,7 +19,7 @@ public class OrdemFakeDAOTest {
 
         @Before
         public void setUp() {
-            ordemFakeDAO = new OrdemFakeDAO();
+            ordemFakeDAO = new OrdemDAO();
             ordem = ordemFakeDAO.cria(1);
             ordemFakeDAO.resetIDCounter();
         }

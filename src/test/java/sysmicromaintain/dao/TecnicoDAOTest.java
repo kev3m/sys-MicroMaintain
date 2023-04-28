@@ -1,20 +1,17 @@
 package sysmicromaintain.dao;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-import micromaintainsys.dao.tecnico.TecnicoFakeDAO;
+import micromaintainsys.dao.tecnico.TecnicoDAO;
 import micromaintainsys.model.Tecnico;
 import org.junit.Before;
 import org.junit.Test;
-public class TecnicoFakeDAOTest {
-    private TecnicoFakeDAO tecnicoDAO;
+public class TecnicoDAOTest {
+    private TecnicoDAO tecnicoDAO;
     private Tecnico tecnico;
 
     @Before
     public void setUp() {
-        tecnicoDAO = new TecnicoFakeDAO();
+        tecnicoDAO = new TecnicoDAO();
         tecnico = tecnicoDAO.cria("Paulo Tec", "123");
         tecnicoDAO.resetIDCounter();
 

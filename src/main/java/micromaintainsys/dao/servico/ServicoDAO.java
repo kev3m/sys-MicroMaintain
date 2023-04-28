@@ -4,13 +4,12 @@ import micromaintainsys.model.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Enumeration;
 import java.util.Hashtable;
 /**
  * Classe que implementa a interface InterfaceServico e fornece uma implementação para as operações de
  * acesso a dados relacionados aos servicos.
  */
-public class ServicoFakeDAO implements InterfaceServico {
+public class ServicoDAO implements InterfaceServico {
     /**
      * Hashtable que armazena os Servicos criados
      */

@@ -9,7 +9,7 @@ import java.util.Hashtable;
  * Classe que implementa a interface InterfaceOrdem e fornece uma implementação para as operações de
  * acesso a dados relacionados à ordem
  */
-public class OrdemFakeDAO implements InterfaceOrdem{
+public class OrdemDAO implements InterfaceOrdem{
     /**
      * Armazena as ordens cadastradas, com chave sendo o ID da ordem.
      */
