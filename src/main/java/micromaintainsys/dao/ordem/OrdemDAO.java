@@ -22,7 +22,7 @@ public class OrdemDAO implements InterfaceOrdem{
     /**
      Contador estático usado para gerar IDs únicos para cada nova ordem criada.
      */
-    private static int idCounter = 0;
+    private static int idCounter;
 
     public OrdemDAO(){
         Object obj = carregaDados(FILE_PATH);

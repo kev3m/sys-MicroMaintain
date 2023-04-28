@@ -3,7 +3,10 @@ package micromaintainsys.dao.tecnico;
 import micromaintainsys.model.Tecnico;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
+
+import static micromaintainsys.utils.FileUtils.*;
 
 /**
  * Implementação do gerenciamento das operações de acesso aos dados.
@@ -19,12 +22,32 @@ public class TecnicoDAO implements InterfaceTecnico{
      Contador estático usado para gerar IDs únicos para cada novo tecnico criado.
      */
     private static int idCounter = 1;
+    private static final String FILE_PATH = getFilePath("ordens.bin");
+
 
     public TecnicoDAO(){
-        Tecnico adm = new Tecnico("admin", "admin");
-        adm.setAdm(true);
-        adm.setTecnicoID(0);
-        tecnicosCadastrados.put(0, adm);
+        Object obj = carregaDados(FILE_PATH);
+        tecnicosCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Tecnico>) obj;
+        /*Recupera o idCounter com base no último ID utilizado*/
+        idCounter = proximoID();
+        Tecnico tecnico = pegaPorId(0);
+        if (tecnico == null){
+            Tecnico adm = new Tecnico("admin", "admin");
+            adm.setAdm(true);
+            adm.setTecnicoID(0);
+            tecnicosCadastrados.put(0, adm);
+        }
+    }
+    public int proximoID(){
+        Enumeration<Integer> keys = tecnicosCadastrados.keys();
+        int max = -1;
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        return max + 1;
     }
     /**
      * Busca e retorna um técnico por ID
@@ -46,6 +69,7 @@ public class TecnicoDAO implements InterfaceTecnico{
         novoTecnico.setTecnicoID(idCounter);
         tecnicosCadastrados.put(idCounter, novoTecnico);
         idCounter++;
+        salvaDados(tecnicosCadastrados, FILE_PATH);
         return novoTecnico;
    }
 
@@ -71,6 +95,7 @@ public class TecnicoDAO implements InterfaceTecnico{
    public boolean remove(int tecnicoID){
         Tecnico result = tecnicosCadastrados.remove(tecnicoID);
         if (result != null){
+            salvaDados(tecnicosCadastrados, FILE_PATH);
             return true;
         }
         return false;
@@ -86,6 +111,7 @@ public class TecnicoDAO implements InterfaceTecnico{
     essa função recebe um objeto e sobrescreve
     os dados
      */
+       salvaDados(tecnicosCadastrados, FILE_PATH);
        return true;
    }
     /**
