@@ -29,22 +29,20 @@ public class ClienteDAO implements InterfaceCliente, Serializable {
     }
     public ClienteDAO(){
         Object obj = carregaDados(FILE_PATH);
-        if (obj == null){
-            clientesCadastrados = new Hashtable<>();
-        }
-        else {
-            clientesCadastrados = (Hashtable<Integer, Cliente>) carregaDados(FILE_PATH);
-        }
+        clientesCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Cliente>) obj;
         /*Recupera o idCounter com base no último ID utilizado*/
+        idCounter = proximoID();
+    }
+    public int proximoID(){
         Enumeration<Integer> keys = clientesCadastrados.keys();
-        int max = 0;
+        int max = -1;
         while (keys.hasMoreElements()){
             int key = keys.nextElement();
             if (key > max){
                 max = key;
             }
         }
-        idCounter = max + 1;
+        return max + 1;
     }
 
     /**
