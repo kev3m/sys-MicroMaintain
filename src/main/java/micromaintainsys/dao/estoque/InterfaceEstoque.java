@@ -9,5 +9,5 @@ import java.util.ArrayList;
 public interface InterfaceEstoque {
 
     public void atualiza(Estoque estoque);
-    public Estoque cria();
+    public Estoque carrega();
 }

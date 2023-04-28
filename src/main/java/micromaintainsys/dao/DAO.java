@@ -1,8 +1,8 @@
 package micromaintainsys.dao;
 
-import micromaintainsys.dao.cliente.ClienteFakeDAO;
+import micromaintainsys.dao.cliente.ClienteDAO;
 import micromaintainsys.dao.cliente.InterfaceCliente;
-import micromaintainsys.dao.estoque.EstoqueFakeDAO;
+import micromaintainsys.dao.estoque.EstoqueDAO;
 import micromaintainsys.dao.estoque.InterfaceEstoque;
 import micromaintainsys.dao.fatura.FaturaFakeDAO;
 import micromaintainsys.dao.fatura.InterfaceFatura;
@@ -26,7 +26,7 @@ public class DAO {
 
     public static InterfaceCliente getClienteDAO(){
         if(interfaceCliente == null){
-            interfaceCliente = new ClienteFakeDAO();
+            interfaceCliente = new ClienteDAO();
         }
         return interfaceCliente;
     }
@@ -65,7 +65,7 @@ public class DAO {
     }
     public static InterfaceEstoque getEstoqueDAO(){
         if(interfaceEstoque == null){
-            interfaceEstoque = new EstoqueFakeDAO();
+            interfaceEstoque = new EstoqueDAO();
         }
         return interfaceEstoque;
     }

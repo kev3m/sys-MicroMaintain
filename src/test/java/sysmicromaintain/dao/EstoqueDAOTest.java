@@ -1,22 +1,22 @@
 package sysmicromaintain.dao;
 
-import micromaintainsys.dao.estoque.EstoqueFakeDAO;
+import micromaintainsys.dao.estoque.EstoqueDAO;
 import micromaintainsys.model.Estoque;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class EstoqueFakeDAOTest {
-    private EstoqueFakeDAO estoqueFakeDAO;
+public class EstoqueDAOTest {
+    private EstoqueDAO estoqueDAO;
 
     @Before
     public void setUp() {
-        estoqueFakeDAO = new EstoqueFakeDAO();
+        estoqueDAO = new EstoqueDAO();
     }
 
     @Test
     public void testCriaEstoque() {
-        Estoque estoque = estoqueFakeDAO.cria();
+        Estoque estoque = estoqueDAO.carrega();
 
         Assert.assertNotNull(estoque);
         Assert.assertNotNull(estoque.getPecas());

@@ -20,7 +20,7 @@ public class MainController {
     private final Estoque estoque;
 
     public MainController(){
-        this.estoque = criaEstoque();
+        this.estoque = carregaEstoque();
         ArrayList<Ordem> abertas = DAO.getOrdemDAO().pegaTodasPorStatus(StatusOrdem.Aberta);
         Collections.sort(abertas);
         this.ordensAbertas = new LinkedList<>(abertas);
@@ -397,9 +397,9 @@ public class MainController {
     Métodos relacionados a Estoque/OrdemCompra
      */
 
-    public Estoque criaEstoque(){
+    public Estoque carregaEstoque(){
         //this.estoque = DAO.getEstoqueDAO().cria()
-        return DAO.getEstoqueDAO().cria();
+        return DAO.getEstoqueDAO().carrega();
     }
 
     /**
