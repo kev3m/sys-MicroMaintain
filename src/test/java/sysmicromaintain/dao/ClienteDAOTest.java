@@ -1,5 +1,5 @@
 package sysmicromaintain.dao;
-import micromaintainsys.dao.cliente.ClienteFakeDAO;
+import micromaintainsys.dao.cliente.ClienteDAO;
 import micromaintainsys.model.Cliente;
 import micromaintainsys.utils.FileUtils;
 import org.junit.Before;
@@ -12,14 +12,14 @@ import java.util.Hashtable;
 
 import static org.junit.Assert.*;
 
-public class ClienteFakeDAOTest {
-    private ClienteFakeDAO dao;
+public class ClienteDAOTest {
+    private ClienteDAO dao;
     private static final String FILE_PATH = ("src/resources/data/clientes.bin");
     private Hashtable<Integer, Cliente> clientesCadastrados;
     private Cliente cliente,cliente_2, cliente_3, cliente_4,cliente_5;
     @Before
     public void setUp() {
-        dao = new ClienteFakeDAO();
+        dao = new ClienteDAO();
         clientesCadastrados = new Hashtable<Integer, Cliente>();
         cliente = dao.cria("Pedro", "Rua Principal, 123", "(55) 8888-8888");
         cliente_2 = dao.cria("João", "Rua Secundaria, 456", "(75) 9999-9999");
