@@ -1,10 +1,9 @@
 package micromaintainsys.dao.cliente;
-import java.io.File;
 import java.io.Serializable;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import micromaintainsys.model.Cliente;
-import micromaintainsys.utils.FileUtils;
 
 import static micromaintainsys.utils.FileUtils.*;
 
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  *
 
 */
-public class ClienteFakeDAO implements InterfaceCliente, Serializable {
+public class ClienteDAO implements InterfaceCliente, Serializable {
     /*Alterar lógica de banco de dados */
     private static final String FILE_NAME = "clientes.bin";
     private static final String FILE_PATH = initFilePath();
@@ -29,8 +28,19 @@ public class ClienteFakeDAO implements InterfaceCliente, Serializable {
     static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();
     private static int idCounter = 0;
 
-    public ClienteFakeDAO(){
-        carregaDados(FILE_PATH);
+    public ClienteDAO(){
+        clientesCadastrados = (Hashtable<Integer, Cliente>) carregaDados(FILE_PATH);
+
+        /*Recupera o idCounter com base no último ID utilizado*/
+        Enumeration<Integer> keys = clientesCadastrados.keys();
+        int max = keys.nextElement();
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        idCounter = max + 1;
     }
 
     /**
@@ -65,6 +75,7 @@ public class ClienteFakeDAO implements InterfaceCliente, Serializable {
      */
     @Override
     public boolean atualiza(Cliente cliente) {
+        salvaDados(clientesCadastrados, FILE_PATH);
         return true;
     }
 
