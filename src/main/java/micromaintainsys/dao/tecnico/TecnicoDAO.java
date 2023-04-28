@@ -21,7 +21,7 @@ public class TecnicoDAO implements InterfaceTecnico{
     /**
      Contador estático usado para gerar IDs únicos para cada novo tecnico criado.
      */
-    private static int idCounter = 1;
+    private static int idCounter;
     private static final String FILE_PATH = getFilePath("ordens.bin");
 
 
@@ -30,12 +30,11 @@ public class TecnicoDAO implements InterfaceTecnico{
         tecnicosCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Tecnico>) obj;
         /*Recupera o idCounter com base no último ID utilizado*/
         idCounter = proximoID();
-        Tecnico tecnico = pegaPorId(0);
-        if (tecnico == null){
-            Tecnico adm = new Tecnico("admin", "admin");
+        /*Na primeira execução, cria o usuário admin*/
+        if (idCounter == 0){
+            Tecnico adm = cria("admin", "admin");
             adm.setAdm(true);
-            adm.setTecnicoID(0);
-            tecnicosCadastrados.put(0, adm);
+            atualiza(adm);
         }
     }
     public int proximoID(){
