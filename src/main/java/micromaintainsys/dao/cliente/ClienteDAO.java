@@ -21,13 +21,12 @@ public class ClienteDAO implements InterfaceCliente, Serializable {
     /*Alterar lógica de banco de dados */
     private static final String FILE_NAME = "clientes.bin";
     private static final String FILE_PATH = initFilePath();
+    static Hashtable<Integer, Cliente> clientesCadastrados;
+    private static int idCounter;
+
     private static String initFilePath() {
         return getFilePath(FILE_NAME);
     }
-
-    static Hashtable<Integer, Cliente> clientesCadastrados;
-    private static int idCounter = 0;
-
     public ClienteDAO(){
         Object obj = carregaDados(FILE_PATH);
         if (obj == null){
@@ -38,7 +37,7 @@ public class ClienteDAO implements InterfaceCliente, Serializable {
         }
         /*Recupera o idCounter com base no último ID utilizado*/
         Enumeration<Integer> keys = clientesCadastrados.keys();
-        int max = keys.nextElement();
+        int max = 0;
         while (keys.hasMoreElements()){
             int key = keys.nextElement();
             if (key > max){
