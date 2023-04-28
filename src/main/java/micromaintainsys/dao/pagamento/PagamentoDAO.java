@@ -1,9 +1,13 @@
 package micromaintainsys.dao.pagamento;
 
+import micromaintainsys.model.Cliente;
 import micromaintainsys.model.Pagamento;
 import micromaintainsys.model.TipoPagamento;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
+
+import static micromaintainsys.utils.FileUtils.*;
 
 /**
  * Classe que implementa a interface InterfacePagamento e fornece uma implementação para as operações de
@@ -13,11 +17,30 @@ public class PagamentoDAO implements InterfacePagamento{
     /**
      * Hashtable que armazena os pagamentos cadastrados.
      */
-    static Hashtable<Integer, Pagamento> pagamentosCadastrados = new Hashtable<>();
+    static Hashtable<Integer, Pagamento> pagamentosCadastrados;
     /**
      Contador estático usado para gerar IDs únicos para cada novo pagamento criado.
      */
     private static int idCounter = 0;
+    private static final String FILE_PATH = getFilePath("pagamentos.bin");
+
+    public PagamentoDAO(){
+        Object obj = carregaDados(FILE_PATH);
+        pagamentosCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Pagamento>) obj;
+        /*Recupera o idCounter com base no último ID utilizado*/
+        idCounter = proximoID();
+    }
+    public int proximoID(){
+        Enumeration<Integer> keys = pagamentosCadastrados.keys();
+        int max = -1;
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        return max + 1;
+    }
     /**
      * Cria um pagamento e o armazena na Hashtable pagamentosCadastrados.
      * @param pagamento Tipo do pagamento.
@@ -30,6 +53,7 @@ public class PagamentoDAO implements InterfacePagamento{
         novoPagamento.setPagamentoID(idCounter);
         pagamentosCadastrados.put(idCounter, novoPagamento);
         idCounter++;
+        salvaDados(pagamentosCadastrados, FILE_PATH);
         return novoPagamento;
     }
     /**
@@ -38,6 +62,7 @@ public class PagamentoDAO implements InterfacePagamento{
      * @return True se o pagamento foi atualizado com sucesso, false caso contrário.
      */
     public boolean atualiza(Pagamento pagamento){
+        salvaDados(pagamentosCadastrados, FILE_PATH);
         return true;
     }
     /**
@@ -56,6 +81,7 @@ public class PagamentoDAO implements InterfacePagamento{
     public boolean remove(int pagamentoID) {
         Pagamento result = pagamentosCadastrados.remove(pagamentoID);
         if (result != null){
+            salvaDados(pagamentosCadastrados, FILE_PATH);
             return true;
         }
         return false;
