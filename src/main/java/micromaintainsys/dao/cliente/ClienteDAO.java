@@ -25,12 +25,17 @@ public class ClienteDAO implements InterfaceCliente, Serializable {
         return getFilePath(FILE_NAME);
     }
 
-    static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();
+    static Hashtable<Integer, Cliente> clientesCadastrados;
     private static int idCounter = 0;
 
     public ClienteDAO(){
-        clientesCadastrados = (Hashtable<Integer, Cliente>) carregaDados(FILE_PATH);
-
+        Object obj = carregaDados(FILE_PATH);
+        if (obj == null){
+            clientesCadastrados = new Hashtable<>();
+        }
+        else {
+            clientesCadastrados = (Hashtable<Integer, Cliente>) carregaDados(FILE_PATH);
+        }
         /*Recupera o idCounter com base no último ID utilizado*/
         Enumeration<Integer> keys = clientesCadastrados.keys();
         int max = keys.nextElement();
