@@ -1,17 +1,46 @@
 package micromaintainsys.control;
 
 import junit.framework.TestCase;
+import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.InvalidUserException;
 import micromaintainsys.exceptions.UserAlreadyLoggedInException;
 import micromaintainsys.exceptions.WrongPasswordException;
 import micromaintainsys.model.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class MainControllerTest extends TestCase {
     private final MainController controller = new MainController();
 
+    public void testPersistence(){
+        controller.loginTecnico(0, "admin");
+        int cid1 = controller.criaCliente("Adalberto", "Rua dos Bobos, n. 0", "171171171").getId();
+
+        /*O método _limpaDAOs atribui null a cada variável que armazena os DAOs específicos
+        Então, quando o controller chama o DAO outra vez, ele cria uma nova instância
+        do DAO específico, e carrega os arquivos outra vez.*/
+        DAO._limpaDAOs();
+
+        int cid2 = controller.criaCliente("Outro Cliente", "Outro lugar", "Outro telefone").getId();
+        ArrayList<Cliente> clientes = controller.listaClientes();
+        Cliente c1 = null;
+        Cliente c2 = null;
+        for (Cliente cliente: clientes){
+            if (cid1 == cliente.getId()){
+                c1 = cliente;
+            }
+            if (cid2 == cliente.getId()){
+                c2 = cliente;
+            }
+        }
+        assertNotNull(c1);
+        assertNotNull(c2);
+        assertEquals(c1.getName(), "Adalberto");
+        assertEquals(c2.getName(), "Outro Cliente");
+        assert(cid1 < cid2);
+    }
     public void testLoginLogoutAdm() {
         controller.loginTecnico(0, "admin");
         assertNotNull(controller.getTecnicoSessao());
@@ -23,11 +52,12 @@ public class MainControllerTest extends TestCase {
 
     public void testCriaELogaTecnico(){
         controller.loginTecnico(0, "admin");
+        int tecnicosAntes = controller.listaTecnicos().size();
         Tecnico tecnicoCriado = controller.criaTecnico("Joao", "123");
         assertNotNull(tecnicoCriado);
         assertEquals("Joao", tecnicoCriado.getNome());
-        List<Tecnico> cadastrados = controller.listaTecnicos();
-        assertEquals(2, cadastrados.size());
+
+        assertEquals(tecnicosAntes+1, controller.listaTecnicos().size());
         controller.logoutTecnico();
         controller.loginTecnico(tecnicoCriado.getTecnicoID(), "123");
         assertEquals(controller.getTecnicoSessao().getNome(), tecnicoCriado.getNome());
