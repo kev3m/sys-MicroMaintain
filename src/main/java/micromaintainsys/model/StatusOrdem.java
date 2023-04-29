@@ -1,5 +1,7 @@
 package micromaintainsys.model;
 
-public enum StatusOrdem {
+import java.io.Serializable;
+
+public enum StatusOrdem implements Serializable {
    Pagamento, Aberta, Finalizada, Cancelada, Andamento
 }
