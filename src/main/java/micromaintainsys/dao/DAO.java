@@ -69,4 +69,15 @@ public class DAO {
         }
         return interfaceEstoque;
     }
+
+    /*Função para ser utilizada nos testes*/
+    public static void _limpaDAOs(){
+        interfaceCliente = null;
+        interfaceTecnico = null;
+        interfaceOrdem = null;
+        interfaceServico = null;
+        interfaceFatura = null;
+        interfacePagamento = null;
+        interfaceEstoque = null;
+    }
 }
