@@ -59,9 +59,9 @@ public class TecnicoDAOTest {
 
     @Test
     public void testRemoveExistente() {
-        boolean resultado = tecnicoDAO.remove(0);
+        boolean resultado = tecnicoDAO.remove(1);
         assertTrue(resultado);
-        assertNull(tecnicoDAO.pegaPorId(0));
+        assertNull(tecnicoDAO.pegaPorId(1));
     }
 
     @Test
