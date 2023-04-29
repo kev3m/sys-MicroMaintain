@@ -15,8 +15,7 @@ public class FileUtils {
              ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
             return objectIn.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Erro ao carregar arquivo: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Arquivo " + filePath + " não encontrado.");
         }
         return null;
     }
