@@ -1,8 +1,5 @@
 package micromaintainsys.dao.estoque;
-
 import micromaintainsys.model.Estoque;
-import micromaintainsys.model.OrdemCompra;
-import micromaintainsys.model.Peca;
 
 import java.util.ArrayList;
 
