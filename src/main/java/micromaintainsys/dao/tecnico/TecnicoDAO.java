@@ -22,7 +22,7 @@ public class TecnicoDAO implements InterfaceTecnico{
      Contador estático usado para gerar IDs únicos para cada novo tecnico criado.
      */
     private static int idCounter;
-    private static final String FILE_PATH = getFilePath("ordens.bin");
+    private static final String FILE_PATH = getFilePath("tecnicos.bin");
 
 
     public TecnicoDAO(){
@@ -79,9 +79,11 @@ public class TecnicoDAO implements InterfaceTecnico{
      * @return true: login realizado com sucesso, false: não foi possível realizar o login
      */
    public boolean autentica(int tecnicoID, String senha){
-        Tecnico tecnico = tecnicosCadastrados.get(tecnicoID);
+       Tecnico tecnico = tecnicosCadastrados.get(tecnicoID);
         if (tecnico != null){
-            if (senha == tecnico.getSenha()) return true;
+            if (tecnico.getSenha().equals(senha)){
+                return true;
+            }
         }
         return false;
    }
