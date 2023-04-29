@@ -150,7 +150,7 @@ public class MainControllerTest extends TestCase {
         assertEquals(ordensAbertas + 1, controller.getOrdensAbertas().size());
         Servico servico1 = controller.criaServico(CategoriaServico.Limpeza, 75.5, "", "Limpeza completa", ordemCriada.getOrdemID());
         Servico servico2 = controller.criaServico(CategoriaServico.Montagem, 30, "bateriaBIOS", "Trocar bateria da BIOS", ordemCriada.getOrdemID());
-
+        assert(controller._getEstoque().getPecas().containsKey("bateriabios"));
         boolean resAtribuicao = controller.atribuiOrdem(novoTecnico.getTecnicoID());
         assertTrue(resAtribuicao);
         assertEquals(StatusOrdem.Andamento, ordemCriada.getStatus());
