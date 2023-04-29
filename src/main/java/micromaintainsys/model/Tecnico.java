@@ -1,11 +1,12 @@
 package micromaintainsys.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  Classe que representa um técnico.
  */
-public class Tecnico {
+public class Tecnico implements Serializable {
     /**
      Definição de categoria administrador.
      */
@@ -27,17 +28,6 @@ public class Tecnico {
      */
     private int ordemEmAndamentoID = -1;
 
-    /* TODO Estudar remoção: deixar a cargo do DAO de Ordens e Compras */
-    /**
-     Histórico de ordens de serviço do técnico.
-     */
-    private ArrayList<Ordem> historicoOrdens;
-    /**
-     Histórico de ordens de compra do técnico.
-     */
-    private ArrayList<OrdemCompra> historicoCompras;
-    /* *********************************************************** */
-
     /**
      * Construtor da classe.
      * @param nome nome do técnico
@@ -46,8 +36,6 @@ public class Tecnico {
     public Tecnico(String nome, String senha){
         this.nome = nome;
         this.senha = senha;
-        this.historicoOrdens = null;
-        this.historicoCompras = null;
     }
 
     /**
@@ -127,71 +115,6 @@ public class Tecnico {
      */
     public void setOrdemEmAndamentoID(int abertoID){
         this.ordemEmAndamentoID = abertoID;
-    }
-
-
-    /* TODO Estudar remoção: deixar a cargo do DAO de Ordens e Compras */
-
-    /**
-     * Modifica o histórico de ordens do técnico.
-     * @param historicoOrdens histórico de ordens
-     */
-    public void setHistoricoOrdens(ArrayList<Ordem> historicoOrdens) {
-        this.historicoOrdens = historicoOrdens;
-    }
-
-    /**
-     * Modifica o histórico de compras do técnico.
-     * @param historicoCompras histórico de compras
-     */
-    public void setHistoricoCompras(ArrayList<OrdemCompra> historicoCompras) {
-        this.historicoCompras = historicoCompras;
-    }
-
-    /**
-     * Retorna o histórico de ordens do técnico.
-     * @return
-     */
-    public ArrayList<Ordem> getHistoricoOrdens() {
-        return historicoOrdens;
-    }
-
-    /**
-     * Retorna o histórico de compras do técnico.
-     * @return
-     */
-    public ArrayList<OrdemCompra> getHistoricoCompras() {
-        return historicoCompras;
-    }
-
-    /**
-     * Retorna a última ordem de serviço do técnico.
-     * @return
-     */
-    public Ordem pegaUltimaOrdem(){
-        return this.historicoOrdens.get(this.historicoOrdens.size() -1);
-    }
-
-    /**
-     * Cadastra ordem
-     * @param novaOrdem
-     */
-    public void cadastraOrdem(Ordem novaOrdem){
-        this.getHistoricoOrdens().add(novaOrdem);
-    }
-
-    /**
-     * Verifica se o técnico tem ordem em aberto.
-     * @return true se o técnico tem ordem em aberto e false caso contrário.
-     */
-    /*TODO estudar remoção*/
-    public boolean temOrdemEmAberto(){
-        boolean emAberto = this.historicoOrdens
-                .get(this.historicoOrdens.size()-1)
-                .getStatus() == StatusOrdem.Aberta?
-                true
-                : false;
-        return emAberto;
     }
 
 }
