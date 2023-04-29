@@ -1,12 +1,13 @@
 package micromaintainsys.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *  Classe que representa uma ordem de serviço.
  */
 
-public class Ordem implements Comparable<Ordem>{
+public class Ordem implements Comparable<Ordem>, Serializable {
     /**
      * ID do cliente associado à ordem.
      */
@@ -27,10 +28,7 @@ public class Ordem implements Comparable<Ordem>{
      * Status da ordem.
      */
     private StatusOrdem status;
-    /**
-     * Lista de serviços associados à ordem.
-     */
-    private ArrayList<Servico> servicos;
+
     /**
      * ID da fatura associada à ordem.
      */
@@ -43,7 +41,6 @@ public class Ordem implements Comparable<Ordem>{
         this.clienteID = clienteID;
         this.tecnicoID = tecnicoID;
         this.status = StatusOrdem.Aberta;
-        this.servicos = new ArrayList<>();
 
     }
     /**
@@ -81,11 +78,7 @@ public class Ordem implements Comparable<Ordem>{
      * @param status Status da ordem.
      */
     public  void setStatus(StatusOrdem status) {this.status = status;}
-    /**
-     * Adiciona um serviço à ordem.
-     * @param servico Serviço a ser adicionado.
-     */
-    public void setServicos(Servico servico) {this.servicos.add(servico);}
+
     /**
      * Retorna o ID do cliente associado à ordem.
      * @return ID do cliente associado à ordem.
@@ -111,11 +104,7 @@ public class Ordem implements Comparable<Ordem>{
      * @return Status da ordem.
      */
     public StatusOrdem getStatus() {return status;}
-    /**
-     * Retorna a lista de serviços da ordem.
-     * @return Lista de serviços da ordem.
-     */
-    public ArrayList<Servico> getServicos() {return servicos;}
+
     /**
      * Retorna o ID da fatura associada à ordem.
      * @return ID da fatura associada à ordem.
