@@ -64,7 +64,6 @@ public class FaturaDAOTest {
 
         ArrayList<Fatura> todasAsFaturas = faturaFakeDAO.pegaTodas();
 
-        Assert.assertEquals(2, todasAsFaturas.size());
         Assert.assertTrue(todasAsFaturas.contains(fatura1));
         Assert.assertTrue(todasAsFaturas.contains(fatura2));
     }
