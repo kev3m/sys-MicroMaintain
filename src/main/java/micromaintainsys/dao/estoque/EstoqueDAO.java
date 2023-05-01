@@ -48,7 +48,6 @@ public class EstoqueDAO implements InterfaceEstoque, Serializable {
     public void atualiza(Estoque estoque){
         salvaDados(ordensCompra, PURCHASE_ORDERS_FILE_PATH);
         salvaDados(pecas,  COMPONENTS_FILE_PATH);
-        return;
     }
     /**
      Cria um novo estoque ou carrega um estoque com base nas informações armazenadas.
