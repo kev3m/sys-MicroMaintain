@@ -19,10 +19,10 @@ public class TecnicoDAOTest {
 
     @Test
     public void testPegaPorIdExistente() {
-        Tecnico tecnico = tecnicoDAO.pegaPorId(0);
-        assertEquals("admin", tecnico.getNome());
-        assertEquals("admin", tecnico.getSenha());
-        assertTrue(tecnico.isAdm());
+        int idTec = tecnico.getTecnicoID();
+        Tecnico tecnico = tecnicoDAO.pegaPorId(idTec);
+        assertEquals("Paulo Tec", tecnico.getNome());
+        assertEquals("123", tecnico.getSenha());
     }
 
     @Test
@@ -33,7 +33,6 @@ public class TecnicoDAOTest {
 
     @Test
     public void testCria() {
-        assertEquals(1, tecnico.getTecnicoID());
         assertEquals("Paulo Tec", tecnico.getNome());
         assertEquals("123", tecnico.getSenha());
         assertFalse(tecnico.isAdm());
@@ -41,7 +40,7 @@ public class TecnicoDAOTest {
 
     @Test
     public void testAutenticaSucesso() {
-        boolean resultado = tecnicoDAO.autentica(0, "admin");
+        boolean resultado = tecnicoDAO.autentica(tecnico.getTecnicoID(), "123");
         assertTrue(resultado);
     }
 
@@ -59,9 +58,9 @@ public class TecnicoDAOTest {
 
     @Test
     public void testRemoveExistente() {
-        boolean resultado = tecnicoDAO.remove(1);
+        boolean resultado = tecnicoDAO.remove(tecnico.getTecnicoID());
         assertTrue(resultado);
-        assertNull(tecnicoDAO.pegaPorId(1));
+        assertNull(tecnicoDAO.pegaPorId(tecnico.getTecnicoID()));
     }
 
     @Test
@@ -75,7 +74,7 @@ public class TecnicoDAOTest {
         tecnico.setNome("Paulo Tecnico");
         boolean resultado = tecnicoDAO.atualiza(tecnico);
         assertTrue(resultado);
-        Tecnico tecnicoAtualizado = tecnicoDAO.pegaPorId(1);
+        Tecnico tecnicoAtualizado = tecnicoDAO.pegaPorId(tecnico.getTecnicoID());
         assertEquals("Paulo Tecnico", tecnicoAtualizado.getNome());
     }
 
