@@ -1,20 +1,17 @@
 package sysmicromaintain.dao;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-import micromaintainsys.dao.tecnico.TecnicoFakeDAO;
+import micromaintainsys.dao.tecnico.TecnicoDAO;
 import micromaintainsys.model.Tecnico;
 import org.junit.Before;
 import org.junit.Test;
-public class TecnicoFakeDAOTest {
-    private TecnicoFakeDAO tecnicoDAO;
+public class TecnicoDAOTest {
+    private TecnicoDAO tecnicoDAO;
     private Tecnico tecnico;
 
     @Before
     public void setUp() {
-        tecnicoDAO = new TecnicoFakeDAO();
+        tecnicoDAO = new TecnicoDAO();
         tecnico = tecnicoDAO.cria("Paulo Tec", "123");
         tecnicoDAO.resetIDCounter();
 
@@ -22,10 +19,10 @@ public class TecnicoFakeDAOTest {
 
     @Test
     public void testPegaPorIdExistente() {
-        Tecnico tecnico = tecnicoDAO.pegaPorId(0);
-        assertEquals("admin", tecnico.getNome());
-        assertEquals("admin", tecnico.getSenha());
-        assertTrue(tecnico.isAdm());
+        int idTec = tecnico.getTecnicoID();
+        Tecnico tecnico = tecnicoDAO.pegaPorId(idTec);
+        assertEquals("Paulo Tec", tecnico.getNome());
+        assertEquals("123", tecnico.getSenha());
     }
 
     @Test
@@ -36,7 +33,6 @@ public class TecnicoFakeDAOTest {
 
     @Test
     public void testCria() {
-        assertEquals(1, tecnico.getTecnicoID());
         assertEquals("Paulo Tec", tecnico.getNome());
         assertEquals("123", tecnico.getSenha());
         assertFalse(tecnico.isAdm());
@@ -44,7 +40,7 @@ public class TecnicoFakeDAOTest {
 
     @Test
     public void testAutenticaSucesso() {
-        boolean resultado = tecnicoDAO.autentica(0, "admin");
+        boolean resultado = tecnicoDAO.autentica(tecnico.getTecnicoID(), "123");
         assertTrue(resultado);
     }
 
@@ -62,9 +58,9 @@ public class TecnicoFakeDAOTest {
 
     @Test
     public void testRemoveExistente() {
-        boolean resultado = tecnicoDAO.remove(0);
+        boolean resultado = tecnicoDAO.remove(tecnico.getTecnicoID());
         assertTrue(resultado);
-        assertNull(tecnicoDAO.pegaPorId(0));
+        assertNull(tecnicoDAO.pegaPorId(tecnico.getTecnicoID()));
     }
 
     @Test
@@ -78,7 +74,7 @@ public class TecnicoFakeDAOTest {
         tecnico.setNome("Paulo Tecnico");
         boolean resultado = tecnicoDAO.atualiza(tecnico);
         assertTrue(resultado);
-        Tecnico tecnicoAtualizado = tecnicoDAO.pegaPorId(1);
+        Tecnico tecnicoAtualizado = tecnicoDAO.pegaPorId(tecnico.getTecnicoID());
         assertEquals("Paulo Tecnico", tecnicoAtualizado.getNome());
     }
 

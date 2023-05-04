@@ -2,7 +2,6 @@ package micromaintainsys.dao.servico;
 
 import micromaintainsys.dao.CRUD;
 import micromaintainsys.model.CategoriaServico;
-import micromaintainsys.model.Peca;
 import micromaintainsys.model.Servico;
 
 import java.util.ArrayList;

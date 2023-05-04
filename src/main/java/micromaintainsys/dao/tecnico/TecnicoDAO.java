@@ -3,14 +3,17 @@ package micromaintainsys.dao.tecnico;
 import micromaintainsys.model.Tecnico;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
+
+import static micromaintainsys.utils.FileUtils.*;
 
 /**
  * Implementação do gerenciamento das operações de acesso aos dados.
  * Permite ler,criar, remover e autenticar e atualizar informações dos técnicos.
  */
 
-public class TecnicoFakeDAO implements InterfaceTecnico{
+public class TecnicoDAO implements InterfaceTecnico{
     /**
      * Armazena os tecnicos cadastradps.
      */
@@ -18,13 +21,32 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
     /**
      Contador estático usado para gerar IDs únicos para cada novo tecnico criado.
      */
-    private static int idCounter = 1;
+    private static int idCounter;
+    private static final String FILE_PATH = getFilePath("tecnicos.bin");
 
-    public TecnicoFakeDAO(){
-        Tecnico adm = new Tecnico("admin", "admin");
-        adm.setAdm(true);
-        adm.setTecnicoID(0);
-        tecnicosCadastrados.put(0, adm);
+
+    public TecnicoDAO(){
+        Object obj = carregaDados(FILE_PATH);
+        tecnicosCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Tecnico>) obj;
+        /*Recupera o idCounter com base no último ID utilizado*/
+        idCounter = proximoID();
+        /*Na primeira execução, cria o usuário admin*/
+        if (idCounter == 0){
+            Tecnico adm = cria("admin", "admin");
+            adm.setAdm(true);
+            atualiza(adm);
+        }
+    }
+    public int proximoID(){
+        Enumeration<Integer> keys = tecnicosCadastrados.keys();
+        int max = -1;
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        return max + 1;
     }
     /**
      * Busca e retorna um técnico por ID
@@ -46,6 +68,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
         novoTecnico.setTecnicoID(idCounter);
         tecnicosCadastrados.put(idCounter, novoTecnico);
         idCounter++;
+        salvaDados(tecnicosCadastrados, FILE_PATH);
         return novoTecnico;
    }
 
@@ -56,9 +79,11 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
      * @return true: login realizado com sucesso, false: não foi possível realizar o login
      */
    public boolean autentica(int tecnicoID, String senha){
-        Tecnico tecnico = tecnicosCadastrados.get(tecnicoID);
+       Tecnico tecnico = tecnicosCadastrados.get(tecnicoID);
         if (tecnico != null){
-            if (senha == tecnico.getSenha()) return true;
+            if (tecnico.getSenha().equals(senha)){
+                return true;
+            }
         }
         return false;
    }
@@ -71,6 +96,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
    public boolean remove(int tecnicoID){
         Tecnico result = tecnicosCadastrados.remove(tecnicoID);
         if (result != null){
+            salvaDados(tecnicosCadastrados, FILE_PATH);
             return true;
         }
         return false;
@@ -86,6 +112,7 @@ public class TecnicoFakeDAO implements InterfaceTecnico{
     essa função recebe um objeto e sobrescreve
     os dados
      */
+       salvaDados(tecnicosCadastrados, FILE_PATH);
        return true;
    }
     /**

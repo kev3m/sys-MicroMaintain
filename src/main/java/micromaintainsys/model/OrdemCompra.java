@@ -1,11 +1,12 @@
 package micromaintainsys.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  Classe que representa uma ordem de compra.
  */
-public class OrdemCompra {
+public class OrdemCompra implements Serializable {
     /**
      Nome da peça.
      */

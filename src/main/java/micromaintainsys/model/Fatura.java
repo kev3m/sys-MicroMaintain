@@ -1,12 +1,13 @@
 package micromaintainsys.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
 
  Classe que representa uma fatura de uma ordem de compra.
  */
-public class Fatura {
+public class Fatura implements Serializable {
     /**
     Valor total da fatura.
      */

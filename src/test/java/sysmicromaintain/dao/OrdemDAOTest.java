@@ -1,20 +1,17 @@
 package sysmicromaintain.dao;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Hashtable;
 
 import micromaintainsys.dao.DAO;
-import micromaintainsys.dao.ordem.OrdemFakeDAO;
+import micromaintainsys.dao.ordem.OrdemDAO;
 import micromaintainsys.model.Ordem;
 import micromaintainsys.model.StatusOrdem;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class OrdemFakeDAOTest {
+public class OrdemDAOTest {
 
-        private OrdemFakeDAO ordemFakeDAO;
+        private OrdemDAO ordemDao;
         private ArrayList<Ordem> ordens = new ArrayList<>();
         private Ordem ordem;
 
@@ -22,9 +19,9 @@ public class OrdemFakeDAOTest {
 
         @Before
         public void setUp() {
-            ordemFakeDAO = new OrdemFakeDAO();
-            ordem = ordemFakeDAO.cria(1);
-            ordemFakeDAO.resetIDCounter();
+            ordemDao = new OrdemDAO();
+            ordem = ordemDao.cria(1);
+            ordemDao.resetIDCounter();
         }
 
         @Test
@@ -37,21 +34,21 @@ public class OrdemFakeDAOTest {
 
         @Test
         public void testPegaPorId() {
-            Ordem ordemRecuperada = ordemFakeDAO.pegaPorId(ordem.getOrdemID());
+            Ordem ordemRecuperada = ordemDao.pegaPorId(ordem.getOrdemID());
             assertEquals(ordem, ordemRecuperada);
         }
 
         @Test
         public void testAtualiza() {
-            boolean atualizacao = ordemFakeDAO.atualiza(ordem);
+            boolean atualizacao = ordemDao.atualiza(ordem);
             assertTrue(atualizacao);
         }
 
         @Test
         public void testRemove() {
-            boolean remocao = ordemFakeDAO.remove(ordem.getOrdemID());
+            boolean remocao = ordemDao.remove(ordem.getOrdemID());
             assertTrue(remocao);
-            Ordem ordemRemovida = ordemFakeDAO.pegaPorId(ordem.getOrdemID());
+            Ordem ordemRemovida = ordemDao.pegaPorId(ordem.getOrdemID());
             assertNull(ordemRemovida);
         }
 
@@ -59,30 +56,30 @@ public class OrdemFakeDAOTest {
         //Pagamento, Aberta, Finalizada, Cancelada, Andamento
         @Test
         public void testPegaTodasPorStatus() {
-            int emAndamento = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Andamento).size();
-            int finalizadas = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Finalizada).size();
-            Ordem ordem2 = ordemFakeDAO.cria(1);
-            Ordem ordem3 = ordemFakeDAO.cria(2);
-            Ordem ordem4 = ordemFakeDAO.cria(2);
+            int emAndamento = ordemDao.pegaTodasPorStatus(StatusOrdem.Andamento).size();
+            int finalizadas = ordemDao.pegaTodasPorStatus(StatusOrdem.Finalizada).size();
+            Ordem ordem2 = ordemDao.cria(1);
+            Ordem ordem3 = ordemDao.cria(2);
+            Ordem ordem4 = ordemDao.cria(2);
             ordem2.setStatus(StatusOrdem.Andamento);
             ordem3.setStatus(StatusOrdem.Finalizada);
             ordem4.setStatus(StatusOrdem.Andamento);
 
 
-            ArrayList<Ordem> ordensEmAndamento = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Andamento);
+            ArrayList<Ordem> ordensEmAndamento = ordemDao.pegaTodasPorStatus(StatusOrdem.Andamento);
             assertEquals(emAndamento + 2, ordensEmAndamento.size());
 
-            ArrayList<Ordem> ordensFinalizadas = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Finalizada);
+            ArrayList<Ordem> ordensFinalizadas = ordemDao.pegaTodasPorStatus(StatusOrdem.Finalizada);
             assertEquals(finalizadas + 1, ordensFinalizadas.size());
 
-            ArrayList<Ordem> ordensCanceladas = ordemFakeDAO.pegaTodasPorStatus(StatusOrdem.Cancelada);
+            ArrayList<Ordem> ordensCanceladas = ordemDao.pegaTodasPorStatus(StatusOrdem.Cancelada);
             assertEquals(0, ordensCanceladas.size());
         }
 
         /*
         @Test
         public void testPegaTodas() {
-            ordens = ordemFakeDAO.pegaTodas();
+            ordens = ordemDao.pegaTodas();
             assertEquals(1, ordens.size());
         }
         */

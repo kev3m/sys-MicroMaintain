@@ -6,19 +6,41 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.Hashtable;
+
+import static micromaintainsys.utils.FileUtils.*;
+
 /**
  * Classe que implementa a interface InterfaceServico e fornece uma implementação para as operações de
  * acesso a dados relacionados aos servicos.
  */
-public class ServicoFakeDAO implements InterfaceServico {
+public class ServicoDAO implements InterfaceServico {
     /**
      * Hashtable que armazena os Servicos criados
      */
-    static Hashtable<Integer, Servico> servicosCadastrados = new Hashtable<>();
+    static Hashtable<Integer, Servico> servicosCadastrados;
+    private static final String FILE_PATH = getFilePath("servicos.bin");
     /**
      Contador estático usado para gerar IDs únicos para cada novo servico criado.
      */
-    private static int idCounter = 0;
+    private static int idCounter;
+
+    public ServicoDAO(){
+        Object obj = carregaDados(FILE_PATH);
+        servicosCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Servico>) obj;
+        /*Recupera o idCounter com base no último ID utilizado*/
+        idCounter = proximoID();
+    }
+    public int proximoID(){
+        Enumeration<Integer> keys = servicosCadastrados.keys();
+        int max = -1;
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        return max + 1;
+    }
     /**
      * Cria um novo Servico e o adiciona em Servicos cadastrados
      *
@@ -29,11 +51,13 @@ public class ServicoFakeDAO implements InterfaceServico {
      * @param ordemID ID da Ordem de Serviço associada ao Servico
      * @return Novo Servico criado
      */
+
     public Servico cria(CategoriaServico categoriaServico, double valor, String peca, String descricao, int ordemID){
         Servico novoServico = new Servico(categoriaServico, valor, peca, descricao, ordemID);
         novoServico.setServicoID(idCounter);
         servicosCadastrados.put(idCounter, novoServico);
         idCounter++;
+        salvaDados(servicosCadastrados, FILE_PATH);
         return novoServico;
     }
 
@@ -49,6 +73,7 @@ public class ServicoFakeDAO implements InterfaceServico {
      * @return True se a atualização foi bem sucedida, false caso contrário
      */
     public boolean atualiza(Servico servico){
+        salvaDados(servicosCadastrados, FILE_PATH);
         return true;
     }
     /**
@@ -59,6 +84,7 @@ public class ServicoFakeDAO implements InterfaceServico {
     public boolean remove(int servicoId) {
         Servico result = servicosCadastrados.remove(servicoId);
         if (result != null){
+            salvaDados(servicosCadastrados, FILE_PATH);
             return true;
         }
         return false;
@@ -102,5 +128,6 @@ public class ServicoFakeDAO implements InterfaceServico {
     }
     public void esvaziarServicosCadastrados() {
         servicosCadastrados.clear();
+        salvaDados(servicosCadastrados, FILE_PATH);
     }
 }

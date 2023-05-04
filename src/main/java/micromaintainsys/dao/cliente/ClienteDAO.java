@@ -1,12 +1,15 @@
 package micromaintainsys.dao.cliente;
+import java.io.Serializable;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 import micromaintainsys.model.Cliente;
-import micromaintainsys.model.Ordem;
-import micromaintainsys.model.Tecnico;
+
+import static micromaintainsys.utils.FileUtils.*;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Map;
+
+
 
 /**
  * Implementação do gerenciamento das operações de acesso aos dados.
@@ -14,10 +17,33 @@ import java.util.Map;
  *
 
 */
-public class ClienteFakeDAO implements InterfaceCliente {
+public class ClienteDAO implements InterfaceCliente, Serializable {
     /*Alterar lógica de banco de dados */
-    static Hashtable<Integer, Cliente> clientesCadastrados = new Hashtable<>();
-    private static int idCounter = 0;
+    private static final String FILE_NAME = "clientes.bin";
+    private static final String FILE_PATH = initFilePath();
+    static Hashtable<Integer, Cliente> clientesCadastrados;
+    private static int idCounter;
+
+    private static String initFilePath() {
+        return getFilePath(FILE_NAME);
+    }
+    public ClienteDAO(){
+        Object obj = carregaDados(FILE_PATH);
+        clientesCadastrados = obj == null? new Hashtable<>() : (Hashtable<Integer, Cliente>) obj;
+        /*Recupera o idCounter com base no último ID utilizado*/
+        idCounter = proximoID();
+    }
+    public int proximoID(){
+        Enumeration<Integer> keys = clientesCadastrados.keys();
+        int max = -1;
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        return max + 1;
+    }
 
     /**
      * Cria um objeto do tipo Cliente
@@ -32,6 +58,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
         novoCliente.setClienteID(idCounter);
         clientesCadastrados.put(idCounter,novoCliente);
         idCounter++;
+        salvaDados(clientesCadastrados, FILE_PATH);
         return novoCliente;
     }
 
@@ -43,7 +70,6 @@ public class ClienteFakeDAO implements InterfaceCliente {
      */
     public Cliente pegaPorId(int clienteId) {return clientesCadastrados.get(clienteId);}
 
-
     /**
      *
      * @param cliente
@@ -51,6 +77,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
      */
     @Override
     public boolean atualiza(Cliente cliente) {
+        salvaDados(clientesCadastrados, FILE_PATH);
         return true;
     }
 
@@ -65,6 +92,7 @@ public class ClienteFakeDAO implements InterfaceCliente {
     public boolean remove(int clienteId) {
         Cliente result = clientesCadastrados.remove(clienteId);
         if (result != null){
+            salvaDados(clientesCadastrados, FILE_PATH);
             return true;
         }
 
@@ -75,6 +103,10 @@ public class ClienteFakeDAO implements InterfaceCliente {
     }
     public void resetIDCounter(){
         idCounter = 0;
+    }
+    public void esvaziarClientesCadastrados() {
+        clientesCadastrados.clear();
+        salvaDados(clientesCadastrados, FILE_PATH);
     }
 
 }

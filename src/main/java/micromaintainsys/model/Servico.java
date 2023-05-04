@@ -1,11 +1,12 @@
 package micromaintainsys.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 /**
  Classe que representa um serviço.
  */
 
-public class Servico {
+public class Servico implements Serializable {
     /**
      Valor do serviço.
      */

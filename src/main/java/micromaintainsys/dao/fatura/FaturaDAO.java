@@ -1,16 +1,20 @@
 package micromaintainsys.dao.fatura;
 
+import micromaintainsys.model.Cliente;
 import micromaintainsys.model.Fatura;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
+
+import static micromaintainsys.utils.FileUtils.*;
 
 /**
  * Classe que implementa a interface InterfaceFatura e fornece uma implementação para as operações de
  * acesso a dados relacionados à fatura.
  */
 
-public class FaturaFakeDAO implements InterfaceFatura {
+public class FaturaDAO implements InterfaceFatura {
     /**
      Hashtable que mapeia IDs de faturas para as faturas correspondentes.
      */
@@ -19,6 +23,30 @@ public class FaturaFakeDAO implements InterfaceFatura {
      Contador estático usado para gerar IDs únicos para cada nova fatura criada.
      */
     private static int idCounter = 0;
+    private static final String FILE_NAME = "faturas.bin";
+    private static final String FILE_PATH = initFilePath();
+
+    private static String initFilePath() {
+        return getFilePath(FILE_NAME);
+    }
+
+    public FaturaDAO(){
+        Object obj = carregaDados(FILE_PATH);
+        faturasCadastradas = obj == null? new Hashtable<>() : (Hashtable<Integer, Fatura>) obj;
+        idCounter = proximoID();
+    }
+    public int proximoID(){
+        Enumeration<Integer> keys = faturasCadastradas.keys();
+        int max = -1;
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            if (key > max){
+                max = key;
+            }
+        }
+        return max + 1;
+    }
+
 
     /**
      Cria uma fatura com o ID da ordem especificada e o valor total especificado.
@@ -31,6 +59,7 @@ public class FaturaFakeDAO implements InterfaceFatura {
         novaFatura.setFaturaID(idCounter);
         faturasCadastradas.put(idCounter, novaFatura);
         idCounter++;
+        salvaDados(faturasCadastradas, FILE_PATH);
         return novaFatura;
     }
     /**
@@ -45,6 +74,7 @@ public class FaturaFakeDAO implements InterfaceFatura {
      @return True se a atualização for bem-sucedida, false caso contrário.
      */
     public boolean atualiza(Fatura fatura){
+        salvaDados(faturasCadastradas, FILE_PATH);
         return true;
     }
     /**
@@ -56,6 +86,7 @@ public class FaturaFakeDAO implements InterfaceFatura {
     public boolean remove(int faturaID) {
         Fatura result = faturasCadastradas.remove(faturaID);
         if (result != null){
+            salvaDados(faturasCadastradas, FILE_PATH);
             return true;
         }
         return false;

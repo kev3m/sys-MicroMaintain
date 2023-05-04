@@ -20,7 +20,7 @@ public class MainController {
     private final Estoque estoque;
 
     public MainController(){
-        this.estoque = criaEstoque();
+        this.estoque = carregaEstoque();
         ArrayList<Ordem> abertas = DAO.getOrdemDAO().pegaTodasPorStatus(StatusOrdem.Aberta);
         Collections.sort(abertas);
         this.ordensAbertas = new LinkedList<>(abertas);
@@ -238,17 +238,19 @@ public class MainController {
         if (!this._hasPermission(tecnico))
             throw new NotAllowedException(this.tecnicoSessao.getTecnicoID());
         /*Técnico já tem ordem em aberto*/
-        if (tecnico.getOrdemEmAndamentoID() >= 0)
+        if (tecnico.getOrdemEmAndamentoID() >= 0){
             return false;
+        }
         /*A fila de ordens abertas está vazia*/
         if (ordem == null){
             return false;
         }
         /*Verificações de serviço*/
         for (Servico servico: DAO.getServicoDAO().pegaTodosPorOrdemID(ordem.getOrdemID())) {
-            String peca = servico.getPeca().toLowerCase();
+            String peca = servico.getPeca();
             /*Serviço tem peça*/
-            if (!peca.equals("")) {
+            if (peca != null && !peca.equals("")) {
+                peca = peca.toLowerCase();
                 /*Tipo de peça nunca foi comprado*/
                 if (!this.estoque.getPecas().containsKey(peca))
                     throw new ComponentDoesNotExistException(peca);
@@ -397,9 +399,9 @@ public class MainController {
     Métodos relacionados a Estoque/OrdemCompra
      */
 
-    public Estoque criaEstoque(){
+    public Estoque carregaEstoque(){
         //this.estoque = DAO.getEstoqueDAO().cria()
-        return DAO.getEstoqueDAO().cria();
+        return DAO.getEstoqueDAO().carrega();
     }
 
     /**
@@ -460,6 +462,10 @@ public class MainController {
      */
     public ArrayList<Fatura> getFaturas(){
         return this.faturas;
+    }
+    /*Apenas para testes*/
+    public Estoque _getEstoque(){
+        return this.estoque;
     }
 
 }

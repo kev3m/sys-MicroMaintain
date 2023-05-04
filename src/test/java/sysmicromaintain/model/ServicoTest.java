@@ -12,7 +12,7 @@ public class ServicoTest {
 
     @Before
     public void setUp(){
-        servico = new Servico(CategoriaServico.Montagem, 70.0,"Placa Mãe","Parafusar placa mãe no gabinete",1);
+        servico = new Servico(CategoriaServico.Montagem, 70.0,"Placa Mãe","Parafusar placa mãe no gabinete",999);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class ServicoTest {
 
     @Test
     public void testGetOrdemID() {
-        assertEquals(1, servico.getOrdemID());
+        assertEquals(999, servico.getOrdemID());
     }
 
     @Test

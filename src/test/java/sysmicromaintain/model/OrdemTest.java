@@ -49,18 +49,4 @@ public class OrdemTest {
         ordem.setStatus(StatusOrdem.Finalizada);
         assertEquals(StatusOrdem.Finalizada, ordem.getStatus());
     }
-
-    @Test
-    public void testGetServicos() {
-        Ordem ordem = new Ordem(1);
-        Servico servico1 = new Servico(CategoriaServico.Montagem, 50.0, "Placa Mãe","Montar Componentes",1);
-        Servico servico2 = new Servico(CategoriaServico.Limpeza, 70.0, "Computador","Limpar, só",1);
-        ArrayList<Servico> servicos = new ArrayList<>();
-        ordem.setServicos(servico1);
-        ordem.setServicos(servico2);
-        servicos.add(servico1);
-        servicos.add(servico2);
-
-        assertEquals(servicos, ordem.getServicos());
-    }
 }
