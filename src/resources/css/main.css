@@ -1,0 +1,12 @@
+.main{
+    -fx-background-color: #EBEEF2;
+
+}
+
+.menu_button{
+    -fx-padding: 0px 0px 0px 30px;
+    -fx-graphic-text-gap: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #808698;
+}
