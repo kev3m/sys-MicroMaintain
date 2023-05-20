@@ -1,19 +1,19 @@
 .button{
     -fx-background-color: #808698;
-    -fx-border-radius: 10px 20px 30px 40px;
+    -fx-border-radius: 10px;
     -fx-border-insets: 5px;
     -fx-padding: 3px;
     -fx-border-width: 2px;
     -fx-font-size: 10px;
     -fx-font-weight: bold;
 }
+
 .button:hover{
     -fx-background-color: #5C83D8;
 
 }
 .user_text,.pass_text{
     -fx-prompt-text-fill: #808698;
-    -fx-font-weight: thin;
     -fx-border-color: #808698;
 }
 .user_text:focused,.pass_text:focused{
