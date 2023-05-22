@@ -174,12 +174,10 @@
             <TableView editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
                 <TableColumn id="column-header" prefWidth="50.0" styleClass="column-header" text="ID" />
-                <TableColumn id="column-header" prefWidth="120.0" styleClass="column-header" text="Data" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Cliente" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Técnico" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Status" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Pagamento" />
-                  <TableColumn id="column-header" prefWidth="93.0" styleClass="column-header" text="Valor" />
+                <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Data" />
+                  <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Peça" />
+                  <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Quantidade" />
+                  <TableColumn id="column-header" prefWidth="213.0" styleClass="column-header" text="Valor Unitário" />
               </columns>
             </TableView>
             <Pane prefHeight="200.0" prefWidth="200.0">
@@ -218,7 +216,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="180.0" layoutY="127.0" stylesheets="@css/main.css" text="Ordens de Serviço">
+      <Label layoutX="180.0" layoutY="127.0" stylesheets="@css/main.css" text="Ordens de Compra de Peças">
          <graphic>
             <ImageView fitHeight="17.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -229,11 +227,6 @@
                </effect>
             </ImageView>
          </graphic>
-      </Label>
-      <Label layoutX="180.0" layoutY="33.0" text="Olá, admin." textFill="#808698">
-         <font>
-            <Font size="26.0" />
-         </font>
       </Label>
       <Button layoutX="986.0" layoutY="21.0" mnemonicParsing="false" styleClass="close-button" stylesheets="@css/main.css" />
       <ImageView fx:id="closeButton" fitHeight="20.0" fitWidth="18.0" layoutX="1028.0" layoutY="25.0" onMouseClicked="#closeProgram" pickOnBounds="true" preserveRatio="true">

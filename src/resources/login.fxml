@@ -25,7 +25,7 @@
             <Font name="Roboto" size="12.0" />
          </font>
       </PasswordField>
-      <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="273.0" layoutY="304.0" minHeight="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="154.0" styleClass=".button" stylesheets="@css/login.css" text="Login" textAlignment="CENTER" textFill="#fc0000">
+      <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="273.0" layoutY="304.0" minHeight="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="154.0" styleClass=".button" stylesheets="@css/login.css" text="Login" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="10.0" />
          </font>

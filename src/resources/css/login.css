@@ -18,5 +18,4 @@
 }
 .user_text:focused,.pass_text:focused{
     -fx-prompt-text-fill: #5C83D8;
-    -fx-background-color: #5C83D8;
 }

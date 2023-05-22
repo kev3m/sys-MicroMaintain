@@ -13,22 +13,27 @@
     -fx-background-radius: 10;
     -fx-prompt-text-fill: #808698;
 
-
-
 }
-.table-view{
-    -fx-prompt-text-fill: #808698;
-    -fx-background-radius-radius: 0 0 10 10;
+#gridpane .table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 0;
+    -fx-background-radius: 0 0 10 10;
+}
+#gridpane .table-view .column-header{
+    -fx-text-fill: black;
+    -fx-background-color: #EBEEF2;
 }
 
-.grid-pane .table-view .table-column{
+.table-view .table-column{
     -fx-padding: -10 0 0 0;
+    -fx-border-radius: 0 0 10 10;
     -fx-border-color: transparent;
     -fx-background-color: #EBEEF2;
-    -fx-font-size: 13px;
+    -fx-font-size: 12px;
     -fx-min-height: 200px;
 
 }
+
 .new-order-button{
     -fx-background-color: #5C83D8;
     -fx-text-fill: #FFFFFF;
