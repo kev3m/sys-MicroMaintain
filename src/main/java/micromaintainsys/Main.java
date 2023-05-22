@@ -6,20 +6,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+import java.io.File;
 import java.net.URL;
 
 
 public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader();
+        String fxmlPath = "src/resources/login.fxml";
+        File file = new File(fxmlPath);
+        URL url = file.toURI().toURL();
 
-        URL fxmlURL = getClass().getResource("src/resources/micromaintain.fxml");
-        Parent root = loader.load(fxmlURL);
-
-        Scene scene = new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);
-        primaryStage.setTitle("MicroMaintainSys");
         primaryStage.show();
 
 
