@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.Controller">
+<AnchorPane fx:id="faturaAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.ordersController">
    <children>
       <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,7 +34,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens">
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
@@ -52,7 +52,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Técnicos">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTec" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Técnicos">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
@@ -70,7 +70,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Serviços">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToClientes" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Clientes">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
@@ -88,7 +88,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Faturas">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToFatura" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Faturas">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
@@ -106,7 +106,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens de Compra">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem_Compra" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens de Compra">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
@@ -124,7 +124,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Estoque">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToEstoque" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Estoque">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -229,7 +229,7 @@
          </graphic>
       </Label>
       <Button layoutX="986.0" layoutY="21.0" mnemonicParsing="false" styleClass="close-button" stylesheets="@css/main.css" />
-      <ImageView fx:id="closeButton" fitHeight="20.0" fitWidth="18.0" layoutX="1028.0" layoutY="25.0" onMouseClicked="#closeProgram" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="closeButton" fitHeight="20.0" fitWidth="18.0" layoutX="1028.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/icons/close.png" />
          </image>
