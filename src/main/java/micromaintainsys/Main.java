@@ -1,7 +1,6 @@
 package micromaintainsys;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,15 +12,18 @@ import java.net.URL;
 public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
-        String fxmlPath = "src/resources/login.fxml";
+
+        String fxmlPath = "src/resources/main.fxml";
         File file = new File(fxmlPath);
         URL url = file.toURI().toURL();
 
         FXMLLoader fxmlLoader = new FXMLLoader(url);
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        Scene scene = new Scene(fxmlLoader.load());
+
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);
         primaryStage.show();
+
 
 
 
