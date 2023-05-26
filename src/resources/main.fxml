@@ -142,7 +142,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Info">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Logout">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -171,15 +171,15 @@
           <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="433.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
+            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
-                <TableColumn id="column-header" prefWidth="50.0" styleClass="column-header" text="ID" />
-                <TableColumn id="column-header" prefWidth="120.0" styleClass="column-header" text="Data" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Cliente" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Técnico" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Status" />
-                  <TableColumn id="column-header" prefWidth="150.0" styleClass="column-header" text="Pagamento" />
-                  <TableColumn id="column-header" prefWidth="93.0" styleClass="column-header" text="Valor" />
+                <TableColumn id="column-header" fx:id="idColumn" prefWidth="50.0" styleClass="column-header" text="ID" />
+                <TableColumn id="column-header" fx:id="dataColumn" prefWidth="120.0" styleClass="column-header" text="Data" />
+                  <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="150.0" styleClass="column-header" text="Cliente" />
+                  <TableColumn id="column-header" fx:id="tecnicoColumn" prefWidth="150.0" styleClass="column-header" text="Técnico" />
+                  <TableColumn id="column-header" fx:id="statusColumn" prefWidth="150.0" styleClass="column-header" text="Status" />
+                  <TableColumn id="column-header" fx:id="pagamentoColumn" prefWidth="150.0" styleClass="column-header" text="Pagamento" />
+                  <TableColumn id="column-header" fx:id="valorColumn" prefWidth="93.0" styleClass="column-header" text="Valor" />
               </columns>
             </TableView>
             <Pane prefHeight="200.0" prefWidth="200.0">

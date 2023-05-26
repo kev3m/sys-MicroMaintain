@@ -142,7 +142,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Info">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Logout">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -171,13 +171,13 @@
           <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="433.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
+            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
-                <TableColumn id="column-header" prefWidth="50.0" styleClass="column-header" text="ID" />
-                <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Nome" />
-                  <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Endereço" />
-                  <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Telefone" />
-                  <TableColumn id="column-header" prefWidth="213.0" styleClass="column-header" text="Ordens" />
+                <TableColumn id="column-header" fx:id="clientID" prefWidth="50.0" styleClass="column-header" text="ID" />
+                <TableColumn id="column-header" fx:id="clientNome" prefWidth="200.0" styleClass="column-header" text="Nome" />
+                  <TableColumn id="column-header" fx:id="clientEndereco" prefWidth="200.0" styleClass="column-header" text="Endereço" />
+                  <TableColumn id="column-header" fx:id="clientTel" prefWidth="200.0" styleClass="column-header" text="Telefone" />
+                  <TableColumn id="column-header" fx:id="clientOrdens" prefWidth="213.0" styleClass="column-header" text="Ordens" />
               </columns>
             </TableView>
             <Pane prefHeight="200.0" prefWidth="200.0">
