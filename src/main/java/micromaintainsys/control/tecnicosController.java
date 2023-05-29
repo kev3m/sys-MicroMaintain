@@ -74,7 +74,7 @@ public class tecnicosController implements Initializable {
         this.nomeColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, String>("nome"));
         this.ordemAColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Integer>("ordemEmAndamentoID"));
         this.senhaColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, String>("senha"));
-        this.PermColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Boolean>("permissao"));
+        this.PermColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Boolean>("adm"));
         this.tableView.getItems().setAll(DAO.getTecnicoDAO().pegaTodos());
         tableView.setItems(observableList);
 
