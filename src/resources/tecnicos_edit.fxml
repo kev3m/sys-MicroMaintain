@@ -7,8 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -21,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="tecnicosAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.tecnicosController">
+<AnchorPane fx:id="tecnicosAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.editController">
    <children>
       <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -162,61 +160,80 @@
             </Button>
          </children>
       </VBox>
-      <GridPane id="gridpane" layoutX="180.0" layoutY="157.0" prefHeight="525.0" prefWidth="864.0" stylesheets="@css/main.css">
+      <GridPane id="gridpane" layoutX="180.0" layoutY="157.0" prefHeight="475.0" prefWidth="373.0" stylesheets="@css/main.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="433.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="258.0" minHeight="8.666671752929688" prefHeight="68.33332824707031" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="87.33334350585938" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="198.66665649414062" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
-              <columns>
-                <TableColumn id="column-header" fx:id="idColumn" maxWidth="50.0" prefWidth="50.0" styleClass="column-header" text="ID" />
-                <TableColumn id="column-header" fx:id="nomeColumn" maxWidth="200.0" prefWidth="200.0" styleClass="column-header" text="Nome" />
-                  <TableColumn id="column-header" fx:id="senhaColumn" maxWidth="200.0" prefWidth="200.0" styleClass="column-header" text="Senha" />
-                  <TableColumn id="column-header" fx:id="ordemAColumn" maxWidth="200.0" prefWidth="200.0" styleClass="column-header" text="Ordem Atual (ID)" />
-                  <TableColumn id="column-header" fx:id="PermColumn" maxWidth="213.0" prefWidth="213.0" styleClass="column-header" text="Permissões" />
-              </columns>
-            </TableView>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TextField layoutX="235.0" layoutY="34.0" promptText="Buscar..." styleClass="search-button" stylesheets="@css/main.css">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="412.0" layoutY="38.0" stylesheets="@css/main.css" text="Filtro" />
-                  <MenuButton layoutX="456.0" layoutY="32.0" mnemonicParsing="false" styleClass="filter-button" stylesheets="@css/main.css" text="Filtrar por ID">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </MenuButton>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="210.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Label styleClass="white-label" stylesheets="@css/main.css" text="Adicionar Técnico" textFill="#808698">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nome " styleClass="info-field" stylesheets="@css/main.css" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField maxWidth="-Infinity" prefWidth="150.0" promptText="Senha" styleClass="info-field" stylesheets="@css/main.css" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <MenuButton mnemonicParsing="false" styleClass="info-field" stylesheets="@css/main.css" text="Permissões" GridPane.rowIndex="3" GridPane.valignment="TOP">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+               <GridPane.margin>
+                  <Insets left="20.0" top="20.0" />
+               </GridPane.margin>
+            </MenuButton>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="163.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Adicionar Técnico" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/icons/procurar.png" />
+                        <Image url="@assets/icons/mais.png" />
                      </image>
                   </ImageView>
-               </children>
-            </Pane>
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
          <styleClass>
             <String fx:value="grid-pane" />
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <Button layoutX="882.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToTec_edit" prefHeight="25.0" prefWidth="162.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Gerenciar Técnicos">
+      <Button layoutX="821.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToTec" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Retornar">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/icons/definicoes.png" />
+                  <Image url="@assets/icons/desfazer.png" />
                </image>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Label layoutX="180.0" layoutY="127.0" stylesheets="@css/main.css" text="Técnicos Cadastrados">
+      <Label layoutX="180.0" layoutY="127.0" stylesheets="@css/main.css" text="Gerenciar Técnicos ">
          <graphic>
             <ImageView fitHeight="17.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -237,5 +254,77 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="427.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/icons/procurar.png" />
+         </image>
+      </ImageView>
+      <GridPane id="rev_gridpane" layoutX="582.0" layoutY="425.0" prefHeight="207.0" prefWidth="373.0" stylesheets="@css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@css/main.css" />
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@css/main.css" text="Remover" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons/remover.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label blendMode="ADD" styleClass="white-label" stylesheets="@css/main.css" text="Remover Técnico" textFill="#FFFFFF" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="ID" styleClass="remove-field" stylesheets="@css/main.css" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" top="15.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@css/main.css" text="ID do Técnico a ser removido" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" top="10.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="reverse-grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <GridPane id="gridpane" layoutX="582.0" layoutY="157.0" prefHeight="247.0" prefWidth="373.0" stylesheets="@css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="193.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
+         </children>
+         <styleClass>
+            <String fx:value="grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
    </children>
 </AnchorPane>

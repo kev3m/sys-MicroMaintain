@@ -5,19 +5,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.ResourceBundle;
 
-public class tecnicosController implements Initializable {
+public class editController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;
@@ -51,10 +51,6 @@ public class tecnicosController implements Initializable {
         new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
     }
     @FXML
-    void switchToTec_edit() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "tecnicos_edit.fxml");
-    }
-    @FXML
     void switchToClientes() throws IOException {
         new SceneSwitch(tecnicosAnchorPane, "clientes.fxml");
     }
@@ -74,13 +70,13 @@ public class tecnicosController implements Initializable {
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.idColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Integer>("tecnicoID"));
-        this.nomeColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, String>("nome"));
-        this.ordemAColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Integer>("ordemEmAndamentoID"));
-        this.senhaColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, String>("senha"));
-        this.PermColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Boolean>("adm"));
-        this.tableView.getItems().setAll(DAO.getTecnicoDAO().pegaTodos());
-        tableView.setItems(observableList);
+//        this.idColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Integer>("tecnicoID"));
+//        this.nomeColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, String>("nome"));
+//        this.ordemAColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Integer>("ordemEmAndamentoID"));
+//        this.senhaColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, String>("senha"));
+//        this.PermColumn.setCellValueFactory(new PropertyValueFactory<Tecnico, Boolean>("adm"));
+//        this.tableView.getItems().setAll(DAO.getTecnicoDAO().pegaTodos());
+//        tableView.setItems(observableList);
 
 
     }
