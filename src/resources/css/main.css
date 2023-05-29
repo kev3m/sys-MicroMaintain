@@ -12,26 +12,51 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.13), 20, 0, 0, 0);
     -fx-background-radius: 10;
     -fx-prompt-text-fill: #808698;
+    -fx-alignment: center-left;
+
+
 
 }
 #gridpane .table-view {
+    /*camada por trás da tabela*/
     -fx-background-color: #FFFFFF;
+    -fx-vertical-grid-lines-visible: true;
+    -fx-vertical-grid-line-color:#5C83D8;
     -fx-border-width: 0;
     -fx-background-radius: 0 0 10 10;
 }
 #gridpane .table-view .column-header{
-    -fx-text-fill: black;
+    /*tabela*/
+    -fx-text-fill: #808698;
     -fx-background-color: #EBEEF2;
+    -fx-alignment: center;
+    -fx-vertical-grid-lines-visible: true;
+
 }
 
 .table-view .table-column{
-    -fx-padding: -10 0 0 0;
+    -fx-padding: 50 0 0 25;
     -fx-border-radius: 0 0 10 10;
     -fx-border-color: transparent;
-    -fx-background-color: #EBEEF2;
+    -fx-vertical-grid-lines-visible: true;
+    -fx-vertical-grid-line-color:#5C83D8;
     -fx-font-size: 12px;
-    -fx-min-height: 200px;
+    -fx-alignment: center-left;
 
+
+
+}
+
+.table-view .scroll-bar {
+    -fx-background-color: #EBEEF2;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #EBEEF2;
+}
+
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: #EBEEF2;
 }
 
 .new-order-button{
