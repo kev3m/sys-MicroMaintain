@@ -11,4 +11,6 @@ module micromaintainsys {
     opens micromaintainsys to javafx.fxml;
     exports micromaintainsys;
     exports micromaintainsys.control;
+    exports micromaintainsys.control.management_Controllers;
+    opens micromaintainsys.control.management_Controllers to javafx.fxml;
 }
