@@ -4,8 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="tecnicosAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.tec_MController">
+<AnchorPane fx:id="clientesAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.cliente_GerController">
    <children>
       <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,16 +26,16 @@
                <children>
                   <ImageView fitHeight="67.0" fitWidth="89.0" layoutX="29.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/mmLogo.png" />
+                        <Image url="@../assets/mmLogo.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Ordens">
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/icons/orders.png" />
+                        <Image url="@../assets/icons/orders.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -49,14 +49,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="tecButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTec" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Técnicos">
+            <Button fx:id="tecButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTec" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Técnicos">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/icons/tecnico.png" />
+                        <Image url="@../assets/icons/tecnico.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -67,14 +67,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToClientes" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Clientes">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToClientes" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Clientes">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/icons/servicos.png" />
+                        <Image url="@../assets/icons/servicos.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -85,14 +85,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToFatura" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Faturas">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToFatura" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Faturas">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/icons/fatura.png" />
+                        <Image url="@../assets/icons/fatura.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -103,14 +103,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem_Compra" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens de Compra">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem_Compra" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Ordens de Compra">
                <padding>
                   <Insets left="30.0" top="5.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/icons/ordem_compra.png" />
+                        <Image url="@../assets/icons/ordem_compra.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -121,14 +121,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToEstoque" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Estoque">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToEstoque" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Estoque">
                <padding>
                   <Insets left="30.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
                      <image>
-                        <Image url="@assets/icons/estoque.png" />
+                        <Image url="@../assets/icons/estoque.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -139,14 +139,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Logout">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Logout">
                <padding>
                   <Insets left="30.0" />
                </padding>
                <graphic>
                   <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/icons/info.png" />
+                        <Image url="@../assets/icons/info.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -159,7 +159,7 @@
             </Button>
          </children>
       </VBox>
-      <GridPane id="gridpane" layoutX="180.0" layoutY="157.0" prefHeight="525.0" prefWidth="373.0" stylesheets="@css/main.css">
+      <GridPane id="gridpane" layoutX="180.0" layoutY="157.0" prefHeight="346.0" prefWidth="373.0" stylesheets="@../css/main.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -168,11 +168,10 @@
           <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="87.33334350585938" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="198.66665649414062" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" />
-            <Label styleClass="white-label" stylesheets="@css/main.css" text="Adicionar Técnico" textFill="#808698">
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Adicionar Cliente" textFill="#808698">
                <font>
                   <Font size="16.0" />
                </font>
@@ -180,40 +179,53 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Insira o nome" styleClass="info-field" stylesheets="@css/main.css" GridPane.rowIndex="1">
+            <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Insira o nome" styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="passField" maxWidth="-Infinity" prefWidth="150.0" promptText="Insira a senha" styleClass="info-field" stylesheets="@css/main.css" GridPane.rowIndex="2">
+            <TextField fx:id="adressField" maxWidth="-Infinity" prefWidth="150.0" promptText="Insira o endereço" styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="addTecButton" mnemonicParsing="false" onAction="#addTecnico" prefHeight="25.0" prefWidth="163.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Adicionar Técnico" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+            <Button fx:id="addTecButton" mnemonicParsing="false" onAction="#addClient" prefHeight="25.0" prefWidth="163.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Adicionar Cliente" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/icons/mais.png" />
+                        <Image url="@../assets/icons/mais.png" />
                      </image>
                   </ImageView>
                </graphic>
                <GridPane.margin>
-                  <Insets bottom="20.0" left="20.0" />
+                  <Insets bottom="35.0" right="20.0" />
                </GridPane.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label styleClass="white-label" stylesheets="@css/main.css" text="Nome " textFill="#808698" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Nome " textFill="#808698" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="20.0" top="10.0" />
                </GridPane.margin>
             </Label>
-            <Label styleClass="white-label" stylesheets="@css/main.css" text="Senha " textFill="#808698" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Endereço" textFill="#808698" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="20.0" top="10.0" />
                </GridPane.margin>
+            </Label>
+            <TextField fx:id="phoneField" maxWidth="-Infinity" prefWidth="150.0" promptText="Insira o telefone" styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Telefone" textFill="#808698" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
             </Label>
          </children>
          <styleClass>
@@ -221,11 +233,11 @@
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <Button layoutX="908.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchToTec" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Retornar">
+      <Button layoutX="908.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchToClientes" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Retornar">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/icons/desfazer.png" />
+                  <Image url="@../assets/icons/desfazer.png" />
                </image>
             </ImageView>
          </graphic>
@@ -233,11 +245,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="180.0" layoutY="127.0" stylesheets="@css/main.css" text="Gerenciar Técnicos ">
+      <Label layoutX="180.0" layoutY="127.0" stylesheets="@../css/main.css" text="Gerenciar Clientes">
          <graphic>
             <ImageView fitHeight="17.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/icons/tecnico.png" />
+                  <Image url="@../assets/icons/tecnico.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="0.5" />
@@ -245,16 +257,16 @@
             </ImageView>
          </graphic>
       </Label>
-      <Button layoutX="986.0" layoutY="21.0" mnemonicParsing="false" styleClass="close-button" stylesheets="@css/main.css" />
+      <Button layoutX="986.0" layoutY="21.0" mnemonicParsing="false" styleClass="close-button" stylesheets="@../css/main.css" />
       <ImageView fx:id="closeButton" fitHeight="20.0" fitWidth="18.0" layoutX="1028.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/icons/close.png" />
+            <Image url="@../assets/icons/close.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <GridPane id="rev_gridpane" layoutX="582.0" layoutY="518.0" prefHeight="164.0" prefWidth="459.0" stylesheets="@css/main.css">
+      <GridPane id="rev_gridpane" layoutX="179.0" layoutY="523.0" prefHeight="164.0" prefWidth="373.0" stylesheets="@../css/main.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -265,12 +277,12 @@
             <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@css/main.css" />
-            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#removeTec" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@css/main.css" text="Remover" GridPane.rowIndex="3">
+            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#removeClient" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Remover" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/icons/remover.png" />
+                        <Image url="@../assets/icons/remover.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -281,7 +293,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label blendMode="ADD" styleClass="white-label" stylesheets="@css/main.css" text="Remover Técnico" textFill="#FFFFFF" GridPane.rowIndex="1">
+            <Label blendMode="ADD" styleClass="white-label" stylesheets="@../css/main.css" text="Remover Cliente" textFill="#FFFFFF" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -289,7 +301,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="idRemoveField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="ID" styleClass="remove-field" stylesheets="@css/main.css" GridPane.rowIndex="2">
+            <TextField fx:id="idRemoveField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="ID" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" top="15.0" />
                </GridPane.margin>
@@ -297,7 +309,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@css/main.css" text="ID do Técnico a ser removido" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="ID do cliente a ser removido" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="20.0" top="5.0" />
                </GridPane.margin>
@@ -308,20 +320,20 @@
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <GridPane id="gridpane" layoutX="582.0" layoutY="157.0" prefHeight="346.0" prefWidth="459.0" stylesheets="@css/main.css">
+      <GridPane id="gridpane" layoutX="582.0" layoutY="157.0" prefHeight="530.0" prefWidth="459.0" stylesheets="@../css/main.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="67.33334350585938" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="158.66665649414062" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="46.333343505859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="346.6666564941406" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Pane prefHeight="62.0" prefWidth="373.0" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="21.0" styleClass="white-label" stylesheets="@css/main.css" text="Insira o ID do Técnico que deseja atualizar" textFill="#808698" />
-                  <TextField fx:id="idField" layoutX="21.0" layoutY="23.0" prefHeight="27.0" prefWidth="72.0" promptText="Buscar..." styleClass="search-button" stylesheets="@css/main.css">
+                  <Label layoutX="21.0" styleClass="white-label" stylesheets="@../css/main.css" text="Insira o ID do cliente que deseja atualizar" textFill="#808698" />
+                  <TextField fx:id="idField" layoutX="21.0" layoutY="23.0" prefHeight="27.0" prefWidth="72.0" promptText="Buscar..." styleClass="search-button" stylesheets="@../css/main.css">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -329,11 +341,11 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchTec" style="-fx-background-color: transparent;">
+                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchCliente" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@assets/icons/procurar.png" />
+                              <Image url="@../assets/icons/procurar.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -345,7 +357,7 @@
                      </cursor>
                   </Button>
                </children></Pane>
-            <Label styleClass="white-label" stylesheets="@css/main.css" text="Atualizar Técnico" textFill="#808698">
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Atualizar Cliente" textFill="#808698">
                <font>
                   <Font size="16.0" />
                </font>
@@ -353,29 +365,21 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <TextField fx:id="passFieldUpdate" maxWidth="-Infinity" prefWidth="150.0" promptText="Senha" styleClass="info-field" stylesheets="@css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TextField fx:id="adressFieldUpdate" maxWidth="-Infinity" prefWidth="150.0" promptText="Endereço" styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets left="20.0" top="-15.0" />
+                  <Insets left="20.0" top="75.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="nameFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nome " styleClass="info-field" stylesheets="@css/main.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="nameFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nome " styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="20.0" top="5.0" />
                </GridPane.margin>
             </TextField>
-            <CheckBox fx:id="admCheck" mnemonicParsing="false" text="Administrador" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets right="70.0" top="-5.0" />
-               </GridPane.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </CheckBox>
-            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateTec" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateCliente" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/icons/atualizar.png" />
+                        <Image url="@../assets/icons/atualizar.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -386,16 +390,16 @@
                   <Insets bottom="20.0" left="20.0" />
                </GridPane.margin>
             </Button>
-            <TextField fx:id="OrderFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="115.0" promptText="Ordem Atual" styleClass="info-field" stylesheets="@css/main.css" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="phoneFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="115.0" promptText="Telefone" styleClass="info-field" stylesheets="@../css/main.css" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets right="52.0" top="5.0" />
+                  <Insets left="20.0" top="140.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="UpdateButton1" mnemonicParsing="false" onAction="#clearUpdateFields" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Limpar" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Button fx:id="UpdateButton1" mnemonicParsing="false" onAction="#clearUpdateFields" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Limpar" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/icons/apagador.png" />
+                        <Image url="@../assets/icons/apagador.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -406,6 +410,19 @@
                   <Insets bottom="20.0" left="150.0" />
                </GridPane.margin>
             </Button>
+            <ListView fx:id="clientOrders" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="133.0" prefWidth="159.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="52.0" top="35.0" />
+               </GridPane.margin>
+            </ListView>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Ordens solicitadas pelo cliente" textFill="#808698" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="52.0" top="14.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
          </children>
          <styleClass>
             <String fx:value="grid-pane" />
