@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.*;
+import static micromaintainsys.utils.ViewUtils.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.ResourceBundle;
 
-import static micromaintainsys.utils.ViewUtils.*;
+
 
 
 public class cliente_GerController implements Initializable {
@@ -167,35 +168,8 @@ public class cliente_GerController implements Initializable {
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(clientesAnchorPane, "ordem_compra.fxml");
     }
-    void letterFilter(TextField field){
-        field.setTextFormatter(new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("[a-zA-Z\\s]*")) {
-                return change;
-            }
-            return null;
-        }));
-    }
-    void numberFilter(TextField field){
-        field.setTextFormatter(new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("-?\\d*")) {
-                return change;
-            }
-            return null;
-        }));
 
-    }
-    void phoneFilter(TextField field){
-        field.setTextFormatter(new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("-?\\d{0,11}")) {
-                return change;
-            }
-            return null;
-        }));
 
-    }
 
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());
     @Override

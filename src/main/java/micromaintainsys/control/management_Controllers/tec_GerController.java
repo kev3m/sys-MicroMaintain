@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 
 
-public class tec_MController implements Initializable {
+public class tec_GerController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;
@@ -161,25 +161,6 @@ public class tec_MController implements Initializable {
     @FXML
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(tecnicosAnchorPane, "ordem_compra.fxml");
-    }
-    void letterFilter(TextField field){
-        field.setTextFormatter(new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("[a-zA-Z\\s]*")) {
-                return change;
-            }
-            return null;
-        }));
-    }
-    void numberFilter(TextField field){
-        field.setTextFormatter(new TextFormatter<>(change -> {
-            String newText = change.getControlNewText();
-            if (newText.matches("-?\\d*")) {
-                return change;
-            }
-            return null;
-        }));
-
     }
 
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());
