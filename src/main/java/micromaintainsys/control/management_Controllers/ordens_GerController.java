@@ -80,7 +80,7 @@ public class ordens_GerController implements Initializable {
         else{
             int id = Integer.parseInt(idField.getText());
             Cliente cliente = DAO.getClienteDAO().pegaPorId(id);
-            Ordem ordem = new Ordem(Cliente);
+            Ordem ordem = new Ordem(cliente.getId());
             DAO.getOrdemDAO().cria(ordem.getClienteID());
             new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
 
