@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -50,12 +49,6 @@ public class ordens_GerController implements Initializable {
     private TextField idRemoveField1;
 
     @FXML
-    private TextField tecField;
-
-    @FXML
-    private TextField nameFieldUpdate;
-
-    @FXML
     private Button searchButton;
 
     @FXML
@@ -65,9 +58,18 @@ public class ordens_GerController implements Initializable {
     private Button servicosPageButtonUp;
 
     @FXML
-    private Button tecButton;
+    private ChoiceBox<StatusOrdem> statusChoice;
+
     @FXML
-    private ChoiceBox<?> statusChoice;
+    private Button tecButton;
+
+    @FXML
+    private TextField tecField;
+    @FXML
+    private TextField idSearchField;
+    @FXML
+    private TextField tecFieldUpdate;
+
 
     @FXML
     void addOrdem() throws IOException {
@@ -76,6 +78,9 @@ public class ordens_GerController implements Initializable {
         }
         else if (DAO.getClienteDAO().pegaPorId(Integer.parseInt(idField.getText())) == null){
             showErrorAlert("Cliente não encontrado", "Por favor, insira um ID válido");
+        }
+        else if (DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(tecField.getText())) == null){
+            showErrorAlert("Técnico não encontrado", "Por favor, insira um ID válido");
         }
         else{
             int id = Integer.parseInt(idField.getText());
@@ -89,9 +94,9 @@ public class ordens_GerController implements Initializable {
     }
 
     @FXML
-    void searchTec(){
-        String id = idField.getText();
-        if (id.isEmpty() || DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(id)) == null){
+    void searchOrder(){
+        String id = idSearchField.getText();
+        if (id.isEmpty() || DAO.getOrdemDAO().pegaPorId(Integer.parseInt(id)) == null){
             showErrorAlert("Campo vazio ou ID inválido", "Por favor, verifique o campo de ID");
         }
         else{
@@ -102,61 +107,49 @@ public class ordens_GerController implements Initializable {
 
     void fillUpdateFields(){
         int id = Integer.parseInt(idField.getText());
-        String name = DAO.getTecnicoDAO().pegaPorId(id).getNome();
-        String pass = DAO.getTecnicoDAO().pegaPorId(id).getSenha();
-        int order = DAO.getTecnicoDAO().pegaPorId(id).getOrdemEmAndamentoID();
-        boolean adm = DAO.getTecnicoDAO().pegaPorId(id).isAdm();
-        nameFieldUpdate.setText(name);
-        passFieldUpdate.setText(pass);
-        OrderFieldUpdate.setText(String.valueOf(order));
-        admCheck.setSelected(adm);
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(id);
+        tecFieldUpdate.setText(String.valueOf(ordem.getTecnicoID()));
+        statusChoice.setValue(ordem.getStatus());
     }
 
     @FXML
     void clearUpdateFields(){
-        nameFieldUpdate.setText("");
-        passFieldUpdate.setText("");
-        OrderFieldUpdate.setText("");
-        admCheck.setSelected(false);
+        tecFieldUpdate.clear();
+        statusChoice.setValue(null);
 
     }
     @FXML
-    void updateTec(){
+    void updateOrder(){
         String idText = idField.getText();
-        String name = nameFieldUpdate.getText();
-        String pass = passFieldUpdate.getText();
-        String order = OrderFieldUpdate.getText();
-        boolean adm = admCheck.isSelected();
-        if (idText.isEmpty() || DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(idText)) == null){
-            showErrorAlert("Campo vazio ou ID inválido", "Por favor, verifique o campo de ID");
+        String tecText = tecFieldUpdate.getText();
+        StatusOrdem status = statusChoice.getValue();
+        if (idText.isEmpty() || tecText.isEmpty() || status == null){
+            showWarningAlert("Campo vazio", "Para prosseguir, preencha todos os campos");
+        }
+        else if (DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText)) == null){
+            showErrorAlert("Ordem não encontrada", "Por favor, insira um ID válido");
+        }
+        else if (DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(tecText)) == null){
+            showErrorAlert("Técnico não encontrado", "Por favor, insira um ID válido");
         }
         else{
-            if (nameFieldUpdate.getText().isEmpty() || passFieldUpdate.getText().isEmpty() || OrderFieldUpdate.getText().isEmpty()){
-                showWarningAlert("Campo vazio", "Para prosseguir, preencha todos os campos");
-            }
-            else {
-                Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(idText));
-                tecnico.setNome(name);
-                tecnico.setSenha(pass);
-                tecnico.setOrdemEmAndamentoID(Integer.parseInt(order));
-                tecnico.setAdm(adm);
-                DAO.getTecnicoDAO().atualiza(tecnico);
-                showInformationAlert("Técnico atualizado", "O técnico foi atualizado com sucesso");
-            }
+            Ordem ordem = DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText));
+            ordem.setStatus(status);
+            ordem.setTecnicoID(Integer.parseInt(tecText));
+            DAO.getOrdemDAO().atualiza(ordem);
+            showInformationAlert("Ordem atualizada", "A ordem foi atualizada com sucesso");
         }
     }
     @FXML
-    void removeTec(){
-        String idText = idRemoveField.getText();
-        if (idText.isEmpty() || DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(idText)) == null){
-            showErrorAlert("Campo vazio ou ID inválido", "Por favor, verifique o campo de ID");
-
+    void removeOrder(){
+        String idText = idRemoveField1.getText();
+        if (idText.isEmpty() || DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText)) == null){
+            showErrorAlert("Ordem não encontrada", "Por favor, insira um ID válido");
         }
         else{
-            DAO.getTecnicoDAO().remove(Integer.parseInt(idText));
-            showInformationAlert("Técnico removido", "O técnico foi removido com sucesso");
+            DAO.getOrdemDAO().remove(Integer.parseInt(idText));
+            showInformationAlert("Ordem removida", "A ordem foi removida com sucesso");
         }
-
     }
 
     @FXML
@@ -189,12 +182,13 @@ public class ordens_GerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Configurar o filtro de entrada para aceitar somente números
             numberFilter(idField);
-            numberFilter(idRemoveField);
+            numberFilter(idRemoveField1);
+            numberFilter(tecField);
+
 //            numberFilter(OrderFieldUpdate);
 
         // Configura o filtro de entrada para aceitar letras
-            letterFilter(nameField);
-            letterFilter(nameFieldUpdate);
+
 
 
 

@@ -316,7 +316,7 @@
             <Pane prefHeight="62.0" prefWidth="373.0" GridPane.rowIndex="1">
                <children>
                   <Label layoutX="21.0" styleClass="white-label" stylesheets="@../css/main.css" text="Insira o ID da Ordem que deseja atualizar" textFill="#808698" />
-                  <TextField fx:id="idField" layoutX="21.0" layoutY="23.0" prefHeight="27.0" prefWidth="72.0" promptText="Buscar..." styleClass="search-button" stylesheets="@../css/main.css">
+                  <TextField fx:id="idSearchField" layoutX="21.0" layoutY="23.0" prefHeight="27.0" prefWidth="72.0" promptText="Buscar..." styleClass="search-button" stylesheets="@../css/main.css">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -324,7 +324,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchTec" style="-fx-background-color: transparent;">
+                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchOrder" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -348,12 +348,12 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <TextField fx:id="nameFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nome " styleClass="info-field" stylesheets="@../css/main.css" text="ID do técnico" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="tecFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nome " styleClass="info-field" stylesheets="@../css/main.css" text="ID do técnico" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="20.0" top="5.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateTec" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateOrder" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
