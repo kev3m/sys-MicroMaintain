@@ -79,15 +79,12 @@ public class ordens_GerController implements Initializable {
         else if (DAO.getClienteDAO().pegaPorId(Integer.parseInt(idField.getText())) == null){
             showErrorAlert("Cliente não encontrado", "Por favor, insira um ID válido");
         }
-        else if (DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(tecField.getText())) == null){
-            showErrorAlert("Técnico não encontrado", "Por favor, insira um ID válido");
-        }
         else{
             int id = Integer.parseInt(idField.getText());
             Cliente cliente = DAO.getClienteDAO().pegaPorId(id);
             Ordem ordem = new Ordem(cliente.getId());
             DAO.getOrdemDAO().cria(ordem.getClienteID());
-            new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
+            new SceneSwitch(tecnicosAnchorPane, "main.fxml");
 
         }
 
@@ -106,9 +103,15 @@ public class ordens_GerController implements Initializable {
 
 
     void fillUpdateFields(){
-        int id = Integer.parseInt(idField.getText());
+        int id = Integer.parseInt(idSearchField.getText());
         Ordem ordem = DAO.getOrdemDAO().pegaPorId(id);
-        tecFieldUpdate.setText(String.valueOf(ordem.getTecnicoID()));
+        if (ordem.getTecnicoID() == 0){
+            tecFieldUpdate.setText("0");
+        }
+        else {
+            Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
+            tecFieldUpdate.setText(String.valueOf(tecnico.getTecnicoID()));
+        }
         statusChoice.setValue(ordem.getStatus());
     }
 
@@ -120,7 +123,7 @@ public class ordens_GerController implements Initializable {
     }
     @FXML
     void updateOrder(){
-        String idText = idField.getText();
+        String idText = idSearchField.getText();
         String tecText = tecFieldUpdate.getText();
         StatusOrdem status = statusChoice.getValue();
         if (idText.isEmpty() || tecText.isEmpty() || status == null){
@@ -157,6 +160,10 @@ public class ordens_GerController implements Initializable {
         new SceneSwitch(tecnicosAnchorPane, "main.fxml");
     }
     @FXML
+    void switchToServicos() throws IOException {
+        new SceneSwitch(tecnicosAnchorPane, "management_Scenes/servicos_ger.fxml");
+    }
+    @FXML
     void switchToTec() throws IOException {
         new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
     }
@@ -183,11 +190,14 @@ public class ordens_GerController implements Initializable {
         // Configurar o filtro de entrada para aceitar somente números
             numberFilter(idField);
             numberFilter(idRemoveField1);
-            numberFilter(tecField);
+            numberFilter(tecFieldUpdate);
+            numberFilter(idSearchField);
 
 //            numberFilter(OrderFieldUpdate);
 
-        // Configura o filtro de entrada para aceitar letras
+        ObservableList<StatusOrdem> statusOrdemObservableList = FXCollections.observableArrayList(StatusOrdem.values());
+        statusChoice.setItems(statusOrdemObservableList);
+        statusChoice.getSelectionModel().selectFirst();
 
 
 
