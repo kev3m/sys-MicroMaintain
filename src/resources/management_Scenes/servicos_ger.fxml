@@ -71,11 +71,11 @@
                   <TableColumn id="column-header" fx:id="IdColumn" maxWidth="200.0" minWidth="0.0" prefWidth="54.0" style="-fx-text-alignment: center;" styleClass="column-header" text="ID" />
                   <TableColumn id="column-header" fx:id="AbertColumn" maxWidth="317.0" prefWidth="84.0" styleClass="column-header" text="Abertura" />
                   <TableColumn id="column-header" fx:id="CategoriaColumn" maxWidth="200.0" minWidth="0.0" prefWidth="97.0" styleClass="column-header" text="Categoria" />
-                  <TableColumn id="column-header" fx:id="PeçaColumn" maxWidth="352.0" prefWidth="107.0" styleClass="column-header" text="Peça" />
-                  <TableColumn id="column-header" fx:id="ValorColumn" maxWidth="317.0" minWidth="-1.0" prefWidth="0.0" styleClass="column-header" text="Valor" />
-                  <TableColumn id="column-header" fx:id="DescColumn" maxWidth="317.0" prefWidth="143.0" styleClass="column-header" text="Descrição" />
-                  <TableColumn id="column-header" fx:id="AvColumn" maxWidth="317.0" prefWidth="57.0" styleClass="column-header" text="Nota" />
-                  <TableColumn id="column-header" fx:id="FinColumn" maxWidth="317.0" prefWidth="89.0" styleClass="column-header" text="Finalização" />
+                  <TableColumn id="column-header" fx:id="PeçaColumn" maxWidth="352.0" prefWidth="88.0" styleClass="column-header" text="Peça" />
+                  <TableColumn id="column-header" fx:id="DescColumn" maxWidth="317.0" prefWidth="191.0" styleClass="column-header" text="Descrição" />
+                  <TableColumn id="column-header" fx:id="AvColumn" maxWidth="317.0" prefWidth="50.0" styleClass="column-header" text="Nota" />
+                  <TableColumn id="column-header" fx:id="ValorColumn" maxWidth="317.0" minWidth="-1.0" prefWidth="50.0" styleClass="column-header" text="Valor" />
+                  <TableColumn id="column-header" fx:id="FinColumn" maxWidth="317.0" prefWidth="87.0" styleClass="column-header" text="Finalização" />
                </columns>
             </TableView>
             <TextField fx:id="OrdemID" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="133.0" promptText="Insira o ID da Ordem" styleClass="info-field" stylesheets="@../css/main.css">
