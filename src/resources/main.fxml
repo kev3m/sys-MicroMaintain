@@ -209,11 +209,11 @@
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <Button fx:id="newOrderButton" layoutX="911.0" layoutY="122.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Novo Cliente">
+      <Button fx:id="newOrderButton" layoutX="911.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToOrdem_ger" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Gerenciar Ordens">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/icons/mais.png" />
+                  <Image url="@assets/icons/definicoes.png" />
                </image>
             </ImageView>
          </graphic>
