@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -17,151 +18,20 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="tecnicosAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.ordens_GerController">
+<AnchorPane fx:id="tecnicosAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.servicos_GerController">
    <children>
-      <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane prefHeight="88.0" prefWidth="180.0">
          <children>
-            <Pane prefHeight="88.0" prefWidth="180.0">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="89.0" layoutX="29.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/mmLogo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Ordens">
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/icons/orders.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="30.0" top="5.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="12.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="tecButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTec" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Técnicos">
-               <padding>
-                  <Insets left="30.0" top="5.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/icons/tecnico.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="12.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToClientes" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Clientes">
-               <padding>
-                  <Insets left="30.0" top="5.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/icons/servicos.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="12.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToFatura" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Faturas">
-               <padding>
-                  <Insets left="30.0" top="5.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/icons/fatura.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="12.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem_Compra" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Ordens de Compra">
-               <padding>
-                  <Insets left="30.0" top="5.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/icons/ordem_compra.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="12.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToEstoque" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Estoque">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
-                     <image>
-                        <Image url="@../assets/icons/estoque.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="12.0" top="15.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@../css/main.css" text="Logout">
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-               <graphic>
-                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/icons/info.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="Roboto" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="190.0" />
-               </VBox.margin>
-            </Button>
+            <ImageView fitHeight="67.0" fitWidth="89.0" layoutX="29.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+               <image>
+                  <Image url="@../assets/mmLogo.png" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
-      <GridPane id="gridpane" layoutX="180.0" layoutY="157.0" prefHeight="346.0" prefWidth="557.0" stylesheets="@../css/main.css">
+      </Pane>
+      <GridPane id="gridpane" layoutX="35.0" layoutY="157.0" prefHeight="346.0" prefWidth="702.0" stylesheets="@../css/main.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -170,8 +40,25 @@
           <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="294.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
-            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Serviços da Ordem: #0" textFill="#808698" GridPane.valignment="TOP">
+            <Pane prefHeight="52.0" prefWidth="597.0">
+               <children>
+                  <Button fx:id="searchOrderButton" layoutX="297.0" layoutY="16.0" mnemonicParsing="false" onAction="#refreshTable" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fx:id="searchOrderServ" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/procurar.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children></Pane>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Serviços da Ordem: " textFill="#808698" GridPane.valignment="TOP">
                <font>
                   <Font size="16.0" />
                </font>
@@ -179,15 +66,23 @@
                   <Insets left="20.0" top="16.0" />
                </GridPane.margin>
             </Label>
-            <TableView fx:id="tableView" editable="true" prefHeight="284.0" prefWidth="557.0" stylesheets="@../css/main.css" GridPane.rowIndex="1">
+            <TableView fx:id="tableView" editable="true" prefHeight="294.0" prefWidth="720.0" stylesheets="@../css/main.css" GridPane.rowIndex="1">
                <columns>
-                  <TableColumn id="column-header" fx:id="CategoriaColumn" maxWidth="121.0" prefWidth="100.0" styleClass="column-header" text="Categoria" />
-                  <TableColumn id="column-header" fx:id="PecaColumn" maxWidth="200.0" prefWidth="100.0" styleClass="column-header" text="Peça" />
-                  <TableColumn id="column-header" fx:id="DescColumn" maxWidth="352.0" prefWidth="185.33334350585938" styleClass="column-header" text="Descrição" />
-                  <TableColumn id="column-header" fx:id="ValorColumn" maxWidth="317.0" minWidth="0.0" prefWidth="76.66668701171875" styleClass="column-header" text="Valor" />
-                  <TableColumn id="column-header" fx:id="avColumn" maxWidth="317.0" prefWidth="92.0" styleClass="column-header" text="Avaliação" />
+                  <TableColumn id="column-header" fx:id="IdColumn" maxWidth="200.0" minWidth="0.0" prefWidth="54.0" style="-fx-text-alignment: center;" styleClass="column-header" text="ID" />
+                  <TableColumn id="column-header" fx:id="AbertColumn" maxWidth="317.0" prefWidth="84.0" styleClass="column-header" text="Abertura" />
+                  <TableColumn id="column-header" fx:id="CategoriaColumn" maxWidth="200.0" minWidth="0.0" prefWidth="97.0" styleClass="column-header" text="Categoria" />
+                  <TableColumn id="column-header" fx:id="PeçaColumn" maxWidth="352.0" prefWidth="107.0" styleClass="column-header" text="Peça" />
+                  <TableColumn id="column-header" fx:id="ValorColumn" maxWidth="317.0" minWidth="-1.0" prefWidth="0.0" styleClass="column-header" text="Valor" />
+                  <TableColumn id="column-header" fx:id="DescColumn" maxWidth="317.0" prefWidth="143.0" styleClass="column-header" text="Descrição" />
+                  <TableColumn id="column-header" fx:id="AvColumn" maxWidth="317.0" prefWidth="57.0" styleClass="column-header" text="Nota" />
+                  <TableColumn id="column-header" fx:id="FinColumn" maxWidth="317.0" prefWidth="89.0" styleClass="column-header" text="Finalização" />
                </columns>
             </TableView>
+            <TextField fx:id="OrdemID" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="133.0" promptText="Insira o ID da Ordem" styleClass="info-field" stylesheets="@../css/main.css">
+               <GridPane.margin>
+                  <Insets left="170.0" />
+               </GridPane.margin>
+            </TextField>
          </children>
          <styleClass>
             <String fx:value="grid-pane" />
@@ -206,7 +101,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="180.0" layoutY="127.0" stylesheets="@../css/main.css" text="Gerenciar Serviços">
+      <Label layoutX="38.0" layoutY="125.0" stylesheets="@../css/main.css" text="Gerenciar Serviços">
          <graphic>
             <ImageView fitHeight="17.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -227,19 +122,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <GridPane id="gridpane" layoutX="753.0" layoutY="157.0" prefHeight="346.0" prefWidth="288.0" stylesheets="@../css/main.css">
+      <GridPane id="gridpane" layoutX="763.0" layoutY="157.0" prefHeight="346.0" prefWidth="278.0" stylesheets="@../css/main.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="67.33334350585938" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="158.66665649414062" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="198.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane prefHeight="62.0" prefWidth="373.0" GridPane.rowIndex="1">
+            <Pane prefHeight="67.0" prefWidth="278.0" GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="21.0" styleClass="white-label" stylesheets="@../css/main.css" text="Insira o ID da Ordem que deseja atualizar" textFill="#808698" />
+                  <Label layoutX="21.0" styleClass="white-label" stylesheets="@../css/main.css" text="Insira o ID do serviço que deseja atualizar" textFill="#808698" />
                   <TextField fx:id="idSearchField" layoutX="21.0" layoutY="23.0" prefHeight="27.0" prefWidth="72.0" promptText="Buscar..." styleClass="search-button" stylesheets="@../css/main.css">
                      <font>
                         <Font size="13.0" />
@@ -248,7 +143,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchOrder" style="-fx-background-color: transparent;">
+                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchServico" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -264,7 +159,7 @@
                      </cursor>
                   </Button>
                </children></Pane>
-            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Atualizar Ordem" textFill="#808698">
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Atualizar Serviço" textFill="#808698">
                <font>
                   <Font size="16.0" />
                </font>
@@ -272,12 +167,12 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <TextField fx:id="tecFieldUpdate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nome " styleClass="info-field" stylesheets="@../css/main.css" text="ID do técnico" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <TextField fx:id="notaServico" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nota" styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="20.0" top="5.0" />
                </GridPane.margin>
             </TextField>
-            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateOrder" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateServico" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -307,14 +202,22 @@
                   <Insets bottom="20.0" left="150.0" />
                </GridPane.margin>
             </Button>
-            <ChoiceBox fx:id="statusChoice" prefWidth="150.0" GridPane.rowIndex="2">
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Status" textFill="#808698" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets bottom="50.0" left="20.0" />
                </GridPane.margin>
-            </ChoiceBox>
-            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Status" textFill="#808698" GridPane.rowIndex="2">
+            </Label>
+            <CheckBox fx:id="encerradoCheck" mnemonicParsing="false" text="Encerrado" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                <GridPane.margin>
-                  <Insets bottom="50.0" left="25.0" />
+                  <Insets left="20.0" top="20.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Avaliação do Cliente (0-10)" textFill="#808698" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="30.0" left="20.0" />
                </GridPane.margin>
             </Label>
          </children>
@@ -335,7 +238,7 @@
          </rowConstraints>
          <children>
             <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
-            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#removeTec" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Remover" GridPane.rowIndex="3">
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Remover" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -377,7 +280,7 @@
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <GridPane id="rev_gridpane" layoutX="180.0" layoutY="522.0" prefHeight="164.0" prefWidth="640.0" stylesheets="@../css/main.css">
+      <GridPane id="rev_gridpane" layoutX="38.0" layoutY="522.0" prefHeight="164.0" prefWidth="782.0" stylesheets="@../css/main.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -389,7 +292,7 @@
          </rowConstraints>
          <children>
             <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
-            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#removeTec" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Adicionar" GridPane.rowIndex="3">
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#addServico" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Adicionar" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -417,12 +320,12 @@
                   <Insets left="20.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <ChoiceBox fx:id="statusChoice1" prefHeight="25.0" prefWidth="120.0" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <ChoiceBox fx:id="categoriaServico" prefHeight="25.0" prefWidth="120.0" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="20.0" top="16.0" />
                </GridPane.margin>
             </ChoiceBox>
-            <TextField fx:id="idRemoveField11" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="126.0" promptText="Peça" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TextField fx:id="PecaAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="126.0" promptText="Peça" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -435,7 +338,7 @@
                   <Insets left="155.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="idRemoveField111" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="245.0" promptText="Descrição" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TextField fx:id="DescAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="245.0" promptText="Descrição" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -448,7 +351,7 @@
                   <Insets left="292.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="idRemoveField1111" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="68.0" promptText="Valor" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TextField fx:id="ValorAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="68.0" promptText="Valor" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
