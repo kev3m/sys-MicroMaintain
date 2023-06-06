@@ -3,6 +3,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ViewUtils {
     public static void showWarningAlert(String header, String content) {
         showAlert(Alert.AlertType.WARNING, "Warning", header, content);
@@ -55,5 +58,20 @@ public class ViewUtils {
 
     }
 
+    public static void priceFilter(TextField field){
+        field.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("^\\d*\\.?\\d*$")) {
+                return change;
+            }
+            return null;
+        }));
 
+    }
+
+    public static String dataFormat(Calendar calendar){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return dateFormat.format(calendar.getTime());
+
+    }
 }
