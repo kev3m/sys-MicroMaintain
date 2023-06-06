@@ -4,6 +4,7 @@ import micromaintainsys.model.Cliente;
 import micromaintainsys.model.Pagamento;
 import micromaintainsys.model.TipoPagamento;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -56,6 +57,21 @@ public class PagamentoDAO implements InterfacePagamento{
         salvaDados(pagamentosCadastrados, FILE_PATH);
         return novoPagamento;
     }
+
+    @Override
+    public ArrayList<Pagamento> pegaTodosPorFaturaID(int faturaID) {
+        ArrayList<Pagamento> pagamentos = new ArrayList<>();
+        Enumeration<Integer> keys = pagamentosCadastrados.keys();
+        while (keys.hasMoreElements()){
+            int key = keys.nextElement();
+            Pagamento pagamento = pagamentosCadastrados.get(key);
+            if (pagamento.getFaturaID() == faturaID){
+                pagamentos.add(pagamento);
+            }
+        }
+        return pagamentos;
+    }
+
     /**
      * Atualiza um pagamento existente.
      * @param pagamento Pagamento a ser atualizado.
