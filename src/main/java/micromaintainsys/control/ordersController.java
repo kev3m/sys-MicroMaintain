@@ -1,6 +1,5 @@
 package micromaintainsys.control;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.*;
@@ -20,22 +18,23 @@ import java.util.*;
 public class ordersController implements Initializable {
     @FXML
     private TableView<Ordem> tableView;
-//
-//    @FXML
-//    private TableColumn<Ordem, int> idColumn;
-//    @FXML
-//    private TableColumn<Servico, Calendar> dataColumn;
-//    @FXML
-//    private TableColumn<Ordem, int> clienteColumn;
-//    @FXML
-//    private TableColumn<Ordem, int> tecnicoColumn;
-//    @FXML
-//    private TableColumn<Ordem, StatusOrdem> statusColumn;
-//    @FXML
-//    private TableColumn<Pagamento, TipoPagamento> pagamentoColumn;
-//
-//    @FXML
-//    private TableColumn<Fatura, double> valorColumn;
+
+    @FXML
+    private TableColumn<Ordem, Integer> idColumn;
+    @FXML
+    private TableColumn<Servico, Calendar> dataColumn;
+    @FXML
+    private TableColumn<Ordem, Integer> clienteColumn;
+    @FXML
+    private TableColumn<Ordem, Integer> tecnicoColumn;
+    @FXML
+    private TableColumn<Ordem, StatusOrdem> statusColumn;
+    @FXML
+    private TableColumn<Pagamento, TipoPagamento> pagamentoColumn;
+
+    @FXML
+    private TableColumn<Fatura, Double> valorColumn;
+
 
     @FXML
     private AnchorPane ordersAnchorPane;
@@ -44,8 +43,7 @@ public class ordersController implements Initializable {
     private ArrayList<Fatura> faturas;
     private Estoque estoque;
 
-    ObservableList<Ordem> observableList = FXCollections.observableArrayList(ordensAbertas
-    );
+    ObservableList<Ordem> observableList = FXCollections.observableArrayList(DAO.getOrdemDAO().pegaTodas());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -56,23 +54,17 @@ public class ordersController implements Initializable {
         this.ordensServico = new ArrayList<>(DAO.getOrdemDAO().pegaTodas());
         this.faturas = new ArrayList<>(DAO.getFaturaDAO().pegaTodas());
 
-//        this.idColumn.setCellValueFactory(new PropertyValueFactory<Ordem, int>("ordemID"));
-//        this.dataColumn.setCellValueFactory(new PropertyValueFactory<Servico, Calendar>("horarioAbertura"));
-//        this.clienteColumn.setCellValueFactory(new PropertyValueFactory<Ordem, int>("clienteID"));
-//        this.tecnicoColumn.setCellValueFactory(new PropertyValueFactory<Ordem, int>("tecnicoID"));
-//        this.statusColumn.setCellValueFactory(new PropertyValueFactory<Ordem, StatusOrdem>("status"));
-//        this.pagamentoColumn.setCellValueFactory(new PropertyValueFactory<Pagamento, TipoPagamento>("tipoPagamento"));
-//        this.valorColumn.setCellValueFactory(new PropertyValueFactory<Fatura, double>("valorTotal"));
+        this.idColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("ordemID"));
+        this.dataColumn.setCellValueFactory(new PropertyValueFactory<Servico, Calendar>("horarioAbertura"));
+        this.clienteColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("clienteID"));
+        this.tecnicoColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("tecnicoID"));
+        this.statusColumn.setCellValueFactory(new PropertyValueFactory<Ordem, StatusOrdem>("status"));
+        this.pagamentoColumn.setCellValueFactory(new PropertyValueFactory<Pagamento, TipoPagamento>("tipoPagamento"));
+        this.valorColumn.setCellValueFactory(new PropertyValueFactory<Fatura, Double>("valorTotal"));
 
+        this.tableView.getItems().setAll(observableList);
         tableView.setItems(observableList);
 
-//        TableColumn orderId = new TableColumn("ID");
-//        TableColumn orderData = new TableColumn("Data");
-//        TableColumn orderCliente = new TableColumn("Cliente");
-//        TableColumn orderTecnico = new TableColumn("Tecnico");
-//        TableColumn orderStatus = new TableColumn("Status");
-//        TableColumn orderPagamento = new TableColumn("Pagamento");
-//        TableColumn orderValor = new TableColumn("Valor");
     }
     public Estoque carregaEstoque(){
         //this.estoque = DAO.getEstoqueDAO().cria()

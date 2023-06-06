@@ -13,7 +13,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        String fxmlPath = "src/resources/login.fxml";
+        String fxmlPath = "src/resources/main.fxml";
         File file = new File(fxmlPath);
         URL url = file.toURI().toURL();
 
