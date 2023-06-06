@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableView;
 import micromaintainsys.dao.DAO;
@@ -52,7 +50,7 @@ public class tecnicosController implements Initializable {
     }
     @FXML
     void switchToTec_edit() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "tecnicos_edit.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "management_Scenes/tecnicos_ger.fxml");
     }
     @FXML
     void switchToClientes() throws IOException {

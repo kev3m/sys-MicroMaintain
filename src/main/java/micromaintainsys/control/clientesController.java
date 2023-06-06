@@ -47,7 +47,7 @@ public class clientesController implements Initializable {
         new SceneSwitch(clientesAnchorPane, "main.fxml");
     }
     @FXML
-    void switchToOrdem_ger() throws IOException {
+    void switchToCliente_ger() throws IOException {
         new SceneSwitch(clientesAnchorPane, "management_Scenes/clientes_ger.fxml");
     }
     @FXML
