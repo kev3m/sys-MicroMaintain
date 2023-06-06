@@ -55,12 +55,10 @@ public class ordersController implements Initializable {
         this.faturas = new ArrayList<>(DAO.getFaturaDAO().pegaTodas());
 
         this.idColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("ordemID"));
-        this.dataColumn.setCellValueFactory(new PropertyValueFactory<Servico, Calendar>("horarioAbertura"));
         this.clienteColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("clienteID"));
         this.tecnicoColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("tecnicoID"));
         this.statusColumn.setCellValueFactory(new PropertyValueFactory<Ordem, StatusOrdem>("status"));
-        this.pagamentoColumn.setCellValueFactory(new PropertyValueFactory<Pagamento, TipoPagamento>("tipoPagamento"));
-        this.valorColumn.setCellValueFactory(new PropertyValueFactory<Fatura, Double>("valorTotal"));
+
 
         this.tableView.getItems().setAll(observableList);
         tableView.setItems(observableList);
