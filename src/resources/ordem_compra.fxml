@@ -171,13 +171,12 @@
           <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="433.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
+            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
-                <TableColumn id="column-header" prefWidth="50.0" styleClass="column-header" text="ID" />
-                <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Data" />
-                  <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Peça" />
-                  <TableColumn id="column-header" prefWidth="200.0" styleClass="column-header" text="Quantidade" />
-                  <TableColumn id="column-header" prefWidth="213.0" styleClass="column-header" text="Valor Unitário" />
+                <TableColumn id="column-header" fx:id="dataColumn" prefWidth="200.0" styleClass="column-header" text="Data" />
+                  <TableColumn id="column-header" fx:id="pecaColumn" prefWidth="200.0" styleClass="column-header" text="Peça" />
+                  <TableColumn id="column-header" fx:id="quantColumn" prefWidth="200.0" styleClass="column-header" text="Quantidade" />
+                  <TableColumn id="column-header" fx:id="valorColumn" prefWidth="213.0" styleClass="column-header" text="Valor Unitário" />
               </columns>
             </TableView>
             <Pane prefHeight="200.0" prefWidth="200.0">
@@ -207,11 +206,11 @@
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <Button layoutX="911.0" layoutY="122.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Nova Ordem">
+      <Button layoutX="864.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToGerEstoque" prefHeight="25.0" prefWidth="180.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Nova Ordem de Compra">
          <graphic>
-            <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="14.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assets/icons/mais.png" />
+                  <Image url="@assets/icons/adicionar-ao-carrinho.png" />
                </image>
             </ImageView>
          </graphic>
