@@ -136,9 +136,17 @@ public class ordens_GerController implements Initializable {
             showErrorAlert("Técnico não encontrado", "Por favor, insira um ID válido");
         }
         else{
-            Ordem ordem = DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText));
+            int ordem_id = Integer.parseInt(idText);
+            Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordem_id);
             ordem.setStatus(status);
-            ordem.setTecnicoID(Integer.parseInt(tecText));
+            int tecnico_id = Integer.parseInt(tecText);
+            /*TODO Fazer as verificações de atribuição de ordem do antigo mainController*/
+            if (tecnico_id != ordem.getTecnicoID()){
+                ordem.setTecnicoID(tecnico_id);
+                Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(tecnico_id);
+                tecnico.setOrdemEmAndamentoID(ordem_id);
+            }
+
             DAO.getOrdemDAO().atualiza(ordem);
             showInformationAlert("Ordem atualizada", "A ordem foi atualizada com sucesso");
         }
