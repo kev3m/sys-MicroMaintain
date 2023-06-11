@@ -5,11 +5,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -179,27 +176,7 @@
                   <TableColumn id="column-header" fx:id="valorColumn" prefWidth="213.0" styleClass="column-header" text="Valor Unitário" />
               </columns>
             </TableView>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TextField layoutX="235.0" layoutY="34.0" promptText="Buscar..." styleClass="search-button" stylesheets="@css/main.css">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="412.0" layoutY="38.0" stylesheets="@css/main.css" text="Filtro" />
-                  <MenuButton layoutX="456.0" layoutY="32.0" mnemonicParsing="false" styleClass="filter-button" stylesheets="@css/main.css" text="Filtrar por ID">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </MenuButton>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="210.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/icons/procurar.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
          </children>
          <styleClass>
             <String fx:value="grid-pane" />

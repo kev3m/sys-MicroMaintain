@@ -1,5 +1,7 @@
 package micromaintainsys.control;
 
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,14 +9,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.SceneSwitch;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -34,6 +39,10 @@ public class ordemCompraController implements Initializable {
     private TableColumn<OrdemCompra, Double> valorColumn;
     @FXML
     private TableView<OrdemCompra> tableView;
+
+    @FXML
+    private TextField relName;
+
 
     @FXML
     void switchToOrdem() throws IOException {
@@ -64,6 +73,8 @@ public class ordemCompraController implements Initializable {
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(ordemCompraAnchorPane, "ordem_compra.fxml");
     }
+
+
 
     ObservableList<OrdemCompra> observableList = FXCollections.observableArrayList(DAO.getEstoqueDAO().carrega().verificaOrdensCompra());
     @Override

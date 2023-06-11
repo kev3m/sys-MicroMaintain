@@ -5,6 +5,7 @@ module micromaintainsys {
     requires javafx.base;
     requires com.dlsc.formsfx;
     requires pdfbox.app;
+    requires java.desktop;
 
     opens micromaintainsys.model;
     opens micromaintainsys.control to javafx.fxml;
