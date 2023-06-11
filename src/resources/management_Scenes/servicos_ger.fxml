@@ -280,7 +280,7 @@
             <String fx:value="grid-pane table-view table-column" />
          </styleClass>
       </GridPane>
-      <GridPane id="rev_gridpane" layoutX="38.0" layoutY="522.0" prefHeight="164.0" prefWidth="782.0" stylesheets="@../css/main.css">
+      <GridPane id="rev_gridpane" layoutX="38.0" layoutY="522.0" prefHeight="164.0" prefWidth="575.0" stylesheets="@../css/main.css">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
@@ -338,7 +338,7 @@
                   <Insets left="155.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="DescAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="245.0" promptText="Descrição" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <TextField fx:id="DescAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="186.0" promptText="Descrição" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -356,12 +356,66 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
                <GridPane.margin>
-                  <Insets left="550.0" top="16.0" />
+                  <Insets left="490.0" top="16.0" />
                </GridPane.margin>
             </TextField>
             <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="Valor" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets left="550.0" top="5.0" />
+                  <Insets left="490.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="reverse-grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <GridPane id="rev_gridpane" layoutX="630.0" layoutY="522.0" prefHeight="164.0" prefWidth="186.0" stylesheets="@../css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#gerarRelatorio" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Gerar" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/relatorio_blue.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label blendMode="ADD" styleClass="white-label" stylesheets="@../css/main.css" text="Gerar Relatório" textFill="#FFFFFF" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="idServicoRelatorio" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="134.0" promptText="ID" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" top="15.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="ID do Serviço" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" top="5.0" />
                </GridPane.margin>
             </Label>
          </children>

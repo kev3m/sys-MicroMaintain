@@ -1,5 +1,8 @@
 package micromaintainsys.control.management_Controllers;
 
+
+
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +14,14 @@ import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.AssemblyWithEmptyComponentException;
 import micromaintainsys.model.*;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 
+import java.io.File;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -76,10 +86,8 @@ public class servicos_GerController implements Initializable {
     private TextField ValorAdd;
     @FXML
     private Button searchOrderButton;
-
     @FXML
-    private TextField idRemoveField1111;
-
+    private TextField idServicoRelatorio;
     @FXML
     private TextField idSearchField;
     @FXML
@@ -87,9 +95,6 @@ public class servicos_GerController implements Initializable {
 
     @FXML
     private Button searchButton;
-
-//    @FXML
-//    private ChoiceBox<?> statusChoice;
 
     @FXML
     private ChoiceBox<CategoriaServico> categoriaServico;
@@ -111,6 +116,7 @@ public class servicos_GerController implements Initializable {
         String desc = DescAdd.getText();
         String valor = ValorAdd.getText();
         CategoriaServico categoria = categoriaServico.getValue();
+        estoque = DAO.getEstoqueDAO().carrega();
         if (desc.isEmpty() || valor.isEmpty() || categoria == null){
             showErrorAlert("Campo vazio", "Por favor, verifique os campos");
         }
@@ -121,13 +127,20 @@ public class servicos_GerController implements Initializable {
             showErrorAlert("Serviço Invalido", "Para serviços de montagem, especifique a peça");
             throw new AssemblyWithEmptyComponentException();
         }
+        else if (estoque.getPecas().get(PecaAdd.getText()) == null){
+            showErrorAlert("Peça não encontrada ou quantia insuficiente", "Por favor, verifique o estoque");
+        }
         else{
             DAO.getServicoDAO().cria(categoriaServico.getValue(), Double.parseDouble(valor), peca, desc, id);
             showInformationAlert("Serviço adicionado", "Serviço adicionado com sucesso");
             refreshTable();
+            if (categoria == CategoriaServico.Montagem){
+                estoque.getPecas().put(peca,estoque.getPecas().get(peca) - 1);
+                DAO.getEstoqueDAO().atualiza(estoque);
+            }
+            }
         }
 
-    }
     @FXML
     void refreshTable() {
         String ordemIdText = OrdemID.getText();
@@ -203,6 +216,80 @@ public class servicos_GerController implements Initializable {
             showInformationAlert("Serviço atualizado", "Serviço atualizado com sucesso");
             clearUpdateFields();
         }
+    }
+
+    @FXML
+    void gerarRelatorio() throws IOException {
+        String idText = idServicoRelatorio.getText();
+        boolean servicoEncerrado = DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)).foiEncerrado();
+        if (idText.isEmpty() || DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)) == null) {
+            showWarningAlert("Serviço não encontrado", "Por favor, insira um ID válido");
+        }
+        else if(servicoEncerrado == false){
+            showWarningAlert("Serviço não encerrado", "Este serviço ainda não foi encerrado");
+        }
+        else {
+            // Cria um novo documento PDF
+            PDDocument document = new PDDocument();
+
+            // Cria uma nova página no documento
+            PDPage page = new PDPage(PDRectangle.A4);
+            document.addPage(page);
+
+            File fontFile = new File("src/resources/assets/fonts/Poppins-Regular.ttf");
+            PDType0Font font = PDType0Font.load(document, fontFile);
+
+
+            // Cria o conteúdo da página
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            // Define a fonte e o tamanho do texto
+            contentStream.setFont(font, 12);
+
+            // Título do relatório
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 700);
+            contentStream.showText("Relatório do Serviço: #" + idText);
+            contentStream.endText();
+
+            // Cabeçalho da tabela
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 670);
+            contentStream.showText("Produto");
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText("Quantidade");
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText("Valor");
+            contentStream.endText();
+
+            // Conteúdo da tabela
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 650);
+            contentStream.showText("Produto A");
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText("10");
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText("R$ 100,00");
+            contentStream.endText();
+
+            // Fecha o conteúdo da página
+            contentStream.close();
+            if (Desktop.isDesktopSupported()) {
+                // Obter a instância do Desktop
+                Desktop desktop = Desktop.getDesktop();
+
+                // Verificar se a ação OPEN é suportada
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    // Obter o diretório da área de trabalho
+                    String desktopPath = System.getProperty("user.home") + File.separator + "Desktop";
+                    document.save(new File(desktopPath + File.separator + "relatorio_servico#"+ idText +".pdf"));
+
+                }
+            // Fecha o documento
+            document.close();
+            System.out.println("Relatório gerado com sucesso!");
+        }
+    }
     }
 //    @FXML
 //    void updateOrder(){
