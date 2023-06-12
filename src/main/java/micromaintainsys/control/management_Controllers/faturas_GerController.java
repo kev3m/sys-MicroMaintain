@@ -93,6 +93,7 @@ public class faturas_GerController implements Initializable {
         String id = idFatura.getText();
         String valor = valorPagamento.getText();
         TipoPagamento tipo = tipoPagamento.getValue();
+
         if(id.isEmpty() || DAO.getFaturaDAO().pegaPorId(Integer.parseInt(id)) == null){
             showErrorAlert("ID de Fatura inválido ou Fatura não encontrada", "Por favor, verifique o campo de ID");
         }
@@ -129,6 +130,9 @@ public class faturas_GerController implements Initializable {
         String id = idOrdem.getText();
         if(id.isEmpty() || DAO.getOrdemDAO().pegaPorId(Integer.parseInt(id)) == null){
             showErrorAlert("ID de Ordem inválido ou Ordem não encontrada", "Por favor, verifique o campo de ID");
+        }
+        else if(DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idOrdem.getText())).getStatus() != StatusOrdem.Pagamento){
+            showErrorAlert("Não é possível realizar o pagamento", "Ordem de serviço não está em fase de pagamento");
         }
         else if (DAO.getOrdemDAO().pegaPorId(Integer.parseInt(id)).getFaturaID() > -1){
             showErrorAlert("Ordem já possui uma fatura", "Por favor, verifique o campo de ID");
