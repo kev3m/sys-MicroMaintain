@@ -127,7 +127,7 @@ public class servicos_GerController implements Initializable {
             showErrorAlert("Serviço Invalido", "Para serviços de montagem, especifique a peça");
             throw new AssemblyWithEmptyComponentException();
         }
-        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == null){
+        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == null || estoque.getPecas().get(PecaAdd.getText()) == 0){
             showErrorAlert("Peça não encontrada ou quantia insuficiente", "Por favor, verifique o estoque");
         }
         else{
