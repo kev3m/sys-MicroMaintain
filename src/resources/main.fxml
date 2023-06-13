@@ -173,11 +173,10 @@
          <children>
             <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
-                <TableColumn id="column-header" fx:id="idColumn" prefWidth="100.0" styleClass="column-header" text="ID" />
-                <TableColumn id="column-header" fx:id="dataColumn" prefWidth="162.0" styleClass="column-header" text="Data" />
-                  <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="200.0" styleClass="column-header" text="Cliente" />
-                  <TableColumn id="column-header" fx:id="tecnicoColumn" prefWidth="200.0" styleClass="column-header" text="Técnico" />
-                  <TableColumn id="column-header" fx:id="statusColumn" prefWidth="200.0" styleClass="column-header" text="Status" />
+                <TableColumn id="column-header" fx:id="idColumn" editable="false" prefWidth="100.0" sortType="DESCENDING" styleClass="column-header" text="ID" />
+                  <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Cliente" />
+                  <TableColumn id="column-header" fx:id="tecnicoColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Técnico" />
+                  <TableColumn id="column-header" fx:id="statusColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Status" />
               </columns>
             </TableView>
             <Pane prefHeight="200.0" prefWidth="200.0">

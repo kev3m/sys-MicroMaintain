@@ -171,7 +171,7 @@
             <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
                 <TableColumn id="column-header" fx:id="dataColumn" prefWidth="200.0" styleClass="column-header" text="Data" />
-                  <TableColumn id="column-header" fx:id="pecaColumn" prefWidth="200.0" styleClass="column-header" text="Peça" />
+                  <TableColumn id="column-header" fx:id="pecaColumn" prefWidth="260.0" styleClass="column-header" text="Peça" />
                   <TableColumn id="column-header" fx:id="quantColumn" prefWidth="200.0" styleClass="column-header" text="Quantidade" />
                   <TableColumn id="column-header" fx:id="valorColumn" prefWidth="213.0" styleClass="column-header" text="Valor Unitário" />
               </columns>
