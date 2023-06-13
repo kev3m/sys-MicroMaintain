@@ -27,7 +27,7 @@ public class estoque_GerController implements Initializable {
     private Queue<Ordem> ordensAbertas;
     private ArrayList<Ordem> ordensServico;
     private ArrayList<Fatura> faturas;
-    private Estoque estoque = DAO.getEstoqueDAO().carrega();
+    private Estoque estoque;
 
     @FXML
     private Button addPeca;
@@ -78,8 +78,10 @@ public class estoque_GerController implements Initializable {
     }
     public void compraPeca(String peca, int quantidade, double valorUnitario){
         OrdemCompra novaOrdem = new OrdemCompra(peca, quantidade, valorUnitario);
-        DAO.getEstoqueDAO().carrega().criaOrdemCompra(novaOrdem);
-        DAO.getEstoqueDAO().carrega().adicionaPeca(peca, quantidade);
+        estoque = DAO.getEstoqueDAO().carrega();
+        estoque.criaOrdemCompra(novaOrdem);
+        estoque.adicionaPeca(peca, quantidade);
+        DAO.getEstoqueDAO().atualiza(estoque);
         showInformationAlert("Ordem de compra efetuada", "A ordem de compra foi efetuada com sucesso");
 
     }
@@ -90,8 +92,10 @@ public class estoque_GerController implements Initializable {
         }
         else{
             String name = pecaNameUpdate.getText();
+            estoque = DAO.getEstoqueDAO().carrega();
             int quant = Integer.parseInt(quantUpdate.getText());
-            DAO.getEstoqueDAO().carrega().adicionaPeca(name, quant);
+            estoque.adicionaPeca(name, quant);
+            DAO.getEstoqueDAO().atualiza(estoque);
             showInformationAlert("Peça adicionada com sucesso", "A peça " + name + " foi adicionada ao estoque");
         }
     }
