@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.AssemblyWithEmptyComponentException;
+import micromaintainsys.exceptions.NotAllowedException;
+import micromaintainsys.exceptions.UserNotLoggedInException;
 import micromaintainsys.model.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -110,11 +112,6 @@ public class servicos_GerController implements Initializable {
     @FXML
     private TextField OrdemID;
 
-    public void initializeServicoID(int servicoID) {
-        this.OrdemID = new TextField(String.valueOf(servicoID));
-
-        // Usa o servicoID na inicialização da página
-    }
 
     @FXML
     void addServico() throws IOException {
@@ -134,8 +131,14 @@ public class servicos_GerController implements Initializable {
             showErrorAlert("Serviço Invalido", "Para serviços de montagem, especifique a peça");
             throw new AssemblyWithEmptyComponentException();
         }
-        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == null || estoque.getPecas().get(PecaAdd.getText()) == 0){
-            showErrorAlert("Peça não encontrada ou quantia insuficiente", "Por favor, verifique o estoque");
+        else if (categoria != CategoriaServico.Montagem && !peca.isEmpty()){
+            showErrorAlert("Serviço Invalido", "Para serviços que não sejam de montagem, deixe o campo de peça em branco");
+        }
+        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == null){
+            showErrorAlert("Peça não encontrada", "Por favor, verifique o estoque");
+        }
+        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == 0){
+            showErrorAlert("Quantia insuficiente de peça especificada", "Por favor, verifique o estoque");
         }
         else{
             DAO.getServicoDAO().cria(categoriaServico.getValue(), Double.parseDouble(valor), peca, desc, id);
@@ -232,11 +235,53 @@ public class servicos_GerController implements Initializable {
                 showInformationAlert("Serviço atualizado", "Serviço atualizado com sucesso");
                 clearUpdateFields();
                 refreshTable();
+                boolean ordensfechadas = fechaOrdem(servico.getOrdemID());
+                if (ordensfechadas == true){
+                    showInformationAlert("Ordem encerrada", "Todos os serviços da ordem #" +servico.getOrdemID() + " foram encerrados, a ordem foi atualizada automaticamente");
+                }
             }
 
 
         }
     }
+
+    public boolean fechaOrdem(int ordemID) throws UserNotLoggedInException {
+        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
+        Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
+//        if (this.tecnicoSessao == null)
+//            throw new UserNotLoggedInException();
+//        /*Usuário normal tentando atribuir ordem a outro usuário*/
+        if (ordem.getStatus() != StatusOrdem.Andamento)
+            return false;
+
+        /*Testa se todos os serviços da ordem já foram encerrados*/
+        ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
+        boolean emAberto = false;
+        for (Servico servico: servicosOrdem){
+            if (!servico.foiEncerrado()){
+                emAberto = true;
+                break;
+            }
+        }
+        if (emAberto) return false;
+        else {
+            ordem.setStatus(StatusOrdem.Pagamento);
+            tecnicoDaOrdem.setOrdemEmAndamentoID(-1);
+            DAO.getOrdemDAO().atualiza(ordem);
+            return true;
+        }
+    }
+     private boolean verifaTodosOsServicosEncerrados(int ordemID){
+        ArrayList<Servico> servicos = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
+        for (Servico servico : servicos){
+            if (servico.getHorarioFinalizacao() == null){
+                return false;
+            }
+        }
+         return false;
+     }
+
+
 
     @FXML
     void gerarRelatorio() throws IOException {
