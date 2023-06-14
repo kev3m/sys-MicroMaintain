@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
@@ -28,6 +26,8 @@ public class ordersController implements Initializable {
     private TableColumn<Ordem, Integer> tecnicoColumn;
     @FXML
     private TableColumn<Ordem, StatusOrdem> statusColumn;
+    @FXML
+    private ChoiceBox<StatusOrdem> statusFilter;
     private Tecnico tecnicoSessao;
     private int objID;
 
@@ -40,10 +40,34 @@ public class ordersController implements Initializable {
     private ArrayList<Fatura> faturas;
     private Estoque estoque;
 
-    ObservableList<Ordem> observableList = FXCollections.observableArrayList(DAO.getOrdemDAO().pegaTodas());
+
+
+    public ordersController() {
+    }
+
+    private void atualizarTabelaPorStatus(StatusOrdem status) {
+        ObservableList<Ordem> observableList = FXCollections.observableArrayList(DAO.getOrdemDAO().pegaTodasPorStatus(status));
+        this.tableView.getItems().setAll(observableList);
+        tableView.setItems(observableList);
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        ObservableList<StatusOrdem> observableListstatus = FXCollections.observableArrayList(StatusOrdem.values());
+        statusFilter.setItems(observableListstatus);
+        statusFilter.getSelectionModel().select(0);
+
+        statusFilter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            // Chamada da função desejada para filtrar as ordens por status
+            atualizarTabelaPorStatus(newValue);
+        });
+
+        ObservableList<Ordem> observableList = FXCollections.observableArrayList(DAO.getOrdemDAO().pegaTodasPorStatus(StatusOrdem.Aberta));
+        this.tableView.getItems().setAll(observableList);
+        tableView.setItems(observableList);
+
+
         this.estoque = carregaEstoque();
         ArrayList<Ordem> abertas = DAO.getOrdemDAO().pegaTodasPorStatus(StatusOrdem.Aberta);
         Collections.sort(abertas);
@@ -55,6 +79,7 @@ public class ordersController implements Initializable {
         this.clienteColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("clienteID"));
         this.tecnicoColumn.setCellValueFactory(new PropertyValueFactory<Ordem, Integer>("tecnicoID"));
         this.statusColumn.setCellValueFactory(new PropertyValueFactory<Ordem, StatusOrdem>("status"));
+
 
         this.tableView.setRowFactory(tv -> {
             TableRow<Ordem> row = new TableRow<>();
@@ -72,8 +97,8 @@ public class ordersController implements Initializable {
         });
 
 
-        this.tableView.getItems().setAll(observableList);
-        tableView.setItems(observableList);
+
+
 
     }
     public Estoque carregaEstoque(){
