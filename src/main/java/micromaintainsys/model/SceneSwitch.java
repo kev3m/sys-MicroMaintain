@@ -11,10 +11,12 @@ import java.net.URL;
 import java.util.Objects;
 
 public class SceneSwitch {
-    public SceneSwitch (AnchorPane currentAnchorPane, String fxml) throws IOException{
+    public SceneSwitch (AnchorPane currentAnchorPane, String fxml,Tecnico tecnicoLogado, int obj) throws IOException{
         String fxmlPath = "src/resources/" + fxml;
         File file = new File(fxmlPath);
         URL url = file.toURI().toURL();
+        Tecnico tecnico = tecnicoLogado;
+        int objId = obj;
 
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         AnchorPane nextAnchorPane = fxmlLoader.load();

@@ -54,6 +54,8 @@ public class cliente_GerController implements Initializable {
     private ListView<Ordem> clientOrders;
     @FXML
     private CheckBox admCheck;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     public cliente_GerController() {
     }
@@ -70,7 +72,7 @@ public class cliente_GerController implements Initializable {
             String telefone = phoneField.getText();
             Cliente cliente = new Cliente(nome, endereco, telefone);
             DAO.getClienteDAO().cria(cliente.getName(), cliente.getEndereco(), cliente.getTelefone());
-            new SceneSwitch(clientesAnchorPane, "clientes.fxml");
+            new SceneSwitch(clientesAnchorPane, "clientes.fxml", tecnicoSessao, objID);
         }
     }
 
@@ -146,27 +148,27 @@ public class cliente_GerController implements Initializable {
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "main.fxml");
+        new SceneSwitch(clientesAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "tecnicos.fxml");
+        new SceneSwitch(clientesAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "clientes.fxml");
+        new SceneSwitch(clientesAnchorPane, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "estoque.fxml");
+        new SceneSwitch(clientesAnchorPane, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "faturas.fxml");
+        new SceneSwitch(clientesAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "ordem_compra.fxml");
+        new SceneSwitch(clientesAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
 

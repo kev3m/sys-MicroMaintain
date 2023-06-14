@@ -36,6 +36,8 @@ public class clientesController implements Initializable {
     private TableColumn<Cliente, String> clientTel;
     @FXML
     private TableColumn<Cliente, ArrayList<Ordem>> clientOrdens;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
 
 
@@ -44,31 +46,31 @@ public class clientesController implements Initializable {
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "main.fxml");
+        new SceneSwitch(clientesAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToCliente_ger() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "management_Scenes/clientes_ger.fxml");
+        new SceneSwitch(clientesAnchorPane, "management_Scenes/clientes_ger.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "tecnicos.fxml");
+        new SceneSwitch(clientesAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "clientes.fxml");
+        new SceneSwitch(clientesAnchorPane, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "estoque.fxml");
+        new SceneSwitch(clientesAnchorPane, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "faturas.fxml");
+        new SceneSwitch(clientesAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(clientesAnchorPane, "ordem_compra.fxml");
+        new SceneSwitch(clientesAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
     ObservableList<Cliente> observableList = FXCollections.observableArrayList(DAO.getClienteDAO().pegaTodos());

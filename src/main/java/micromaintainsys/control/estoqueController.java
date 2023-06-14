@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.Estoque;
 import micromaintainsys.model.SceneSwitch;
+import micromaintainsys.model.Tecnico;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,8 @@ public class estoqueController implements Initializable {
     private TableColumn<PecaQuantidade, String> pecaColumn;
     @FXML
     private TableColumn<PecaQuantidade, Integer> quantColumn;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     private void exibirEstoque(){
         tableView.getItems().clear();
@@ -58,31 +61,31 @@ public class estoqueController implements Initializable {
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "main.fxml");
+        new SceneSwitch(estoqueAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "tecnicos.fxml");
+        new SceneSwitch(estoqueAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "clientes.fxml");
+        new SceneSwitch(estoqueAnchorPane, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "estoque.fxml");
+        new SceneSwitch(estoqueAnchorPane, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToGerEstoque() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "management_Scenes/estoque_ger.fxml");
+        new SceneSwitch(estoqueAnchorPane, "management_Scenes/estoque_ger.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "faturas.fxml");
+        new SceneSwitch(estoqueAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(estoqueAnchorPane, "ordem_compra.fxml");
+        new SceneSwitch(estoqueAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
     @Override

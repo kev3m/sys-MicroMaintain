@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.SceneSwitch;
+import micromaintainsys.model.Tecnico;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,36 +43,38 @@ public class ordemCompraController implements Initializable {
 
     @FXML
     private TextField relName;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "main.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
 
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "tecnicos.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "clientes.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "estoque.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToGerEstoque() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "management_Scenes/estoque_ger.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "management_Scenes/estoque_ger.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "faturas.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(ordemCompraAnchorPane, "ordem_compra.fxml");
+        new SceneSwitch(ordemCompraAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
 

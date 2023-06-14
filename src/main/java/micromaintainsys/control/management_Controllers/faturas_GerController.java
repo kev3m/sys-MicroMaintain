@@ -81,10 +81,12 @@ public class faturas_GerController implements Initializable {
 
     @FXML
     private TableColumn<Fatura, Double> valorPagoColumn;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(faturaGerAnchorPane, "faturas.fxml");
+        new SceneSwitch(faturaGerAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
 
 

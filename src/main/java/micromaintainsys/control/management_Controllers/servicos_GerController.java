@@ -40,6 +40,8 @@ public class servicos_GerController implements Initializable {
     private ArrayList<Ordem> ordensServico;
     private ArrayList<Fatura> faturas;
     private Estoque estoque;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     @FXML
     private TableColumn<Servico, Calendar> AbertColumn;
@@ -108,6 +110,11 @@ public class servicos_GerController implements Initializable {
     @FXML
     private TextField OrdemID;
 
+    public void initializeServicoID(int servicoID) {
+        this.OrdemID = new TextField(String.valueOf(servicoID));
+
+        // Usa o servicoID na inicialização da página
+    }
 
     @FXML
     void addServico() throws IOException {
@@ -328,7 +335,7 @@ public class servicos_GerController implements Initializable {
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "main.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
 
 
@@ -343,11 +350,18 @@ public class servicos_GerController implements Initializable {
         this.CategoriaColumn.setCellValueFactory(new PropertyValueFactory<>("categoriaServico"));
         this.PeçaColumn.setCellValueFactory(new PropertyValueFactory<>("peca"));
 
+
+
         ObservableList<CategoriaServico> observableListchoiceBox = FXCollections.observableArrayList(CategoriaServico.values());
         categoriaServico.setItems(observableListchoiceBox);
         categoriaServico.getSelectionModel().selectFirst();
 
+
+
         searchOrderButton.setOnAction(event -> refreshTable());
+
+
+
 
         numberFilter(OrdemID);
         numberFilter(idSearchField);

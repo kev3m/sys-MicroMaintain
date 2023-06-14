@@ -29,6 +29,8 @@ public class ordens_GerController implements Initializable {
     private ArrayList<Ordem> ordensServico;
     private ArrayList<Fatura> faturas;
     private Estoque estoque;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     @FXML
     private Button UpdateButton;
@@ -84,7 +86,7 @@ public class ordens_GerController implements Initializable {
             Cliente cliente = DAO.getClienteDAO().pegaPorId(id);
             Ordem ordem = new Ordem(cliente.getId());
             DAO.getOrdemDAO().cria(ordem.getClienteID());
-            new SceneSwitch(tecnicosAnchorPane, "main.fxml");
+            new SceneSwitch(tecnicosAnchorPane, "main.fxml", tecnicoSessao, objID);
 
         }
 
@@ -165,31 +167,31 @@ public class ordens_GerController implements Initializable {
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "main.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToServicos() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "management_Scenes/servicos_ger.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "management_Scenes/servicos_ger.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "clientes.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "estoque.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "faturas.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "ordem_compra.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());

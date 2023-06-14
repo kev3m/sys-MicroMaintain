@@ -18,13 +18,14 @@ import java.io.IOException;
 
 public class loginController {
     //Armazena o ID do tecnico logado no sistema
-    private Tecnico tecnicoSessao;
     @FXML
     private PasswordField passwordField;
     @FXML
     private TextField usernameField;
     @FXML
     private AnchorPane loginAnchorPane;
+    private Tecnico tecnicoSessao;
+    private int objID;
     @FXML
     public void loginButtonClick(ActionEvent event) throws
             InvalidUserException,
@@ -34,7 +35,7 @@ public class loginController {
         String password = passwordField.getText();
         loginTecnico(tecId, password);
         if (tecnicoSessao != null){
-            new SceneSwitch(loginAnchorPane, "main.fxml");
+            new SceneSwitch(loginAnchorPane, "main.fxml", tecnicoSessao, objID);
         }
     }
     public void loginTecnico(int id, String senha) throws

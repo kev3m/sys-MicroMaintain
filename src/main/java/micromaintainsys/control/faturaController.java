@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.Fatura;
 import micromaintainsys.model.SceneSwitch;
+import micromaintainsys.model.Tecnico;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,34 +34,36 @@ public class faturaController implements Initializable {
 
     @FXML
     private TableColumn<Fatura, Double> valorTotalColumn;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(faturaAnchor, "main.fxml");
+        new SceneSwitch(faturaAnchor, "main.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(faturaAnchor, "tecnicos.fxml");
+        new SceneSwitch(faturaAnchor, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(faturaAnchor, "clientes.fxml");
+        new SceneSwitch(faturaAnchor, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(faturaAnchor, "estoque.fxml");
+        new SceneSwitch(faturaAnchor, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(faturaAnchor, "faturas.fxml");
+        new SceneSwitch(faturaAnchor, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFaturaGer() throws IOException {
-        new SceneSwitch(faturaAnchor, "management_Scenes/fatura_ger.fxml");
+        new SceneSwitch(faturaAnchor, "management_Scenes/fatura_ger.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(faturaAnchor, "ordem_compra.fxml");
+        new SceneSwitch(faturaAnchor, "ordem_compra.fxml", tecnicoSessao, objID);
     }
     ObservableList<Fatura> observableFaturaList = FXCollections.observableArrayList(DAO.getFaturaDAO().pegaTodas());
 

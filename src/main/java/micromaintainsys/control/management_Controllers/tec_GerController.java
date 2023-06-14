@@ -26,6 +26,8 @@ public class tec_GerController implements Initializable {
     private ArrayList<Ordem> ordensServico;
     private ArrayList<Fatura> faturas;
     private Estoque estoque;
+    private Tecnico tecnicoSessao;
+    private int objID;
 
     @FXML
     private TextField nameField;
@@ -63,7 +65,7 @@ public class tec_GerController implements Initializable {
             String senha = passField.getText();
             Tecnico tecnico = new Tecnico(nome, senha);
             DAO.getTecnicoDAO().cria(tecnico.getNome(), tecnico.getSenha());
-            new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
+            new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
         }
     }
 
@@ -140,27 +142,27 @@ public class tec_GerController implements Initializable {
 
     @FXML
     void switchToOrdem() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "main.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToClientes() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "clientes.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "clientes.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToEstoque() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "estoque.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "estoque.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToFatura() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "faturas.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
     @FXML
     void switchToOrdem_Compra() throws IOException {
-        new SceneSwitch(tecnicosAnchorPane, "ordem_compra.fxml");
+        new SceneSwitch(tecnicosAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());
