@@ -4,12 +4,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -23,7 +21,7 @@
 
 <AnchorPane fx:id="ordersAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.ordersController">
    <children>
-      <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" styleClass="t" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="88.0" prefWidth="180.0">
                <children>
@@ -171,7 +169,7 @@
           <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="433.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/main.css" GridPane.rowIndex="1">
+            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" styleClass="column-header" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
                 <TableColumn id="column-header" fx:id="idColumn" editable="false" prefWidth="100.0" sortType="DESCENDING" styleClass="column-header" text="ID" />
                   <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Cliente" />
@@ -179,25 +177,10 @@
                   <TableColumn id="column-header" fx:id="statusColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Status" />
               </columns>
             </TableView>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane prefHeight="79.0" prefWidth="864.0">
                <children>
-                  <TextField layoutX="235.0" layoutY="34.0" promptText="Buscar..." styleClass="search-button" stylesheets="@css/main.css">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-                  <Label layoutX="412.0" layoutY="38.0" stylesheets="@css/main.css" text="Filtro" />
-                  <MenuButton layoutX="456.0" layoutY="32.0" mnemonicParsing="false" styleClass="filter-button" stylesheets="@css/main.css" text="Filtrar por ID">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </MenuButton>
-                  <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="210.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/icons/procurar.png" />
-                     </image>
-                  </ImageView>
+                  <Label layoutX="315.0" layoutY="38.0" stylesheets="@css/main.css" text="Filtro por Status" />
+                  <ChoiceBox fx:id="statusFilter" layoutX="416.0" layoutY="32.0" prefHeight="29.0" prefWidth="133.0" styleClass="filter-button" stylesheets="@css/main.css" />
                </children>
             </Pane>
          </children>

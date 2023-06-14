@@ -12,7 +12,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.13), 20, 0, 0, 0);
     -fx-background-radius: 10;
     -fx-prompt-text-fill: #808698;
-    -fx-alignment: center-left;
 
 
 }
@@ -59,49 +58,59 @@
     -fx-font-size: 12px;
 }
 
-/*#gridpane .table-view {*/
-/*    !*camada por trás da tabela*!*/
-/*    -fx-background-color: #FFFFFF;*/
-/*    -fx-vertical-grid-lines-visible: true;*/
-/*    -fx-vertical-grid-line-color:#5C83D8;*/
-/*    -fx-border-width: 0;*/
-/*    -fx-background-radius: 0 0 10 10;*/
-/*}*/
+#gridpane .table-view {
+    /*camada por trás da tabela*/
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 0;
+    -fx-background-radius: 0 0 10 10;
+}
 
+/*CABEÇALHO DA TABELA */
+.table-view .column-header{
+    -fx-background-color: #EBEEF2; /* Cor de fundo do cabeçalho */
+    -fx-text-fill: #000000; /* Cor do texto do cabeçalho */
+    -fx-font-weight: bold; /* Negrito */
+    -fx-font-size: 15px;
+    /* Outras regras de estilo */
+}
+.table-view .column-header .label {
+    -fx-padding: 13 0 13 0;
+    -fx-alignment: center-left; /* Alinha o texto à esquerda */
 
-/*#gridpane .table-view .column-header{*/
-/*    !*tabela*!*/
-/*    -fx-text-fill: #808698;*/
-/*    -fx-background-color: #EBEEF2;*/
-/*    -fx-alignment: center;*/
-/*    -fx-vertical-grid-lines-visible: true;*/
-
-/*}*/
-
-/*.table-view .table-column{*/
-/*    -fx-padding: 50 0 0 25;*/
-/*    -fx-border-radius: 0 0 10 10;*/
-/*    -fx-border-color: transparent;*/
-/*    -fx-vertical-grid-lines-visible: true;*/
-/*    -fx-vertical-grid-line-color:#5C83D8;*/
-/*    -fx-font-size: 12px;*/
-/*    -fx-alignment: center-left;*/
+}
+/*TEXTO DA TABELA */
+#gridpane .table-view .table-cell{
+    -fx-text-fill: #808698;
+    -fx-background-color: #ffffff;
 
 
 
-/*}*/
+}
+/* COLUNAS*/
+.table-view .table-column{
+    -fx-padding: 30 0 0 25;
+    -fx-border-color: transparent;
+    -fx-font-size: 12px;
+}
 
-/*.table-view .scroll-bar {*/
-/*    -fx-background-color: #EBEEF2;*/
-/*}*/
+.table-view .scroll-bar {
+    -fx-background-color: #EBEEF2;
+}
 
-/*.table-view .scroll-bar:vertical .thumb {*/
-/*    -fx-background-color: #EBEEF2;*/
-/*}*/
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #EBEEF2;
+}
 
-/*.table-view .scroll-bar:vertical .track {*/
-/*    -fx-background-color: #EBEEF2;*/
-/*}*/
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: #ffffff;
+}
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #EBEEF2;
+}
+
+.table-view .scroll-bar:horizontal .track {
+    -fx-background-color: #ffffff;
+}
 
 .new-order-button{
     -fx-background-color: #5C83D8;
