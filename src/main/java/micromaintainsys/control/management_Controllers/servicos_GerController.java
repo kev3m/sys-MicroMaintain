@@ -213,15 +213,28 @@ public class servicos_GerController implements Initializable {
         else if (DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)) == null){
             showErrorAlert("Serviço não encontrado", "Por favor, insira um ID válido");
         }
+        else if (Double.parseDouble(notaText) < 0 || Double.parseDouble(notaText) > 10){
+            showErrorAlert("Nota inválida", "Por favor, insira uma nota entre 0 e 10");
+        }
+        else if(encerrado && DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)).getHorarioFinalizacao() != null){
+            showWarningAlert("Serviço encerrado", "Este serviço já foi encerrado e não pode ser atualizado");
+        }
         else{
             Servico servico = DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText));
             servico.avaliaServico(Double.parseDouble(notaText));
-            if (encerrado){
-                servico.encerraServico();
+            if (!encerrado && !notaText.isEmpty()){
+                showWarningAlert("Serviço não encerrado", "Por favor, marque o serviço como encerrado para avaliá-lo");
             }
-            DAO.getServicoDAO().atualiza(servico);
-            showInformationAlert("Serviço atualizado", "Serviço atualizado com sucesso");
-            clearUpdateFields();
+            else {
+                servico.avaliaServico(Double.parseDouble(notaText));
+                servico.encerraServico();
+                DAO.getServicoDAO().atualiza(servico);
+                showInformationAlert("Serviço atualizado", "Serviço atualizado com sucesso");
+                clearUpdateFields();
+                refreshTable();
+            }
+
+
         }
     }
 
@@ -359,6 +372,7 @@ public class servicos_GerController implements Initializable {
 
 
         searchOrderButton.setOnAction(event -> refreshTable());
+
 
 
 
