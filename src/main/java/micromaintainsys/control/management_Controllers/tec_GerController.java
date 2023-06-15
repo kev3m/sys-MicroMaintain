@@ -115,12 +115,19 @@ public class tec_GerController implements Initializable {
             if (nameFieldUpdate.getText().isEmpty() || passFieldUpdate.getText().isEmpty() || OrderFieldUpdate.getText().isEmpty()){
                 showWarningAlert("Campo vazio", "Para prosseguir, preencha todos os campos");
             }
+            else if (DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText) ) == null){
+                showErrorAlert("Ordem inválida", "Por favor, verifique o campo de ordem");
+
+            }
             else {
                 Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(idText));
+                Ordem ordem = DAO.getOrdemDAO().pegaPorId(Integer.parseInt(order));
                 tecnico.setNome(name);
                 tecnico.setSenha(pass);
                 tecnico.setOrdemEmAndamentoID(Integer.parseInt(order));
+                ordem.setTecnicoID(Integer.parseInt(idText));
                 tecnico.setAdm(adm);
+                DAO.getOrdemDAO().atualiza(ordem);
                 DAO.getTecnicoDAO().atualiza(tecnico);
                 showInformationAlert("Técnico atualizado", "O técnico foi atualizado com sucesso");
             }
