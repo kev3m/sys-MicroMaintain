@@ -4,11 +4,13 @@ module micromaintainsys {
     requires javafx.fxml;
     requires javafx.base;
     requires com.dlsc.formsfx;
-    requires pdfbox.app;
     requires java.desktop;
+    requires org.apache.pdfbox;
+
 
     opens micromaintainsys.model;
     opens micromaintainsys.control to javafx.fxml;
+
 
     opens micromaintainsys to javafx.fxml;
     exports micromaintainsys;

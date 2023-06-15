@@ -13,7 +13,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        String fxmlPath = "src/resources/main.fxml";
+        String fxmlPath = "src/resources/login.fxml";
         File file = new File(fxmlPath);
         URL url = file.toURI().toURL();
 
@@ -25,7 +25,7 @@ public class Main extends Application{
         primaryStage.show();
 
 
-
+    /*TODO Automatizar a troca de status da ordem */
 
     }
     public static void main(String[] args){

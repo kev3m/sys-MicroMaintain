@@ -235,9 +235,12 @@ public class servicos_GerController implements Initializable {
                 showInformationAlert("Serviço atualizado", "Serviço atualizado com sucesso");
                 clearUpdateFields();
                 refreshTable();
-                boolean ordensfechadas = fechaOrdem(servico.getOrdemID());
+                boolean ordensfechadas = verifaTodosOsServicosEncerrados(servico.getOrdemID());
                 if (ordensfechadas == true){
-                    showInformationAlert("Ordem encerrada", "Todos os serviços da ordem #" +servico.getOrdemID() + " foram encerrados, a ordem foi atualizada automaticamente");
+                    showInformationAlert("Ordem aguardando pagamento", "Todos os serviços da ordem #" +servico.getOrdemID() + " foram encerrados.\n O status da ordem foi atualizado automaticamente");
+                    Ordem ordem = DAO.getOrdemDAO().pegaPorId(servico.getOrdemID());
+                    ordem.setStatus(StatusOrdem.Pagamento);
+                    DAO.getOrdemDAO().atualiza(ordem);
                 }
             }
 
@@ -251,8 +254,8 @@ public class servicos_GerController implements Initializable {
 //        if (this.tecnicoSessao == null)
 //            throw new UserNotLoggedInException();
 //        /*Usuário normal tentando atribuir ordem a outro usuário*/
-        if (ordem.getStatus() != StatusOrdem.Andamento)
-            return false;
+//        if (ordem.getStatus() != StatusOrdem.Andamento)
+//            return false;
 
         /*Testa se todos os serviços da ordem já foram encerrados*/
         ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
@@ -278,7 +281,7 @@ public class servicos_GerController implements Initializable {
                 return false;
             }
         }
-         return false;
+         return true;
      }
 
 

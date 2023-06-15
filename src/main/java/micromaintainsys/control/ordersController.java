@@ -28,6 +28,8 @@ public class ordersController implements Initializable {
     private TableColumn<Ordem, StatusOrdem> statusColumn;
     @FXML
     private ChoiceBox<StatusOrdem> statusFilter;
+    @FXML
+    private Button acceptOrder;
     private Tecnico tecnicoSessao;
     private int objID;
 

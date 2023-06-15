@@ -21,7 +21,7 @@
 
 <AnchorPane fx:id="ordersAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.ordersController">
    <children>
-      <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" styleClass="t" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+fix      <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="88.0" prefWidth="180.0">
                <children>
@@ -172,9 +172,9 @@
             <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" styleClass="column-header" stylesheets="@css/main.css" GridPane.rowIndex="1">
               <columns>
                 <TableColumn id="column-header" fx:id="idColumn" editable="false" prefWidth="100.0" sortType="DESCENDING" styleClass="column-header" text="ID" />
-                  <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Cliente" />
-                  <TableColumn id="column-header" fx:id="tecnicoColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Técnico" />
-                  <TableColumn id="column-header" fx:id="statusColumn" prefWidth="254.0" sortType="DESCENDING" sortable="false" styleClass="column-header" text="Status" />
+                  <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="254.0" sortable="false" styleClass="column-header" text="Cliente" />
+                  <TableColumn id="column-header" fx:id="tecnicoColumn" prefWidth="254.0" sortable="false" styleClass="column-header" text="Técnico" />
+                  <TableColumn id="column-header" fx:id="statusColumn" prefWidth="254.0" sortable="false" styleClass="column-header" text="Status" />
               </columns>
             </TableView>
             <Pane prefHeight="79.0" prefWidth="864.0">
@@ -224,5 +224,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Button fx:id="acceptOrder" layoutX="764.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToOrdem_ger" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Aceitar Ordem">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/servicospagewhite.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

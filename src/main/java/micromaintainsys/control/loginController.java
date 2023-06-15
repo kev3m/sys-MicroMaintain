@@ -14,6 +14,7 @@ import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
 import micromaintainsys.model.Tecnico;
 
+import static micromaintainsys.utils.ViewUtils.*;
 import java.io.IOException;
 
 public class loginController {
@@ -36,27 +37,25 @@ public class loginController {
         loginTecnico(tecId, password);
         if (tecnicoSessao != null){
             new SceneSwitch(loginAnchorPane, "main.fxml", tecnicoSessao, objID);
+            ordersController ordController = new ordersController();
+//            ordController.loginTecnico(tecnicoSessao.getId(), tecnicoSessao.getSenha());
         }
+
     }
-    public void loginTecnico(int id, String senha) throws
-            InvalidUserException,
-            UserAlreadyLoggedInException,
-            WrongPasswordException, IOException {
+    public void loginTecnico(int id, String senha){
 
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
         Tecnico loginTecnico = pegaTecnicoPorId(id);
         if (loginTecnico == null){
-            throw new InvalidUserException(id);
-        }
-        else if(this.tecnicoSessao != null){
-            throw new UserAlreadyLoggedInException();
+            showErrorAlert("Técnico não encontrado!", "O técnico com o ID " + id + " não foi encontrado no sistema!");
         }
         boolean success = DAO.getTecnicoDAO().autentica(id, senha);
         if (success)
             this.tecnicoSessao = loginTecnico;
         else
-            throw new WrongPasswordException();
+            showErrorAlert("Senha incorreta!", "A senha digitada está incorreta!");
     }
+
     public Tecnico pegaTecnicoPorId(int tecnicoID){
         return DAO.getTecnicoDAO().pegaPorId(tecnicoID);
     }

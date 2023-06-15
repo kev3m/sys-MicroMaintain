@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.Main;
+import micromaintainsys.control.ordersController;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class SceneSwitch {
 
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         AnchorPane nextAnchorPane = fxmlLoader.load();
+
 
         currentAnchorPane.getChildren().clear();
         currentAnchorPane.getChildren().setAll(nextAnchorPane);
