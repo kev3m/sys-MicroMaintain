@@ -108,6 +108,9 @@ public class servicos_GerController implements Initializable {
 
     @FXML
     private TextField tecFieldUpdate;
+    @FXML
+    private TextField idRemoveField1;
+
 
     @FXML
     private TextField OrdemID;
@@ -381,18 +384,24 @@ public class servicos_GerController implements Initializable {
 //            showInformationAlert("Ordem atualizada", "A ordem foi atualizada com sucesso");
 //        }
 //    }
-//    @FXML
-//    void removeServico(){
-//        String idText = idRemoveField1.getText();
-//        if (idText.isEmpty() || DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)) == null){
-//            showErrorAlert("Serviço não encontrado", "Por favor, insira um ID válido");
-//        }
-//        else{
-//            DAO.getServicoDAO().remove(Integer.parseInt(idText));
-//            showInformationAlert("Serviço removido", "O serviço foi removido com sucesso");
-//            this.tableView.refresh();
-//        }
-//    }
+    @FXML
+    void removeServico(){
+        String idText = idRemoveField1.getText();
+        if (idText.isEmpty() || DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)) == null){
+            showErrorAlert("Serviço não encontrado", "Por favor, insira um ID válido");
+        }
+        else if (DAO.getOrdemDAO().pegaPorId(DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)).getOrdemID()).getStatus() == StatusOrdem.Pagamento || DAO.getOrdemDAO().pegaPorId(DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)).getOrdemID()).getStatus() == StatusOrdem.Finalizada){
+            showErrorAlert("Ordem encerrada", "Não é possível remover um serviço de uma ordem encerrada");
+        }
+        else if (DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText)).getHorarioFinalizacao() != null){
+            showErrorAlert("Serviço encerrado", "Não é possível remover um serviço encerrado");
+        }
+        else{
+            DAO.getServicoDAO().remove(Integer.parseInt(idText));
+            showInformationAlert("Serviço removido", "O serviço foi removido com sucesso");
+            refreshTable();
+        }
+    }
 
     @FXML
     void switchToOrdem() throws IOException {

@@ -238,7 +238,7 @@
          </rowConstraints>
          <children>
             <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
-            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Remover" GridPane.rowIndex="3">
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#removeServico" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Remover" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
