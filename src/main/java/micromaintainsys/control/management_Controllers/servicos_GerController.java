@@ -143,6 +143,9 @@ public class servicos_GerController implements Initializable {
         else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == 0){
             showErrorAlert("Quantia insuficiente de peça especificada", "Por favor, verifique o estoque");
         }
+        else if (DAO.getOrdemDAO().pegaPorId(id).getStatus() == StatusOrdem.Pagamento || DAO.getOrdemDAO().pegaPorId(id).getStatus() == StatusOrdem.Finalizada){
+            showErrorAlert("Ordem encerrada ou aguardando pagamento", "Não é possível remover um serviço de uma ordem encerrada ou aguardando pagamento");
+        }
         else{
             DAO.getServicoDAO().cria(categoriaServico.getValue(), Double.parseDouble(valor), peca, desc, id);
             showInformationAlert("Serviço adicionado", "Serviço adicionado com sucesso");
@@ -251,32 +254,7 @@ public class servicos_GerController implements Initializable {
         }
     }
 
-    public boolean fechaOrdem(int ordemID) throws UserNotLoggedInException {
-        Ordem ordem = DAO.getOrdemDAO().pegaPorId(ordemID);
-        Tecnico tecnicoDaOrdem = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
-//        if (this.tecnicoSessao == null)
-//            throw new UserNotLoggedInException();
-//        /*Usuário normal tentando atribuir ordem a outro usuário*/
-//        if (ordem.getStatus() != StatusOrdem.Andamento)
-//            return false;
 
-        /*Testa se todos os serviços da ordem já foram encerrados*/
-        ArrayList<Servico> servicosOrdem = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
-        boolean emAberto = false;
-        for (Servico servico: servicosOrdem){
-            if (!servico.foiEncerrado()){
-                emAberto = true;
-                break;
-            }
-        }
-        if (emAberto) return false;
-        else {
-            ordem.setStatus(StatusOrdem.Pagamento);
-            tecnicoDaOrdem.setOrdemEmAndamentoID(-1);
-            DAO.getOrdemDAO().atualiza(ordem);
-            return true;
-        }
-    }
      private boolean verifaTodosOsServicosEncerrados(int ordemID){
         ArrayList<Servico> servicos = DAO.getServicoDAO().pegaTodosPorOrdemID(ordemID);
         for (Servico servico : servicos){
