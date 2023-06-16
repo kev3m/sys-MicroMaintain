@@ -246,6 +246,8 @@ public class servicos_GerController implements Initializable {
                 if (ordensfechadas == true){
                     showInformationAlert("Ordem aguardando pagamento", "Todos os serviços da ordem #" +servico.getOrdemID() + " foram encerrados.\n O status da ordem foi atualizado automaticamente");
                     Ordem ordem = DAO.getOrdemDAO().pegaPorId(servico.getOrdemID());
+                    Tecnico tecnico = DAO.getTecnicoDAO().pegaPorId(ordem.getTecnicoID());
+                    tecnico.setOrdemEmAndamentoID(-1);
                     ordem.setStatus(StatusOrdem.Pagamento);
                     DAO.getOrdemDAO().atualiza(ordem);
                 }
