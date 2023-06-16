@@ -168,6 +168,7 @@ public class ordersController implements Initializable {
     }
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
+        displayName();
     }
     @FXML
     public void atribuiOrdem() throws IOException {
