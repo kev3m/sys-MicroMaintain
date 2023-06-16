@@ -26,6 +26,7 @@ import java.io.File;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Queue;
@@ -266,7 +267,6 @@ public class servicos_GerController implements Initializable {
      }
 
 
-
     @FXML
     void gerarRelatorio() throws IOException {
         String idText = idServicoRelatorio.getText();
@@ -278,6 +278,7 @@ public class servicos_GerController implements Initializable {
             showWarningAlert("Serviço não encerrado", "Este serviço ainda não foi encerrado");
         }
         else {
+            Servico servico = DAO.getServicoDAO().pegaPorId(Integer.parseInt(idText));
             // Cria um novo documento PDF
             PDDocument document = new PDDocument();
 
@@ -295,31 +296,72 @@ public class servicos_GerController implements Initializable {
             // Define a fonte e o tamanho do texto
             contentStream.setFont(font, 12);
 
+            //TX - POSIÇÃO HORINZONTAL -- TY: POSIÇÃO VERTICAL
+
             // Título do relatório
             contentStream.beginText();
-            contentStream.newLineAtOffset(50, 700);
+            contentStream.newLineAtOffset(50, 770);
             contentStream.showText("Relatório do Serviço: #" + idText);
             contentStream.endText();
-
-            // Cabeçalho da tabela
+// Cabeçalho da tabela
             contentStream.beginText();
-            contentStream.newLineAtOffset(50, 670);
-            contentStream.showText("Produto");
+            contentStream.newLineAtOffset(50, 700);
+            contentStream.showText("Categoria do Serviço");
+            contentStream.newLineAtOffset(200, 0);
+            contentStream.showText("Descrição do Serviço");
             contentStream.newLineAtOffset(150, 0);
-            contentStream.showText("Quantidade");
-            contentStream.newLineAtOffset(150, 0);
-            contentStream.showText("Valor");
+            contentStream.showText("Valor do Serviço");
             contentStream.endText();
 
-            // Conteúdo da tabela
             contentStream.beginText();
-            contentStream.newLineAtOffset(50, 650);
-            contentStream.showText("Produto A");
+            contentStream.newLineAtOffset(50, 680);
+            contentStream.showText("--------------");
+            contentStream.newLineAtOffset(200, 0);
+            contentStream.showText("--------------");
             contentStream.newLineAtOffset(150, 0);
-            contentStream.showText("10");
-            contentStream.newLineAtOffset(150, 0);
-            contentStream.showText("R$ 100,00");
+            contentStream.showText("--------------");
             contentStream.endText();
+
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 660);
+            contentStream.showText(servico.getCategoriaServico().name());
+            contentStream.newLineAtOffset(200, 0);
+            contentStream.showText(servico.getDescricao());
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText("R$ " + (servico.getValor()));
+            contentStream.endText();
+
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 540);
+            contentStream.showText("Peças Utilizadas");
+            contentStream.newLineAtOffset(200, 0);
+            contentStream.showText("-------------->");
+            contentStream.newLineAtOffset(150, 0);
+            if (servico.getPeca() == null) {
+                contentStream.showText("Serviço não inclui peça");
+            } else {
+                contentStream.showText(servico.getPeca());
+            }
+            contentStream.endText();
+
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 520);
+            contentStream.showText("Tempo Médio");
+            contentStream.newLineAtOffset(200, 0);
+            contentStream.showText("-------------->");
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText(calcularTempoEspera(servico.getHorarioAbertura(), servico.getHorarioFinalizacao()));
+            contentStream.endText();
+
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 500);
+            contentStream.showText("Avaliação do Cliente");
+            contentStream.newLineAtOffset(200, 0);
+            contentStream.showText("-------------->");
+            contentStream.newLineAtOffset(150, 0);
+            contentStream.showText(Double.toString(servico.getAvaliacaoCliente()));
+            contentStream.endText();
+
 
             // Fecha o conteúdo da página
             contentStream.close();
@@ -340,28 +382,21 @@ public class servicos_GerController implements Initializable {
         }
     }
     }
-//    @FXML
-//    void updateOrder(){
-//        String idText = idField.getText();
-//        String tecText = tecFieldUpdate.getText();
-//        StatusOrdem status = statusChoice.getValue();
-//        if (idText.isEmpty() || tecText.isEmpty() || status == null){
-//            showWarningAlert("Campo vazio", "Para prosseguir, preencha todos os campos");
-//        }
-//        else if (DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText)) == null){
-//            showErrorAlert("Ordem não encontrada", "Por favor, insira um ID válido");
-//        }
-//        else if (DAO.getTecnicoDAO().pegaPorId(Integer.parseInt(tecText)) == null){
-//            showErrorAlert("Técnico não encontrado", "Por favor, insira um ID válido");
-//        }
-//        else{
-//            Ordem ordem = DAO.getOrdemDAO().pegaPorId(Integer.parseInt(idText));
-//            ordem.setStatus(status);
-//            ordem.setTecnicoID(Integer.parseInt(tecText));
-//            DAO.getOrdemDAO().atualiza(ordem);
-//            showInformationAlert("Ordem atualizada", "A ordem foi atualizada com sucesso");
-//        }
-//    }
+
+    private static String calcularTempoEspera(Calendar horarioAbertura, Calendar horarioFinalizacao) {
+        long diferencaMillis = horarioFinalizacao.getTimeInMillis() - horarioAbertura.getTimeInMillis();
+
+        long segundos = diferencaMillis / 1000;
+        long minutos = segundos / 60;
+        long horas = minutos / 60;
+        long dias = horas / 24;
+
+        segundos %= 60;
+        minutos %= 60;
+        horas %= 24;
+
+        return  dias + " d, " + horas + " h, " + minutos + " m, " + segundos + " s";
+    }
     @FXML
     void removeServico(){
         String idText = idRemoveField1.getText();
