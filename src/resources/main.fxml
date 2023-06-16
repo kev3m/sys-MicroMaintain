@@ -226,7 +226,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="acceptOrder" layoutX="764.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToOrdem_ger" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Aceitar Ordem">
+      <Button fx:id="acceptOrder" layoutX="764.0" layoutY="122.0" mnemonicParsing="false" onAction="#atribuiOrdem" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Aceitar Ordem">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
