@@ -25,69 +25,70 @@ public class SceneSwitch {
 
 
         if (fxml != "login.fxml"){
-            if (fxml == "main.fxml"){
+            if (fxml.equals("main.fxml") ){
                 ordersController ordController = fxmlLoader.getController();
                 ordController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "clientes.fxml"){
+            else if (fxml.equals("clientes.fxml") ){
                 clientesController cliController = fxmlLoader.getController();
                 cliController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "estoque.fxml"){
+            else if (fxml.equals("estoque.fxml") ){
                 estoqueController estController = fxmlLoader.getController();
                 estController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "faturas.fxml"){
+            else if (fxml.equals("faturas.fxml") ){
                 faturaController fatController = fxmlLoader.getController();
                 fatController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "tecnicos.fxml"){
+            else if (fxml.equals("tecnicos.fxml") ){
                 tecnicosController tecController = fxmlLoader.getController();
                 tecController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "ordem_compra.fxml"){
+            else if (fxml.equals("ordem_compra.fxml") ){
                 ordemCompraController ordCompController = fxmlLoader.getController();
                 ordCompController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "ordens_Ger.fxml"){
+            else if (fxml.equals("ordens_Ger.fxml") ){
                 ordens_GerController ordGerController = fxmlLoader.getController();
                 ordGerController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "clientes_Ger.fxml"){
+            else if (fxml.equals("clientes_Ger.fxml") ){
                 cliente_GerController cliGerController = fxmlLoader.getController();
                 cliGerController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "estoque_Ger.fxml"){
+            else if (fxml.equals("estoque_Ger.fxml") ){
                 estoque_GerController estGerController = fxmlLoader.getController();
                 estGerController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "faturas_Ger.fxml"){
+            else if (fxml.equals("faturas_Ger.fxml") ){
                 faturas_GerController fatGerController = fxmlLoader.getController();
                 fatGerController.setTecnicoSessao(tecnico);
             }
             //GERENCIAMENTO
-            else if (fxml == "management_Scenes/cliente_GerController.fxml"){
+            else if (fxml.equals("management_Scenes/cliente_ger.fxml") ){
                 cliente_GerController cliGerController = fxmlLoader.getController();
                 cliGerController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "management_Scenes/estoque_GerController"){
+            else if (fxml.equals("management_Scenes/estoque_ger.fxml") ){
                 estoque_GerController estGerController = fxmlLoader.getController();
                 estGerController.setTecnicoSessao(tecnico);
-            } else if (fxml == "management_Scenes/faturas_GerController"){
+            } else if (fxml.equals("management_Scenes/faturas_ger.fxml") ){
                 faturas_GerController fatGerController = fxmlLoader.getController();
                 fatGerController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "management_Scenes/ordens_GerController"){
+            else if (fxml.equals("management_Scenes/ordens_ger.fxml") ){
                 ordens_GerController ordGerController = fxmlLoader.getController();
                 ordGerController.setTecnicoSessao(tecnico);
             }
-            else if (fxml == "management_Scenes/servicos_GerController"){
+            else if (fxml.equals("management_Scenes/servicos_ger.fxml") ){
                 servicos_GerController serGerController = fxmlLoader.getController();
                 serGerController.setTecnicoSessao(tecnico);
             }
-            else {
-                tec_GerController teGerController = fxmlLoader.getController();
-                teGerController.setTecnicoSessao(tecnico);
+            else if(fxml.equals("management_Scenes/tec_ger.fxml")) {
+                    tec_GerController teGerController = fxmlLoader.getController();
+                    teGerController.setTecnicoSessao(tecnico);
+
             }
 
         }
