@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
+import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
 
 import java.io.IOException;
@@ -56,8 +57,6 @@ public class ordersController implements Initializable {
         this.tableView.getItems().setAll(observableList);
         tableView.setItems(observableList);
         callDisplayNameOnInitialize();
-
-
     }
 
     @Override
@@ -105,12 +104,8 @@ public class ordersController implements Initializable {
             });
             return row;
         });
-
-
-
-
-
     }
+
     public Estoque carregaEstoque(){
         //this.estoque = DAO.getEstoqueDAO().cria()
         return DAO.getEstoqueDAO().carrega();
@@ -167,8 +162,6 @@ public class ordersController implements Initializable {
             displayName();
         }
     }
-
-
     @FXML
     public void displayName() {
         helloLabel.setText("Olá, " + this.tecnicoSessao.getNome() + "!");
@@ -176,4 +169,44 @@ public class ordersController implements Initializable {
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
     }
+    @FXML
+    public void atribuiOrdem() {
+
+        Ordem ordem = this.ordensAbertas.poll();
+        Tecnico tecnico = this.tecnicoSessao;
+
+        /*Técnico já tem ordem em andamento*/
+        if (tecnico.getOrdemEmAndamentoID() >= 0){
+            showErrorAlert("Erro ao aceitar ordem", "Técnico já tem ordem em andamento!");
+        }
+        /*A fila de ordens abertas está vazia*/
+        if (ordem == null){
+            showErrorAlert("Erro ao aceitar ordem", "Não existe ordem em andamento!");
+        }
+        /*Verificações de serviço*/
+        for (Servico servico: DAO.getServicoDAO().pegaTodosPorOrdemID(ordem.getOrdemID())) {
+            String peca = servico.getPeca();
+            /*Serviço tem peça*/
+            if (peca != null && !peca.equals("")) {
+                peca = peca.toLowerCase();
+                /*Tipo de peça nunca foi comprado*/
+                if (!this.estoque.getPecas().containsKey(peca)) {
+                    String erro = "Peça nunca foi comprada (" + peca + ")!";
+                    showErrorAlert("Erro ao aceitar ordem", erro);
+                }
+                /*Tipo de peça fora de estoque*/
+                if (this.estoque.getPecas().get(peca) == 0){
+                    String erro = "Peça fora de estoque: (" + peca + ")!";
+                    showErrorAlert("Erro ao aceitar ordem", erro);
+                }
+            }
+        }
+        tecnico.setOrdemEmAndamentoID(ordem.getOrdemID());
+        ordem.setTecnicoID(tecnico.getTecnicoID());
+        ordem.setStatus(StatusOrdem.Andamento);
+        DAO.getTecnicoDAO().atualiza(tecnico);
+        DAO.getOrdemDAO().atualiza(ordem);
+    }
+
+
 }
