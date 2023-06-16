@@ -65,6 +65,10 @@ public class faturaController implements Initializable {
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(faturaAnchor, "ordem_compra.fxml", tecnicoSessao, objID);
     }
+
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
     ObservableList<Fatura> observableFaturaList = FXCollections.observableArrayList(DAO.getFaturaDAO().pegaTodas());
 
     @Override

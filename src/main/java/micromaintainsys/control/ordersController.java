@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import static micromaintainsys.utils.ViewUtils.*;
+
+
 public class ordersController implements Initializable {
     @FXML
     private TableView<Ordem> tableView;
@@ -30,10 +33,10 @@ public class ordersController implements Initializable {
     private ChoiceBox<StatusOrdem> statusFilter;
     @FXML
     private Button acceptOrder;
+    @FXML
+    private Label helloLabel;
     private Tecnico tecnicoSessao;
     private int objID;
-
-
 
     @FXML
     private AnchorPane ordersAnchorPane;
@@ -45,17 +48,22 @@ public class ordersController implements Initializable {
 
 
     public ordersController() {
+
     }
 
     private void atualizarTabelaPorStatus(StatusOrdem status) {
         ObservableList<Ordem> observableList = FXCollections.observableArrayList(DAO.getOrdemDAO().pegaTodasPorStatus(status));
         this.tableView.getItems().setAll(observableList);
         tableView.setItems(observableList);
+        callDisplayNameOnInitialize();
+
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+
+
         ObservableList<StatusOrdem> observableListstatus = FXCollections.observableArrayList(StatusOrdem.values());
         statusFilter.setItems(observableListstatus);
         statusFilter.getSelectionModel().select(0);
@@ -139,9 +147,33 @@ public class ordersController implements Initializable {
 
     @FXML
     void logoutTecnico() throws IOException {
+        if (this.tecnicoSessao != null){
+            this.tecnicoSessao = null;
+            showInformationAlert("Logout efetuado", "Logout efetuado com sucesso");
+            new SceneSwitch(ordersAnchorPane, "login.fxml", tecnicoSessao, objID);
+        }
+        else{
+            showErrorAlert("Erro ao fazer logout", "Não há nenhum técnico logado no sistema");
+        }
         new SceneSwitch(ordersAnchorPane, "login.fxml", tecnicoSessao, objID);
+    }
+    public void callDisplayNameOnInitialize() {
+        // Verifica se o objeto tecnicoSessao não é nulo antes de chamar o displayName
+        if (tecnicoSessao != null) {
+            System.out.println("TecnicoSessao não é nulo");
+            System.out.println(tecnicoSessao.getNome());
+            System.out.println(tecnicoSessao.getTecnicoID());
+            System.out.println(tecnicoSessao.getSenha());
+            displayName();
+        }
     }
 
 
-
+    @FXML
+    public void displayName() {
+        helloLabel.setText("Olá, " + this.tecnicoSessao.getNome() + "!");
+    }
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
 }

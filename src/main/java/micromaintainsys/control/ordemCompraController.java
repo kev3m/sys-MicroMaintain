@@ -76,7 +76,9 @@ public class ordemCompraController implements Initializable {
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(ordemCompraAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
-
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
 
 
     ObservableList<OrdemCompra> observableList = FXCollections.observableArrayList(DAO.getEstoqueDAO().carrega().verificaOrdensCompra());

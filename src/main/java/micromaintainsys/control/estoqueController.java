@@ -87,6 +87,9 @@ public class estoqueController implements Initializable {
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(estoqueAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

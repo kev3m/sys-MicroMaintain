@@ -72,6 +72,9 @@ public class clientesController implements Initializable {
     void switchToOrdem_Compra() throws IOException {
         new SceneSwitch(clientesAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
 
     ObservableList<Cliente> observableList = FXCollections.observableArrayList(DAO.getClienteDAO().pegaTodos());
     @Override

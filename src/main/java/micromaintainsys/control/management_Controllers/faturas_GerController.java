@@ -89,6 +89,9 @@ public class faturas_GerController implements Initializable {
         new SceneSwitch(faturaGerAnchorPane, "faturas.fxml", tecnicoSessao, objID);
     }
 
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
 
     @FXML
     void efetuaPagamento(ActionEvent event) {

@@ -398,7 +398,9 @@ public class servicos_GerController implements Initializable {
     void switchToOrdem() throws IOException {
         new SceneSwitch(tecnicosAnchorPane, "main.fxml", tecnicoSessao, objID);
     }
-
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

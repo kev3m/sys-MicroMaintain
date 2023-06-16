@@ -172,6 +172,10 @@ public class tec_GerController implements Initializable {
         new SceneSwitch(tecnicosAnchorPane, "ordem_compra.fxml", tecnicoSessao, objID);
     }
 
+    public void setTecnicoSessao(Tecnico tecnicoSessao) {
+        this.tecnicoSessao = tecnicoSessao;
+    }
+
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
