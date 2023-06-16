@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static micromaintainsys.utils.ViewUtils.showErrorAlert;
+import static micromaintainsys.utils.ViewUtils.showInformationAlert;
+
 public class clientesController implements Initializable {
 
     @FXML
@@ -75,6 +78,20 @@ public class clientesController implements Initializable {
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
     }
+    @FXML
+    void logoutTecnico() throws IOException {
+        if (this.tecnicoSessao != null){
+            this.tecnicoSessao = null;
+            showInformationAlert("Logout efetuado", "Logout efetuado com sucesso");
+            new SceneSwitch(clientesAnchorPane, "login.fxml", tecnicoSessao, objID);
+        }
+        else{
+            showErrorAlert("Erro ao fazer logout", "Não há nenhum técnico logado no sistema");
+        }
+        new SceneSwitch(clientesAnchorPane, "login.fxml", tecnicoSessao, objID);
+    }
+
+
 
     ObservableList<Cliente> observableList = FXCollections.observableArrayList(DAO.getClienteDAO().pegaTodos());
     @Override

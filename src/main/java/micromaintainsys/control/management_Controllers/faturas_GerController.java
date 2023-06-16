@@ -92,6 +92,18 @@ public class faturas_GerController implements Initializable {
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
     }
+    @FXML
+    void logoutTecnico() throws IOException {
+        if (this.tecnicoSessao != null){
+            this.tecnicoSessao = null;
+            showInformationAlert("Logout efetuado", "Logout efetuado com sucesso");
+            new SceneSwitch(faturaGerAnchorPane, "login.fxml", tecnicoSessao, objID);
+        }
+        else{
+            showErrorAlert("Erro ao fazer logout", "Não há nenhum técnico logado no sistema");
+        }
+        new SceneSwitch(faturaGerAnchorPane, "login.fxml", tecnicoSessao, objID);
+    }
 
     @FXML
     void efetuaPagamento(ActionEvent event) {

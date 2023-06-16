@@ -158,6 +158,20 @@ public class estoque_GerController implements Initializable {
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
     }
+    @FXML
+    void logoutTecnico() throws IOException {
+        if (this.tecnicoSessao != null){
+            this.tecnicoSessao = null;
+            showInformationAlert("Logout efetuado", "Logout efetuado com sucesso");
+            new SceneSwitch(tecnicosAnchorPane, "login.fxml", tecnicoSessao, objID);
+        }
+        else{
+            showErrorAlert("Erro ao fazer logout", "Não há nenhum técnico logado no sistema");
+        }
+        new SceneSwitch(tecnicosAnchorPane, "login.fxml", tecnicoSessao, objID);
+    }
+
+
     ObservableList<Tecnico> observableList = FXCollections.observableArrayList(DAO.getTecnicoDAO().pegaTodos());
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

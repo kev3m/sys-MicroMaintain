@@ -2,9 +2,14 @@ package micromaintainsys.control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.InvalidUserException;
 import micromaintainsys.exceptions.UserAlreadyLoggedInException;
@@ -15,7 +20,10 @@ import micromaintainsys.model.*;
 import micromaintainsys.model.Tecnico;
 
 import static micromaintainsys.utils.ViewUtils.*;
+
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class loginController {
     //Armazena o ID do tecnico logado no sistema
@@ -37,8 +45,6 @@ public class loginController {
         loginTecnico(tecId, password);
         if (tecnicoSessao != null){
             new SceneSwitch(loginAnchorPane, "main.fxml", tecnicoSessao, objID);
-            ordersController ordController = new ordersController();
-//            ordController.loginTecnico(tecnicoSessao.getId(), tecnicoSessao.getSenha());
         }
 
     }

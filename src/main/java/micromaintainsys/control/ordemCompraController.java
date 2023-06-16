@@ -24,6 +24,9 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import static micromaintainsys.utils.ViewUtils.showErrorAlert;
+import static micromaintainsys.utils.ViewUtils.showInformationAlert;
+
 public class ordemCompraController implements Initializable {
     @FXML
     private AnchorPane ordemCompraAnchorPane;
@@ -78,6 +81,18 @@ public class ordemCompraController implements Initializable {
     }
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
+    }
+    @FXML
+    void logoutTecnico() throws IOException {
+        if (this.tecnicoSessao != null){
+            this.tecnicoSessao = null;
+            showInformationAlert("Logout efetuado", "Logout efetuado com sucesso");
+            new SceneSwitch(ordemCompraAnchorPane, "login.fxml", tecnicoSessao, objID);
+        }
+        else{
+            showErrorAlert("Erro ao fazer logout", "Não há nenhum técnico logado no sistema");
+        }
+        new SceneSwitch(ordemCompraAnchorPane, "login.fxml", tecnicoSessao, objID);
     }
 
 
