@@ -73,7 +73,7 @@ public class SceneSwitch {
             else if (fxml.equals("management_Scenes/estoque_ger.fxml") ){
                 estoque_GerController estGerController = fxmlLoader.getController();
                 estGerController.setTecnicoSessao(tecnico);
-            } else if (fxml.equals("management_Scenes/faturas_ger.fxml") ){
+            } else if (fxml.equals("management_Scenes/fatura_ger.fxml") ){
                 faturas_GerController fatGerController = fxmlLoader.getController();
                 fatGerController.setTecnicoSessao(tecnico);
             }
@@ -85,7 +85,7 @@ public class SceneSwitch {
                 servicos_GerController serGerController = fxmlLoader.getController();
                 serGerController.setTecnicoSessao(tecnico);
             }
-            else if(fxml.equals("management_Scenes/tec_ger.fxml")) {
+            else if(fxml.equals("management_Scenes/tecnicos_ger.fxml")) {
                     tec_GerController teGerController = fxmlLoader.getController();
                     teGerController.setTecnicoSessao(tecnico);
 
