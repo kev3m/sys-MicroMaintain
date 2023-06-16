@@ -55,8 +55,7 @@ public class loginController {
         if (loginTecnico == null){
             showErrorAlert("Técnico não encontrado!", "O técnico com o ID " + id + " não foi encontrado no sistema!");
         }
-        boolean success = DAO.getTecnicoDAO().autentica(id, senha);
-        if (success)
+        else if (DAO.getTecnicoDAO().autentica(id, senha))
             this.tecnicoSessao = loginTecnico;
         else
             showErrorAlert("Senha incorreta!", "A senha digitada está incorreta!");
