@@ -178,10 +178,12 @@ public class ordersController implements Initializable {
         /*Técnico já tem ordem em andamento*/
         if (tecnico.getOrdemEmAndamentoID() >= 0){
             showErrorAlert("Erro ao aceitar ordem", "Técnico já tem ordem em andamento!");
+            return;
         }
         /*A fila de ordens abertas está vazia*/
-        if (ordem == null){
+        else if (ordem == null){
             showErrorAlert("Erro ao aceitar ordem", "Não existe ordem em andamento!");
+            return;
         }
         /*Verificações de serviço*/
         for (Servico servico: DAO.getServicoDAO().pegaTodosPorOrdemID(ordem.getOrdemID())) {
@@ -193,11 +195,13 @@ public class ordersController implements Initializable {
                 if (!this.estoque.getPecas().containsKey(peca)) {
                     String erro = "Peça nunca foi comprada (" + peca + ")!";
                     showErrorAlert("Erro ao aceitar ordem", erro);
+                    return;
                 }
                 /*Tipo de peça fora de estoque*/
                 if (this.estoque.getPecas().get(peca) == 0){
                     String erro = "Peça fora de estoque: (" + peca + ")!";
                     showErrorAlert("Erro ao aceitar ordem", erro);
+                    return;
                 }
             }
         }
