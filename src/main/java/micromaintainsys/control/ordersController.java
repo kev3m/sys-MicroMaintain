@@ -170,7 +170,7 @@ public class ordersController implements Initializable {
         this.tecnicoSessao = tecnicoSessao;
     }
     @FXML
-    public void atribuiOrdem() {
+    public void atribuiOrdem() throws IOException {
 
         Ordem ordem = this.ordensAbertas.poll();
         Tecnico tecnico = this.tecnicoSessao;
@@ -210,6 +210,7 @@ public class ordersController implements Initializable {
         ordem.setStatus(StatusOrdem.Andamento);
         DAO.getTecnicoDAO().atualiza(tecnico);
         DAO.getOrdemDAO().atualiza(ordem);
+        switchToOrdem();
     }
 
 
