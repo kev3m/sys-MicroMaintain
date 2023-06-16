@@ -131,6 +131,13 @@ public class faturas_GerController implements Initializable {
                 DAO.getFaturaDAO().atualiza(fatura);
                 DAO.getPagamentoDAO().cria(tipo, Double.parseDouble(valor), Integer.parseInt(id));
                 showInformationAlert("Pagamento efetuado com sucesso", "O pagamento foi efetuado com sucesso");
+
+                if (valorPago - fatura.getValorTotal() == 0){
+                    Ordem ordemPaga = DAO.getOrdemDAO().pegaPorId(fatura.getOrdemID());
+                    ordemPaga.setStatus(StatusOrdem.Finalizada);
+                    DAO.getOrdemDAO().atualiza(ordemPaga);
+                }
+
                 refreshFatura();
             }
         }
