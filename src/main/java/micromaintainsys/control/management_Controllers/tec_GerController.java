@@ -195,7 +195,7 @@ public class tec_GerController implements Initializable {
         // Configurar o filtro de entrada para aceitar somente números
             numberFilter(idField);
             numberFilter(idRemoveField);
-//            numberFilter(OrderFieldUpdate);
+            numberFilter(OrderFieldUpdate);
 
         // Configura o filtro de entrada para aceitar letras
             letterFilter(nameField);

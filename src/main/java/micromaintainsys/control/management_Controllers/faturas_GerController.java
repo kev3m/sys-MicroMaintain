@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.*;
+import static micromaintainsys.utils.ViewUtils.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -234,6 +235,11 @@ public class faturas_GerController implements Initializable {
         this.valorPagColumn.setCellValueFactory(new PropertyValueFactory<>("valor"));
 
         searchFatura.setOnAction(event -> refreshPagamentos());
+
+        numberFilter(idOrdem);
+        priceFilter(valorPagamento);
+        numberFilter(idFatura);
+        numberFilter(faturaID);
 
 
 

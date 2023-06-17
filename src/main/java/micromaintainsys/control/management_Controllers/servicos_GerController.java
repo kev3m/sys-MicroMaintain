@@ -119,43 +119,53 @@ public class servicos_GerController implements Initializable {
 
     @FXML
     void addServico() throws IOException {
-        int id = Integer.parseInt(OrdemID.getText());
-        String peca = PecaAdd.getText();
-        String desc = DescAdd.getText();
-        String valor = ValorAdd.getText();
-        CategoriaServico categoria = categoriaServico.getValue();
-        estoque = DAO.getEstoqueDAO().carrega();
-        if (desc.isEmpty() || valor.isEmpty() || categoria == null){
-            showErrorAlert("Campo vazio", "Por favor, verifique os campos");
+        if (OrdemID.getText().isEmpty() || OrdemID.getText().isBlank()){
+            showErrorAlert("Campo vazio", "Por favor, verifique o campo de ID da ordem acima");
         }
-        else if (DAO.getOrdemDAO().pegaPorId(id) == null || OrdemID.getText().isEmpty()){
-            showErrorAlert("ID de Ordem inválido ou Ordem não encontrada", "Por favor, verifique o campo de ID");
-        }
-        else if (categoria == CategoriaServico.Montagem && peca.isEmpty()){
-            showErrorAlert("Serviço Invalido", "Para serviços de montagem, especifique a peça");
-            throw new AssemblyWithEmptyComponentException();
-        }
-        else if (categoria != CategoriaServico.Montagem && !peca.isEmpty()){
-            showErrorAlert("Serviço Invalido", "Para serviços que não sejam de montagem, deixe o campo de peça em branco");
-        }
-        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == null){
-            showErrorAlert("Peça não encontrada", "Por favor, verifique o estoque");
-        }
-        else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == 0){
-            showErrorAlert("Quantia insuficiente de peça especificada", "Por favor, verifique o estoque");
-        }
-        else if (DAO.getOrdemDAO().pegaPorId(id).getStatus() == StatusOrdem.Pagamento || DAO.getOrdemDAO().pegaPorId(id).getStatus() == StatusOrdem.Finalizada){
-            showErrorAlert("Ordem encerrada ou aguardando pagamento", "Não é possível remover um serviço de uma ordem encerrada ou aguardando pagamento");
-        }
-        else{
-            DAO.getServicoDAO().cria(categoriaServico.getValue(), Double.parseDouble(valor), peca, desc, id);
-            showInformationAlert("Serviço adicionado", "Serviço adicionado com sucesso");
-            refreshTable();
-            if (categoria == CategoriaServico.Montagem){
-                estoque.getPecas().put(peca,estoque.getPecas().get(peca) - 1);
-                DAO.getEstoqueDAO().atualiza(estoque);
+        else {
+            int id = Integer.parseInt(OrdemID.getText());
+            String peca = PecaAdd.getText();
+            String desc = DescAdd.getText();
+            String valor = ValorAdd.getText();
+            CategoriaServico categoria = categoriaServico.getValue();
+            estoque = DAO.getEstoqueDAO().carrega();
+            if (OrdemID.getText().isEmpty() || OrdemID.getText().isBlank()){
+                showErrorAlert("Campo vazio", "Por favor, verifique o campo de ID da ordem acima");
             }
+            if (DAO.getOrdemDAO().pegaPorId(id) == null){
+                showErrorAlert("ID de Ordem inválido ou Ordem não encontrada", "Por favor, verifique o campo de ID");
             }
+            else if (desc.isEmpty() || valor.isEmpty() || categoria == null){
+                showErrorAlert("Campo vazio", "Por favor, verifique os campos");
+            }
+            else if (categoria == CategoriaServico.Montagem && peca.isEmpty()){
+                showErrorAlert("Serviço Invalido", "Para serviços de montagem, especifique a peça");
+                throw new AssemblyWithEmptyComponentException();
+            }
+            else if (categoria != CategoriaServico.Montagem && !peca.isEmpty()){
+                showErrorAlert("Serviço Invalido", "Para serviços que não sejam de montagem, deixe o campo de peça em branco");
+            }
+            else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == null){
+                showErrorAlert("Peça não encontrada", "Por favor, verifique o estoque");
+            }
+            else if (categoria == CategoriaServico.Montagem && estoque.getPecas().get(PecaAdd.getText()) == 0){
+                showErrorAlert("Quantia insuficiente de peça especificada", "Por favor, verifique o estoque");
+            }
+            else if (DAO.getOrdemDAO().pegaPorId(id).getStatus() == StatusOrdem.Pagamento || DAO.getOrdemDAO().pegaPorId(id).getStatus() == StatusOrdem.Finalizada){
+                showErrorAlert("Ordem encerrada ou aguardando pagamento", "Não é possível remover um serviço de uma ordem encerrada ou aguardando pagamento");
+            }
+            else{
+                DAO.getServicoDAO().cria(categoriaServico.getValue(), Double.parseDouble(valor), peca, desc, id);
+                showInformationAlert("Serviço adicionado", "Serviço adicionado com sucesso");
+                refreshTable();
+                if (categoria == CategoriaServico.Montagem){
+                    estoque.getPecas().put(peca,estoque.getPecas().get(peca) - 1);
+                    DAO.getEstoqueDAO().atualiza(estoque);
+                }
+            }
+
+        }
+
         }
 
     @FXML
@@ -466,7 +476,13 @@ public class servicos_GerController implements Initializable {
 
         numberFilter(OrdemID);
         numberFilter(idSearchField);
-//        numberFilter(notaServico);
+        numberFilter(idServicoRelatorio);
+        numberFilter(idRemoveField1);
+        priceFilter(ValorAdd);
+        priceFilter(notaServico);
+
+
+        //        numberFilter(notaServico);
 
 
     }

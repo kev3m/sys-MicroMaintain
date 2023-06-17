@@ -301,7 +301,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="pecaDelete" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="Peça" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
+            <TextField fx:id="pecaDelete" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="Insira o nome da peça" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" top="15.0" />
                </GridPane.margin>
