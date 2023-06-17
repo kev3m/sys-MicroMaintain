@@ -1,6 +1,7 @@
 package micromaintainsys.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 /**
  Classe que representa um serviço.
@@ -131,6 +132,7 @@ public class Servico implements Serializable {
     public Calendar getHorarioAbertura() {
         return horarioAbertura;
     }
+
     /**
      * Obtém o horário de finalização do serviço.
      * @return Horário de finalização do serviço.
@@ -193,5 +195,19 @@ public class Servico implements Serializable {
      */
     public boolean foiEncerrado(){
         return this.horarioFinalizacao == null? false : true;
+    }
+
+    public String getDataCriacaoFormatada(){
+        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        String data = s.format(this.horarioAbertura.getTime());
+        return data;
+    }
+    public String getDataFinalizacaoFormatada(){
+        if (this.horarioFinalizacao != null){
+            SimpleDateFormat s = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+            String data = s.format(this.horarioFinalizacao.getTime());
+            return data;
+        }
+        else return "---";
     }
 }

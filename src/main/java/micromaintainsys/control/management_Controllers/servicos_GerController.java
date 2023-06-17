@@ -380,7 +380,7 @@ public class servicos_GerController implements Initializable {
                 }
             // Fecha o documento
             document.close();
-            System.out.println("Relatório gerado com sucesso!");
+            showInformationAlert("Relatório gerado com sucesso!","Verifique sua área de trabalho.");
         }
     }
     }
@@ -443,8 +443,8 @@ public class servicos_GerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.IdColumn.setCellValueFactory(new PropertyValueFactory<>("servicoID"));
         this.DescColumn.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        this.AbertColumn.setCellValueFactory(new PropertyValueFactory<>("horarioAbertura"));
-        this.FinColumn.setCellValueFactory(new PropertyValueFactory<>("horarioFinalizacao"));
+        this.AbertColumn.setCellValueFactory(new PropertyValueFactory<>("dataCriacaoFormatada"));
+        this.FinColumn.setCellValueFactory(new PropertyValueFactory<>("dataFinalizacaoFormatada"));
         this.ValorColumn.setCellValueFactory(new PropertyValueFactory<>("valor"));
         this.AvColumn.setCellValueFactory(new PropertyValueFactory<>("avaliacaoCliente"));
         this.CategoriaColumn.setCellValueFactory(new PropertyValueFactory<>("categoriaServico"));

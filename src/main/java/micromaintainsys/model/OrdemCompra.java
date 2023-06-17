@@ -1,6 +1,7 @@
 package micromaintainsys.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -94,5 +95,11 @@ public class OrdemCompra implements Serializable {
      */
     public void setDataCriacao(Calendar dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public String getDataCriacaoFormatada(){
+        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yy");
+        String data = s.format(this.dataCriacao.getTime());
+        return data;
     }
 }

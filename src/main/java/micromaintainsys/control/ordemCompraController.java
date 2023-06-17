@@ -99,7 +99,7 @@ public class ordemCompraController implements Initializable {
     ObservableList<OrdemCompra> observableList = FXCollections.observableArrayList(DAO.getEstoqueDAO().carrega().verificaOrdensCompra());
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.dataColumn.setCellValueFactory(new PropertyValueFactory<>("dataCriacao"));
+        this.dataColumn.setCellValueFactory(new PropertyValueFactory<>("dataCriacaoFormatada"));
         this.pecaColumn.setCellValueFactory(new PropertyValueFactory<>("peca"));
         this.quantColumn.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         this.valorColumn.setCellValueFactory(new PropertyValueFactory<>("valorUnitario"));
