@@ -7,9 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import micromaintainsys.control.management_Controllers.servicos_GerController;
 import micromaintainsys.dao.DAO;
-import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
 
 import java.io.IOException;

@@ -66,7 +66,7 @@ public class SceneSwitch {
                 fatGerController.setTecnicoSessao(tecnico);
             }
             //GERENCIAMENTO
-            else if (fxml.equals("management_Scenes/cliente_ger.fxml") ){
+            else if (fxml.equals("management_Scenes/clientes_ger.fxml") ){
                 cliente_GerController cliGerController = fxmlLoader.getController();
                 cliGerController.setTecnicoSessao(tecnico);
             }
