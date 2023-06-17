@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import micromaintainsys.control.management_Controllers.servicos_GerController;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
@@ -207,6 +208,7 @@ public class ordersController implements Initializable {
             }
         }
         tecnico.setOrdemEmAndamentoID(ordem.getOrdemID());
+        showInformationAlert("Ordem aceita", "Ordem #"+ ordem.getOrdemID() +" aceita com sucesso!");
         ordem.setTecnicoID(tecnico.getTecnicoID());
         ordem.setStatus(StatusOrdem.Andamento);
         DAO.getTecnicoDAO().atualiza(tecnico);

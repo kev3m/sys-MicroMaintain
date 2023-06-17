@@ -84,6 +84,9 @@ public class SceneSwitch {
             else if (fxml.equals("management_Scenes/servicos_ger.fxml") ){
                 servicos_GerController serGerController = fxmlLoader.getController();
                 serGerController.setTecnicoSessao(tecnico);
+                if (objId != 0){
+                    serGerController.setOrdertoSearch(objId);
+                }
             }
             else if(fxml.equals("management_Scenes/tecnicos_ger.fxml")) {
                     tec_GerController teGerController = fxmlLoader.getController();

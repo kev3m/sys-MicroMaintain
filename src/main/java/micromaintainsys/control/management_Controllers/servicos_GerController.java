@@ -435,6 +435,13 @@ public class servicos_GerController implements Initializable {
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
     }
+    public void setOrdertoSearch(int id){
+        this.objID = id;
+        OrdemID.setText(Integer.toString(id));
+        ObservableList<Servico> servicos = FXCollections.observableArrayList(DAO.getServicoDAO().pegaTodosPorOrdemID(objID));
+        tableView.setItems(servicos);
+        tableView.refresh();
+    }
     @FXML
     void logoutTecnico() throws IOException {
         if (this.tecnicoSessao != null){
