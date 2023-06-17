@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="tecnicosAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.Servicos_GerController">
+   <children>
+      <Pane prefHeight="88.0" prefWidth="180.0">
+         <children>
+            <ImageView fitHeight="67.0" fitWidth="89.0" layoutX="29.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+               <image>
+                  <Image url="@../assets/mmLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <GridPane id="gridpane" layoutX="35.0" layoutY="157.0" prefHeight="346.0" prefWidth="702.0" stylesheets="@../css/main.css">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="258.0" minHeight="8.666671752929688" prefHeight="52.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="294.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Pane prefHeight="52.0" prefWidth="597.0">
+               <children>
+                  <Button fx:id="searchOrderButton" layoutX="297.0" layoutY="16.0" mnemonicParsing="false" onAction="#refreshTable" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fx:id="searchOrderServ" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/procurar.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children></Pane>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Serviços da Ordem: " textFill="#808698" GridPane.valignment="TOP">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" top="16.0" />
+               </GridPane.margin>
+            </Label>
+            <TableView fx:id="tableView" editable="true" prefHeight="294.0" prefWidth="720.0" stylesheets="@../css/main.css" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn id="column-header" fx:id="IdColumn" maxWidth="200.0" minWidth="0.0" prefWidth="54.0" style="-fx-text-alignment: center;" styleClass="column-header" text="ID" />
+                  <TableColumn id="column-header" fx:id="AbertColumn" maxWidth="317.0" prefWidth="84.0" styleClass="column-header" text="Abertura" />
+                  <TableColumn id="column-header" fx:id="CategoriaColumn" maxWidth="200.0" minWidth="0.0" prefWidth="97.0" styleClass="column-header" text="Categoria" />
+                  <TableColumn id="column-header" fx:id="PeçaColumn" maxWidth="352.0" prefWidth="88.0" styleClass="column-header" text="Peça" />
+                  <TableColumn id="column-header" fx:id="DescColumn" maxWidth="317.0" prefWidth="191.0" styleClass="column-header" text="Descrição" />
+                  <TableColumn id="column-header" fx:id="AvColumn" maxWidth="317.0" prefWidth="50.0" styleClass="column-header" text="Nota" />
+                  <TableColumn id="column-header" fx:id="ValorColumn" maxWidth="317.0" minWidth="-1.0" prefWidth="50.0" styleClass="column-header" text="Valor" />
+                  <TableColumn id="column-header" fx:id="FinColumn" maxWidth="317.0" prefWidth="87.0" styleClass="column-header" text="Finalização" />
+               </columns>
+            </TableView>
+            <TextField fx:id="OrdemID" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="133.0" promptText="Insira o ID da Ordem" styleClass="info-field" stylesheets="@../css/main.css">
+               <GridPane.margin>
+                  <Insets left="170.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+         <styleClass>
+            <String fx:value="grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <Button layoutX="908.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchToOrdem" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Retornar">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/desfazer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="38.0" layoutY="125.0" stylesheets="@../css/main.css" text="Gerenciar Serviços">
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/tecnico.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.5" />
+               </effect>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Button layoutX="986.0" layoutY="21.0" mnemonicParsing="false" styleClass="close-button" stylesheets="@../css/main.css" />
+      <ImageView fx:id="closeButton" fitHeight="20.0" fitWidth="18.0" layoutX="1028.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/icons/close.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <GridPane id="gridpane" layoutX="763.0" layoutY="157.0" prefHeight="346.0" prefWidth="278.0" stylesheets="@../css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="198.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="67.0" prefWidth="278.0" GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="21.0" styleClass="white-label" stylesheets="@../css/main.css" text="Insira o ID do serviço que deseja atualizar" textFill="#808698" />
+                  <TextField fx:id="idSearchField" layoutX="21.0" layoutY="23.0" prefHeight="27.0" prefWidth="72.0" promptText="Buscar..." styleClass="search-button" stylesheets="@../css/main.css">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <Button fx:id="searchButton" layoutX="94.0" layoutY="24.0" mnemonicParsing="false" onAction="#searchServico" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/procurar.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children></Pane>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Atualizar Serviço" textFill="#808698">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="notaServico" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" promptText="Nota" styleClass="info-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="20.0" top="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="UpdateButton" mnemonicParsing="false" onAction="#updateServico" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Atualizar" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/atualizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="UpdateButton1" mnemonicParsing="false" onAction="#clearUpdateFields" prefHeight="25.0" prefWidth="114.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Limpar" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/apagador.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="150.0" />
+               </GridPane.margin>
+            </Button>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Status" textFill="#808698" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <CheckBox fx:id="encerradoCheck" mnemonicParsing="false" text="Encerrado" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets left="20.0" top="20.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <Label styleClass="white-label" stylesheets="@../css/main.css" text="Avaliação do Cliente (0-10)" textFill="#808698" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="30.0" left="20.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <GridPane id="rev_gridpane" layoutX="833.0" layoutY="522.0" prefHeight="164.0" prefWidth="210.0" stylesheets="@../css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#removeServico" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Remover" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/remover.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label blendMode="ADD" styleClass="white-label" stylesheets="@../css/main.css" text="Remover Serviço" textFill="#FFFFFF" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="idRemoveField1" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="ID" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" top="15.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="ID da Serviço a ser removido" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="reverse-grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <GridPane id="rev_gridpane" layoutX="38.0" layoutY="522.0" prefHeight="164.0" prefWidth="575.0" stylesheets="@../css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#addServico" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Adicionar" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/add_servico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label blendMode="ADD" styleClass="white-label" stylesheets="@../css/main.css" text="Adicionar Serviço" textFill="#FFFFFF" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="Categoria do Serviço" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <ChoiceBox fx:id="categoriaServico" prefHeight="25.0" prefWidth="120.0" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="20.0" top="16.0" />
+               </GridPane.margin>
+            </ChoiceBox>
+            <TextField fx:id="PecaAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="126.0" promptText="Peça" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets left="155.0" top="16.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="Peça Utilizada" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="155.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="DescAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="186.0" promptText="Descrição" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets left="292.0" top="16.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="Descrição do Serviço" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="292.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="ValorAdd" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="68.0" promptText="Valor" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <GridPane.margin>
+                  <Insets left="490.0" top="16.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="Valor" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="490.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="reverse-grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <GridPane id="rev_gridpane" layoutX="630.0" layoutY="522.0" prefHeight="164.0" prefWidth="186.0" stylesheets="@../css/main.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="258.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="163.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="40.0" prefWidth="373.0" styleClass="reverse-grid-pane" stylesheets="@../css/main.css" />
+            <Button focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#gerarRelatorio" prefHeight="25.0" prefWidth="117.0" styleClass="reverse-button" stylesheets="@../css/main.css" text="Gerar" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/relatorio_blue.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label blendMode="ADD" styleClass="white-label" stylesheets="@../css/main.css" text="Gerar Relatório" textFill="#FFFFFF" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="idServicoRelatorio" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="134.0" promptText="ID" styleClass="remove-field" stylesheets="@../css/main.css" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" top="15.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label blendMode="ADD" contentDisplay="TOP" styleClass="white-label" stylesheets="@../css/main.css" text="ID do Serviço" textFill="#FFFFFF" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="reverse-grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+   </children>
+</AnchorPane>

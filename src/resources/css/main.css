@@ -1,0 +1,154 @@
+.main{
+    -fx-background-color: #EBEEF2;
+
+}
+
+.menu-images{
+
+
+}
+.grid-pane{
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.13), 20, 0, 0, 0);
+    -fx-background-radius: 10;
+    -fx-prompt-text-fill: #808698;
+
+
+}
+
+.reverse-grid-pane{
+    -fx-background-color: #5C83D8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 20, 0, 0, 0);
+    -fx-background-radius: 10;
+    -fx-alignment: center-left;
+
+}
+.reverse-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #5C83D8;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10px;
+
+}
+.info-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #808698;
+    -fx-prompt-text-fill: #B1BCCB;
+    -fx-text-fill: #808698;
+    -fx-font-weight: bold;
+    -fx-border-radius: 2px;
+}
+.remove-field{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #5C83D8;
+    -fx-font-weight: bold;
+    -fx-border-radius: 2px;
+}
+.check-box {
+    -fx-text-fill: #808698;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.check-box .box{
+    -fx-background-color: #EBEEF2;
+    -fx-border-color: transparent;
+    -fx-text-fill: #808698;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+#gridpane .table-view {
+    /*camada por trás da tabela*/
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 0;
+    -fx-background-radius: 0 0 10 10;
+}
+
+/*CABEÇALHO DA TABELA */
+.table-view .column-header{
+    -fx-background-color: #EBEEF2; /* Cor de fundo do cabeçalho */
+    -fx-text-fill: #000000; /* Cor do texto do cabeçalho */
+    -fx-font-weight: bold; /* Negrito */
+    -fx-font-size: 15px;
+    /* Outras regras de estilo */
+}
+.table-view .column-header .label {
+    -fx-padding: 13 0 13 0;
+    -fx-alignment: center-left; /* Alinha o texto à esquerda */
+
+}
+/*TEXTO DA TABELA */
+#gridpane .table-view .table-cell{
+    -fx-text-fill: #808698;
+    -fx-background-color: #ffffff;
+
+
+
+}
+/* COLUNAS*/
+.table-view .table-column{
+    -fx-padding: 30 0 0 25;
+    -fx-border-color: transparent;
+    -fx-font-size: 12px;
+}
+
+.table-view .scroll-bar {
+    -fx-background-color: #EBEEF2;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #EBEEF2;
+}
+
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: #ffffff;
+}
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #EBEEF2;
+}
+
+.table-view .scroll-bar:horizontal .track {
+    -fx-background-color: #ffffff;
+}
+
+.new-order-button{
+    -fx-background-color: #5C83D8;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10px;
+
+
+}
+.filter-button{
+    -fx-prompt-text-fill: #B1BCCB;
+    -fx-border-width: 2px;
+    -fx-border-color: #EBEEF2;
+    -fx-background-color: transparent;
+    -fx-border-radius: 5;
+}
+.search-button {
+    -fx-prompt-text-fill: #B1BCCB;
+    -fx-background-color: #EBEEF2;
+    -fx-border-radius: 1;
+}
+.label{
+    -fx-text-fill: #808698;
+    -fx-font-weight: bold;
+}
+.menu_button{
+    -fx-padding: 0px 0px 0px 30px;
+    -fx-graphic-text-gap: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #808698;
+
+}
+.menu_button:hover{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #5C83D8;
+}
+.close-button{
+    -fx-background-color: transparent;
+}

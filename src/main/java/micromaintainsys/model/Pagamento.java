@@ -1,8 +1,11 @@
 package micromaintainsys.model;
+
+import java.io.Serializable;
+
 /**
  Classe que representa um pagamento.
  */
-public class Pagamento {
+public class Pagamento implements Serializable{
     /**
      Tipo de pagamento.
      */

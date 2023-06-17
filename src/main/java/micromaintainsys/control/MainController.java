@@ -1,6 +1,12 @@
 package micromaintainsys.control;
+import java.net.URL;
 import java.util.*;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
@@ -8,16 +14,24 @@ import micromaintainsys.model.*;
 /**
  * Controller responsável por prover a interface com o sistema.
  */
-public class MainController {
+public class MainController{
     /*TODO
     Implementar método de avaliação do cliente
      */
-    private final Queue<Ordem> ordensAbertas;
-    private final ArrayList<Ordem> ordensServico;
-    private final ArrayList<Fatura> faturas;
+    private Queue<Ordem> ordensAbertas;
+    private ArrayList<Ordem> ordensServico;
+    private ArrayList<Fatura> faturas;
     //Armazena o ID do tecnico logado no sistema
     private Tecnico tecnicoSessao;
-    private final Estoque estoque;
+    private int objID;
+    private Estoque estoque;
+
+    @FXML
+    private TextField usernameField;
+
+    @FXML
+    private PasswordField passwordField;
+
 
     public MainController(){
         this.estoque = carregaEstoque();
@@ -26,7 +40,7 @@ public class MainController {
         this.ordensAbertas = new LinkedList<>(abertas);
         this.ordensServico = new ArrayList<>(DAO.getOrdemDAO().pegaTodas());
         this.faturas = new ArrayList<>(DAO.getFaturaDAO().pegaTodas());
-   }
+    }
     /*
     Métodos relacionados a TÉCNICOS
     */
@@ -51,6 +65,15 @@ public class MainController {
         }
     }
 
+
+    public void loginButtonClick(ActionEvent event) throws
+            InvalidUserException,
+            UserAlreadyLoggedInException,
+            WrongPasswordException{
+        int tecId = Integer.parseInt(usernameField.getText());
+        String password = passwordField.getText();
+        loginTecnico(tecId, password);
+    }
     /**
      * Realiza login do tecnico
      * @param id id do técnico
@@ -63,6 +86,7 @@ public class MainController {
             InvalidUserException,
             UserAlreadyLoggedInException,
             WrongPasswordException{
+
         /*Não é possível fazer login sem fazer logoff do técnico anterior!*/
         Tecnico loginTecnico = pegaTecnicoPorId(id);
         if (loginTecnico == null){
@@ -467,5 +491,6 @@ public class MainController {
     public Estoque _getEstoque(){
         return this.estoque;
     }
+
 
 }

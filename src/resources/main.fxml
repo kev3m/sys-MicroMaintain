@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ordersAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.OrdersController">
+   <children>
+      <VBox prefHeight="500.0" prefWidth="180.0" style="-fx-background-color: #EBEEF2;" styleClass="t" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">         <children>
+            <Pane prefHeight="88.0" prefWidth="180.0">
+               <children>
+                  <ImageView fitHeight="67.0" fitWidth="89.0" layoutX="29.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/mmLogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens">
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/icons/orders.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="30.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="12.0" top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="tecButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToTec" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Técnicos">
+               <padding>
+                  <Insets left="30.0" top="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/icons/tecnico.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="12.0" top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToClientes" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Clientes">
+               <padding>
+                  <Insets left="30.0" top="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/icons/servicos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="12.0" top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToFatura" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Faturas">
+               <padding>
+                  <Insets left="30.0" top="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/icons/fatura.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="12.0" top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToOrdem_Compra" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Ordens de Compra">
+               <padding>
+                  <Insets left="30.0" top="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/icons/ordem_compra.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="12.0" top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToEstoque" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Estoque">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true" styleClass="menu-images">
+                     <image>
+                        <Image url="@assets/icons/estoque.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="12.0" top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#logoutTecnico" prefHeight="35.0" prefWidth="180.0" styleClass="menu_button" stylesheets="@css/main.css" text="Logout">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons/info.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="190.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+      <GridPane id="gridpane" layoutX="180.0" layoutY="157.0" prefHeight="525.0" prefWidth="864.0" stylesheets="@css/main.css">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="433.0" minHeight="10.0" prefHeight="433.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView fx:id="tableView" editable="true" prefHeight="200.0" prefWidth="200.0" styleClass="column-header" stylesheets="@css/main.css" GridPane.rowIndex="1">
+              <columns>
+                <TableColumn id="column-header" fx:id="idColumn" editable="false" prefWidth="100.0" sortType="DESCENDING" styleClass="column-header" text="ID" />
+                  <TableColumn id="column-header" fx:id="clienteColumn" prefWidth="254.0" sortable="false" styleClass="column-header" text="Cliente" />
+                  <TableColumn id="column-header" fx:id="tecnicoColumn" prefWidth="254.0" sortable="false" styleClass="column-header" text="Técnico" />
+                  <TableColumn id="column-header" fx:id="statusColumn" prefWidth="254.0" sortable="false" styleClass="column-header" text="Status" />
+              </columns>
+            </TableView>
+            <Pane prefHeight="79.0" prefWidth="864.0">
+               <children>
+                  <Label layoutX="315.0" layoutY="38.0" stylesheets="@css/main.css" text="Filtro por Status" />
+                  <ChoiceBox fx:id="statusFilter" layoutX="416.0" layoutY="32.0" prefHeight="29.0" prefWidth="133.0" styleClass="filter-button" stylesheets="@css/main.css" />
+               </children>
+            </Pane>
+         </children>
+         <styleClass>
+            <String fx:value="grid-pane" />
+            <String fx:value="grid-pane table-view table-column" />
+         </styleClass>
+      </GridPane>
+      <Button fx:id="newOrderButton" layoutX="911.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToOrdem_ger" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Gerenciar Ordens">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/definicoes.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="180.0" layoutY="127.0" stylesheets="@css/main.css" text="Ordens de Serviço">
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/orders.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.5" />
+               </effect>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label fx:id="helloLabel" layoutX="180.0" layoutY="33.0" text="Olá, admin." textFill="#808698">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="986.0" layoutY="21.0" mnemonicParsing="false" styleClass="close-button" stylesheets="@css/main.css" />
+      <ImageView fx:id="closeButton" fitHeight="20.0" fitWidth="18.0" layoutX="1028.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/icons/close.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Button fx:id="ordemAtual" layoutX="717.0" layoutY="122.0" mnemonicParsing="false" onAction="#visualizarOrdemAtual" prefHeight="25.0" prefWidth="180.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Gerenciar Ordem Atual">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/definicoes.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="acceptOrder1" layoutX="566.0" layoutY="122.0" mnemonicParsing="false" onAction="#atribuiOrdem" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@css/main.css" text="Aceitar Ordem">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/servicospagewhite.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
