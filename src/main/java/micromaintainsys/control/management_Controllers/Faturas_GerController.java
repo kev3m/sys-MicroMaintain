@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.showErrorAlert;
 import static micromaintainsys.utils.ViewUtils.showInformationAlert;
 
-public class faturas_GerController implements Initializable {
+public class Faturas_GerController implements Initializable {
     @FXML
     private AnchorPane faturaGerAnchorPane;
 

@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
@@ -20,7 +19,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.*;
 
 
-public class estoque_GerController implements Initializable {
+public class Estoque_GerController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;

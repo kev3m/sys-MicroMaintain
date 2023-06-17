@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -24,7 +23,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.showErrorAlert;
 import static micromaintainsys.utils.ViewUtils.showInformationAlert;
 
-public class clientesController implements Initializable {
+public class ClientesController implements Initializable {
 
     @FXML
     private AnchorPane clientesAnchorPane;

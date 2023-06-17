@@ -18,7 +18,7 @@ import java.util.*;
 import static micromaintainsys.utils.ViewUtils.showErrorAlert;
 import static micromaintainsys.utils.ViewUtils.showInformationAlert;
 
-public class tecnicosController implements Initializable {
+public class TecnicosController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;

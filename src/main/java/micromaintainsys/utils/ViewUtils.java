@@ -53,7 +53,7 @@ public class ViewUtils {
     public static void phoneFilter(TextField field){
         field.setTextFormatter(new TextFormatter<>(change -> {
             String newText = change.getControlNewText();
-            if (newText.matches("-?\\d{0,11}")) {
+            if (newText.matches("^-?\\d*\\-?\\d*$")) {
                 return change;
             }
             return null;

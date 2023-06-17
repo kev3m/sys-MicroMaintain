@@ -17,7 +17,7 @@ import java.util.*;
 import static micromaintainsys.utils.ViewUtils.*;
 
 
-public class ordersController implements Initializable {
+public class OrdersController implements Initializable {
     @FXML
     private TableView<Ordem> tableView;
     @FXML
@@ -47,7 +47,7 @@ public class ordersController implements Initializable {
 
 
 
-    public ordersController() {
+    public OrdersController() {
 
     }
 
@@ -159,10 +159,6 @@ public class ordersController implements Initializable {
     public void callDisplayNameOnInitialize() {
         // Verifica se o objeto tecnicoSessao não é nulo antes de chamar o displayName
         if (tecnicoSessao != null) {
-            System.out.println("TecnicoSessao não é nulo");
-            System.out.println(tecnicoSessao.getNome());
-            System.out.println(tecnicoSessao.getTecnicoID());
-            System.out.println(tecnicoSessao.getSenha());
             displayName();
         }
     }
@@ -182,7 +178,7 @@ public class ordersController implements Initializable {
 
         /*Técnico já tem ordem em andamento*/
         if (tecnico.getOrdemEmAndamentoID() >= 0){
-            showErrorAlert("Erro ao aceitar ordem", "Técnico já tem ordem em andamento!");
+            showErrorAlert("Erro ao aceitar ordem", "Você já possui uma ordem em andamento!");
             return;
         }
         /*A fila de ordens abertas está vazia*/

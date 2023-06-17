@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="faturaGerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.faturas_GerController">
+<AnchorPane fx:id="faturaGerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="main" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="micromaintainsys.control.management_Controllers.Faturas_GerController">
    <children>
       <Button layoutX="910.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchToFatura" prefHeight="25.0" prefWidth="133.0" styleClass="new-order-button" stylesheets="@../css/main.css" text="Retornar">
          <graphic>

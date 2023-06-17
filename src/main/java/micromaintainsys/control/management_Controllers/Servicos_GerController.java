@@ -13,8 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.AssemblyWithEmptyComponentException;
-import micromaintainsys.exceptions.NotAllowedException;
-import micromaintainsys.exceptions.UserNotLoggedInException;
 import micromaintainsys.model.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -26,7 +24,6 @@ import java.io.File;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Queue;
@@ -35,7 +32,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.*;
 
 
-public class servicos_GerController implements Initializable {
+public class Servicos_GerController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;

@@ -8,7 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
-import micromaintainsys.model.Estoque;
 import micromaintainsys.model.SceneSwitch;
 import micromaintainsys.model.Tecnico;
 
@@ -20,7 +19,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.showErrorAlert;
 import static micromaintainsys.utils.ViewUtils.showInformationAlert;
 
-public class estoqueController implements Initializable {
+public class EstoqueController implements Initializable {
 
     @FXML
     private ImageView closeButton;

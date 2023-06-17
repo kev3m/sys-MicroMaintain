@@ -13,13 +13,12 @@ import static micromaintainsys.utils.ViewUtils.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.ResourceBundle;
 
 
 
 
-public class cliente_GerController implements Initializable {
+public class Cliente_GerController implements Initializable {
 
     @FXML
     private AnchorPane clientesAnchorPane;
@@ -48,7 +47,7 @@ public class cliente_GerController implements Initializable {
     private Tecnico tecnicoSessao;
     private int objID;
 
-    public cliente_GerController() {
+    public Cliente_GerController() {
     }
 
 
@@ -186,6 +185,7 @@ public class cliente_GerController implements Initializable {
         // Configurar o filtro de entrada para aceitar somente números
             numberFilter(idField);
             numberFilter(idRemoveField);
+
             phoneFilter(phoneField);
             phoneFilter(phoneFieldUpdate);
 //            numberFilter(OrderFieldUpdate);

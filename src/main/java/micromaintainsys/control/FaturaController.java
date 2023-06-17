@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.showErrorAlert;
 import static micromaintainsys.utils.ViewUtils.showInformationAlert;
 
-public class faturaController implements Initializable {
+public class FaturaController implements Initializable {
     @FXML
     private AnchorPane faturaAnchor;
 

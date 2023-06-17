@@ -22,7 +22,7 @@ public class Main extends Application{
         Scene scene = new Scene(fxmlLoader.load());
 
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Hello!");
+        primaryStage.setTitle("Micro MaintainSys");
         primaryStage.setScene(scene);
         primaryStage.show();
 

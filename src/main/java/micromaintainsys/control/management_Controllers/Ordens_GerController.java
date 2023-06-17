@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 import static micromaintainsys.utils.ViewUtils.*;
 
 
-public class ordens_GerController implements Initializable {
+public class Ordens_GerController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;

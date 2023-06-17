@@ -10,24 +10,21 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.model.OrdemCompra;
 import micromaintainsys.model.SceneSwitch;
 import micromaintainsys.model.Tecnico;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import static micromaintainsys.utils.ViewUtils.showErrorAlert;
 import static micromaintainsys.utils.ViewUtils.showInformationAlert;
 
-public class ordemCompraController implements Initializable {
+public class OrdemCompraController implements Initializable {
     @FXML
     private AnchorPane ordemCompraAnchorPane;
     @FXML

@@ -2,30 +2,24 @@ package micromaintainsys.control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import micromaintainsys.dao.DAO;
 import micromaintainsys.exceptions.InvalidUserException;
 import micromaintainsys.exceptions.UserAlreadyLoggedInException;
 import micromaintainsys.exceptions.WrongPasswordException;
-import micromaintainsys.dao.DAO;
-import micromaintainsys.exceptions.*;
 import micromaintainsys.model.*;
 import micromaintainsys.model.Tecnico;
 
 import static micromaintainsys.utils.ViewUtils.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class loginController {
+public class LoginController implements Initializable {
     //Armazena o ID do tecnico logado no sistema
     @FXML
     private PasswordField passwordField;
@@ -63,5 +57,11 @@ public class loginController {
 
     public Tecnico pegaTecnicoPorId(int tecnicoID){
         return DAO.getTecnicoDAO().pegaPorId(tecnicoID);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        numberFilter(usernameField);
+
     }
 }

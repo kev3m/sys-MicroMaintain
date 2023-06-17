@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 
 
-public class tec_GerController implements Initializable {
+public class Tec_GerController implements Initializable {
 
     @FXML
     private AnchorPane tecnicosAnchorPane;
