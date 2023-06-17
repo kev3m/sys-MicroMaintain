@@ -122,7 +122,12 @@ public class ordersController implements Initializable {
     }
     @FXML
     void switchToTec() throws IOException {
-        new SceneSwitch(ordersAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
+        if (this.tecnicoSessao.isAdm()){
+            new SceneSwitch(ordersAnchorPane, "tecnicos.fxml", tecnicoSessao, objID);
+        }
+        else{
+            showErrorAlert("Erro ao acessar página", "Você não tem permissão para acessar essa página");
+        }
     }
     @FXML
     void switchToClientes() throws IOException {
@@ -214,6 +219,16 @@ public class ordersController implements Initializable {
         DAO.getTecnicoDAO().atualiza(tecnico);
         DAO.getOrdemDAO().atualiza(ordem);
         switchToOrdem();
+    }
+
+    @FXML void visualizarOrdemAtual() throws IOException {
+        if (tecnicoSessao.getOrdemEmAndamentoID() != -1){
+            new SceneSwitch(ordersAnchorPane, "management_Scenes/servicos_ger.fxml", tecnicoSessao, tecnicoSessao.getOrdemEmAndamentoID());
+        }
+        else {
+            showErrorAlert("Erro ao visualizar ordem", "Você não possui ordem em andamento!");
+        }
+
     }
 
 

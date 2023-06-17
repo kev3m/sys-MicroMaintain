@@ -21,12 +21,12 @@ public class Main extends Application{
         FXMLLoader fxmlLoader = new FXMLLoader(url);
         Scene scene = new Scene(fxmlLoader.load());
 
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);
         primaryStage.show();
 
 
-    /*TODO Automatizar a troca de status da ordem */
 
     }
     public static void main(String[] args){

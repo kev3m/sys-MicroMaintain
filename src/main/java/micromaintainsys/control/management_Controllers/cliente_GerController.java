@@ -23,11 +23,6 @@ public class cliente_GerController implements Initializable {
 
     @FXML
     private AnchorPane clientesAnchorPane;
-    private Queue<Ordem> ordensAbertas;
-    private ArrayList<Ordem> ordensServico;
-    private ArrayList<Fatura> faturas;
-    private Estoque estoque;
-
     @FXML
     private TextField nameField;
 
@@ -38,10 +33,6 @@ public class cliente_GerController implements Initializable {
 
     @FXML
     private TextField phoneFieldUpdate;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button UpdateButton;
     @FXML
     private TextField nameFieldUpdate;
     @FXML
@@ -173,6 +164,7 @@ public class cliente_GerController implements Initializable {
 
     public void setTecnicoSessao(Tecnico tecnicoSessao) {
         this.tecnicoSessao = tecnicoSessao;
+
     }
     @FXML
     void logoutTecnico() throws IOException {
